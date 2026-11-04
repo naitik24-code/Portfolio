@@ -95,8 +95,9 @@ function CoreVisual() {
       layers.forEach((layer, index) => { const depth = index === 0 ? 18 : index < 4 ? 9 : 4; layer.style.translate = `${x * depth}px ${y * depth}px`; });
     };
     const leave = () => layers.forEach(layer => { layer.style.translate = ''; });
-    scene.addEventListener('pointermove', move, { passive: true }); scene.addEventListener('pointerleave', leave);
-    return () => { scene.removeEventListener('pointermove', move); scene.removeEventListener('pointerleave', leave); };
+    const scroll = () => { const progress = Math.min(scrollY / Math.max(innerHeight * 2.4, 1), 1); scene.style.setProperty('--core-scroll', progress.toFixed(3)); };
+    scene.addEventListener('pointermove', move, { passive: true }); scene.addEventListener('pointerleave', leave); addEventListener('scroll', scroll, { passive: true }); scroll();
+    return () => { scene.removeEventListener('pointermove', move); scene.removeEventListener('pointerleave', leave); removeEventListener('scroll', scroll); };
   }, []);
   return <div className="core-scene" ref={ref} data-cursor="ROTATE" aria-label="Abstract animated network core">
     <div className="core-halo halo-a" /><div className="core-halo halo-b" />
