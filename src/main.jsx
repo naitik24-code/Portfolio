@@ -113,7 +113,6 @@ function Hero() {
       <h1><span>BUILDING</span><span><em>INTELLIGENT</em> SYSTEMS.</span></h1>
       <p className="hero-sub">I turn complex questions into useful software—across AI/ML, fintech, quantitative analytics, and full-stack product engineering.</p>
       <div className="hero-actions"><a className="button button-lime" href="#projects" data-cursor="EXPLORE">EXPLORE MY WORK <Arrow /></a><a className="text-link" href="#contact" data-cursor="CONNECT">LET’S CONNECT <Arrow diagonal /></a></div>
-      <div className="hero-now"><span className="case-label">NOW / 2026</span><div><b>BUILDING</b><span>AI PRODUCTS · DATA SYSTEMS · DECISION TOOLS</span></div><div><b>OPEN TO</b><span>INTERNSHIPS · COLLABORATIONS</span></div></div>
     </div>
     <CoreVisual />
     <div className="hero-bottom"><span>SCROLL TO EXPLORE <i className="scroll-line" /></span><span className="hero-index">01 — 05</span></div>
@@ -197,7 +196,6 @@ function Projects({ openCase }) {
     <SectionHeading index="02" label="SELECTED WORK / 2024—26" title="BUILT TO MAKE" accent="A DIFFERENCE." />
     <div className="projects-intro"><p>Research, software, and intelligent systems—each shaped around a real question, a set of constraints, and something useful to learn.</p><span>{String(visibleProjects.length).padStart(2, '0')} PROJECT{visibleProjects.length === 1 ? '' : 'S'} <i>·</i> {activeFilter === 'All' ? 'ONE CURIOSITY' : activeFilter.toUpperCase()}</span></div>
     <div className="project-filters" role="group" aria-label="Filter projects by discipline">{filters.map(filter => <button key={filter} aria-pressed={activeFilter === filter} className={activeFilter === filter ? 'selected' : ''} onClick={() => setActiveFilter(filter)}>{filter}<span>{filter === 'All' ? projects.length : projects.filter(project => project.filter === filter).length}</span></button>)}</div>
-    <div className="systems-map" aria-label="Project system map"><span className="systems-map-label">ONE CURIOSITY / MANY SYSTEMS</span><div className="systems-map-core"><b>NP</b><span>WORK<br />SYSTEM</span></div><div className="systems-map-node node-ai">AI / ML<small>CropCare · SLM Arena</small></div><div className="systems-map-node node-fin">FINTECH<small>OptiVest · QuantOpt</small></div><div className="systems-map-node node-data">DATA<small>SteelLens · Inventory</small></div></div>
     <div className="projects-grid" aria-live="polite">{visibleProjects.map((project, i) => <ProjectCard key={project.id} project={project} index={i} onOpen={openCase} />)}</div>
     <div className="other-project"><span className="other-number">06</span><div><span className="case-label">ALSO IN MY RESUME</span><h3>SLM Arena <i>—</i> local LLM benchmarking</h3><p>A dashboard comparing AI models and presenting results clearly. Listed on my resume; its project folder wasn’t among the repositories reviewed.</p></div><div className="other-links"><span className="other-tag">RESUME PROJECT</span><a href="https://github.com/naitik24-code/Slm-Arena" target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a></div></div>
   </section>;
