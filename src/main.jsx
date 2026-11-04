@@ -102,6 +102,7 @@ function CoreVisual() {
     <div className="core-halo halo-a" /><div className="core-halo halo-b" />
     <div className="core-orbit orbit-one"><i /><i /><i /></div><div className="core-orbit orbit-two"><i /><i /></div><div className="core-orbit orbit-three"><i /></div>
     <div className="core-sphere"><span className="sphere-grid" /><span className="sphere-glint" /><span className="sphere-cut" /></div>
+    <div className="core-projects" aria-hidden="true"><span className="core-project core-project-a">OPTIVEST</span><span className="core-project core-project-b">QUANTOPT</span><span className="core-project core-project-c">STEELLENS</span><span className="core-project core-project-d">CROPCARE</span><span className="core-project core-project-e">INVENTORY</span><span className="core-project core-project-f">SLM ARENA</span></div>
     <div className="core-label core-label-a"><span /> SYSTEMS / 01</div><div className="core-label core-label-b">SIGNAL → STRUCTURE</div>
   </div>;
 }
@@ -260,7 +261,7 @@ function Footer() {
 
 function App() {
   const [active, setActive] = useState('home');
-  const [simpleView, setSimpleView] = useState(() => { try { return localStorage.getItem('simple-view') === 'true'; } catch { return false; } });
+  const [simpleView, setSimpleView] = useState(false);
   const [caseProject, setCaseProject] = useState(null);
   const caseRef = useRef(null);
   caseRef.current = caseProject;
