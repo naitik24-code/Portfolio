@@ -24,7 +24,7 @@ export const projects: Project[] = [
     resultNote: 'Reported historical backtest used an eight-asset universe from 2020 onward. APDE trailed equal-weight (41.49% CAGR) and momentum (44.54%) on CAGR, while exceeding SPY (16.76%). Results are specific to that test setup.',
     stack: ['Python', 'Machine learning', 'Portfolio optimization', 'TreeSHAP', 'Paper trading'],
     visual: 'portfolio',
-    links: { github: 'https://github.com/naitik24-code/OptiVest1' },
+    links: { github: 'https://github.com/naitik24-code/OptiVest1', demo: 'https://opti-vest1.vercel.app/' },
   },
   {
     id: 'steellens', number: '02', name: 'SteelLens', short: 'Reading the structure behind the numbers.', category: 'Financial analytics · Research', filter: 'Research', accent: 'violet',
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     resultNote: '*The saved model evaluation reports cover 17 classes, but evaluation files in the project disagree on the reported accuracy and sample count. This portfolio therefore does not present a single accuracy claim as definitive.',
     stack: ['Python', 'FastAPI', 'React', 'LightGBM', 'OpenCV', 'HOG & GLCM'],
     visual: 'crop',
-    links: { github: 'https://github.com/naitik24-code/Crop-Care-Detection' },
+    links: { github: 'https://github.com/naitik24-code/Crop-Care-Detection', demo: 'https://crop-care-detection.vercel.app/' },
   },
   {
     id: 'inventory', number: '05', name: 'Retail Inventory Dashboard', short: 'From stock signals to timely action.', category: 'Full Stack · Data', filter: 'Product systems', accent: 'lime',
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     resultNote: 'The project overview documents the workflows above. The 15% forecasting improvement mentioned in the resume is not backed by a result in the repository overview, so it is not presented here as a verified metric.',
     stack: ['Python', 'FastAPI', 'SQLite', 'XGBoost', 'DBSCAN', 'JavaScript'],
     visual: 'inventory',
-    links: { github: 'https://github.com/naitik24-code/retail-inventory-dashboard' },
+    links: { github: 'https://github.com/naitik24-code/retail-inventory-dashboard', demo: 'https://retail-inventory-dashboard-backend-3hrpmddo6.vercel.app/#home' },
   },
 ];
 
