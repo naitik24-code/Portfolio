@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { labNodes, profile, projects, skills } from './data';
 import './style.css';
+
+const Universe = lazy(() => import('./scene/Universe'));
 
 const Arrow = ({ diagonal = false }) => <svg aria-hidden="true" viewBox="0 0 18 18" className="arrow-icon"><path d={diagonal ? 'M4 14 14 4M5 4h9v9' : 'M3 9h11M9 4l5 5-5 5'} /></svg>;
 
@@ -68,10 +70,10 @@ function Cursor() {
 
 function Navigation({ active, setActive }) {
   const [open, setOpen] = useState(false);
-  const links = ['about', 'projects', 'skills', 'contact'];
+  const links = ['about', 'projects', 'skills', 'lab', 'contact'];
   return <header className="nav-shell">
     <a className="brand" href="#home" aria-label="Naitik Pathak, home" onClick={() => setOpen(false)}><span className="brand-mark">N<span>.</span></span><span className="brand-name">NAITIK<br /><i>PATHAK</i></span></a>
-    <div className="nav-status"><span className="status-dot" /> OPEN TO OPPORTUNITIES</div>
+    <div className="nav-status"><span className="status-dot" /> {profile.availability.toUpperCase()}</div>
     <button className="menu-toggle" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} onClick={() => setOpen(v => !v)}>{open ? 'CLOSE' : 'MENU'} <span>{open ? '−' : '+'}</span></button>
     <nav className={`nav-links ${open ? 'is-open' : ''}`} aria-label="Main navigation">
       {links.map(link => <a key={link} href={`#${link}`} className={active === link ? 'active' : ''} onClick={() => { setActive(link); setOpen(false); }}><span>{link}</span><i /></a>)}
@@ -110,10 +112,10 @@ function CoreVisual() {
 
 function Hero({ simpleView, setSimpleView }) {
   return <section className="hero section-wrap" id="home">
-    <div className="hero-topline"><span>PORTFOLIO / 2026</span><span>MOHALI, INDIA <i className="crosshair">✳</i></span></div>
-    <div className="hero-copy"><p className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · AI · ANALYTICS</p>
+    <div className="hero-topline"><span>PORTFOLIO / SYSTEMS</span><span>{profile.location.toUpperCase()} <i className="crosshair" aria-hidden="true">✳</i></span></div>
+    <div className="hero-copy"><p className="eyebrow"><span className="eyebrow-line" /> {profile.role.toUpperCase()}</p>
       <h1><span>BUILDING</span><span><em>INTELLIGENT</em> SYSTEMS.</span></h1>
-      <p className="hero-sub">I turn complex questions into useful software—across AI/ML, fintech, quantitative analytics, and full-stack product engineering.</p>
+      <p className="hero-sub">I build practical intelligent systems, analytical products, and full-stack interfaces that make complex workflows useful.</p>
       <div className="hero-actions"><a className="button button-lime" href="#projects" data-cursor="EXPLORE">EXPLORE MY WORK <Arrow /></a><a className="text-link" href="#contact" data-cursor="CONNECT">LET’S CONNECT <Arrow diagonal /></a></div>
       <button className="view-toggle" type="button" aria-pressed={simpleView} onClick={() => setSimpleView(value => !value)}>{simpleView ? 'ENABLE CORE VISUAL' : 'SIMPLE VIEW'} <span>↗</span></button>
     </div>
@@ -130,10 +132,10 @@ function SectionHeading({ index, label, title, accent }) {
 function About() {
   return <section id="about" className="about section-wrap section-pad reveal">
     <SectionHeading index="01" label="A LITTLE ABOUT ME" title="I LIKE TURNING COMPLEXITY" accent="INTO SYSTEMS THAT WORK." />
-    <div className="about-grid"><p className="about-lede">I’m a Computer Science and Business Systems student at <span>Chandigarh University</span>, interested in the space where software, intelligent systems, and business decisions meet.</p>
-      <div className="about-detail"><p>I enjoy moving from an open-ended problem to a working system: understanding the data, choosing a useful model, shaping an interface, and being honest about what the results can and cannot say.</p><p>Across research and product builds, I’m drawn to systems with real constraints—portfolio risk, industrial cost structures, crop diagnosis, and inventory decisions.</p><a className="underlined-link" href="#projects">A FEW THINGS I’VE BUILT <Arrow /></a></div>
+    <div className="about-grid"><p className="about-lede">{profile.about.statement} <span className="draft-mark">DRAFT</span></p>
+      <div className="about-detail"><p>{profile.about.paragraph}</p><p>My selected work spans investment rebalancing, portfolio optimization, financial and ESG analysis, crop disease detection, and inventory analytics.</p><a className="underlined-link" href="#projects">A FEW THINGS I’VE BUILT <Arrow /></a></div>
     </div>
-    <div className="about-footer"><span>COMPUTER SCIENCE & BUSINESS SYSTEMS</span><span>CHANDIGARH UNIVERSITY <i>·</i> 2023—PRESENT</span><span>CGPA 8.06 / 10</span></div>
+    <div className="about-footer"><span>BASED IN {profile.location.toUpperCase()}</span><span>{profile.availability.toUpperCase()}</span><span>FOCUS: {profile.focus.toUpperCase()}</span></div>
   </section>;
 }
 
@@ -149,7 +151,7 @@ function ProjectGraphic({ type, id }) {
   return <div className="graphic inventory-graphic"><div className="graphic-meta"><span>INVENTORY / ACTION CENTER</span><span>OPERATIONAL SIGNALS</span></div><div className="inventory-ui"><div className="inventory-aside"><span>OVERVIEW</span><span>INVENTORY</span><span className="selected">ALERTS <i>04</i></span><span>ANALYTICS</span></div><div className="inventory-main"><div className="inventory-kpis"><div><small>AT RISK</small><b>08 <i>items</i></b></div><div><small>REORDER SIGNAL</small><b>12 <i>items</i></b></div></div>{['VITAMIN C / 500MG','OAT MILK / 1L','PAPER / A4'].map((s, i) => <div className="inventory-row" key={s}><span><i className={`risk-dot risk-${i}`} />{s}</span><span>{['3 DAYS','6 DAYS','9 DAYS'][i]}</span><span>REVIEW <Arrow diagonal /></span></div>)}</div></div><div className="graphic-foot"><span>STOCKOUT SUGGESTIONS · REORDER LOGIC</span><span>ILLUSTRATIVE UI / SAMPLE VALUES</span></div></div>;
 }
 
-function ProjectCard({ project, index, onOpen }) {
+function ProjectCard({ project, index, onOpen, onHighlight }) {
   const card = useRef(null);
   useEffect(() => {
     const element = card.current;
@@ -165,7 +167,7 @@ function ProjectCard({ project, index, onOpen }) {
     return () => { element.removeEventListener('pointermove', move); element.removeEventListener('pointerleave', leave); };
   }, []);
   return <article ref={card} className={`project-card project-${project.accent} reveal`} style={{ '--card-index': index }}>
-    <button className="project-open" onClick={() => onOpen(project)} data-cursor="OPEN CASE STUDY" aria-label={`Open ${project.name} case study`}>
+    <button className="project-open" onFocus={() => onHighlight(project.id)} onBlur={() => onHighlight(null)} onMouseEnter={() => onHighlight(project.id)} onMouseLeave={() => onHighlight(null)} onClick={() => onOpen(project)} data-cursor="OPEN CASE STUDY" aria-label={`Open ${project.name} case study`}>
       <div className="project-art"><ProjectGraphic type={project.visual} id={project.id} /><span className="art-index">{project.number} / 05</span></div>
       <div className="project-copy"><div className="project-top"><span>{project.category}</span><span className="project-arrow"><Arrow diagonal /></span></div><h3>{project.name}<small>{project.short}</small></h3><p>{project.summary}</p><div className="project-tags">{project.stack.slice(0, 4).map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-bottom"><span>VIEW CASE STUDY</span><Arrow /></div></div>
     </button>
@@ -195,7 +197,7 @@ function CaseStudy({ project, onClose, onView }) {
   </article></div>;
 }
 
-function Projects({ openCase }) {
+function Projects({ openCase, onHighlight }) {
   const [activeFilter, setActiveFilter] = useState('All');
   const filters = ['All', ...new Set(projects.map(project => project.filter))];
   const visibleProjects = activeFilter === 'All' ? projects : projects.filter(project => project.filter === activeFilter);
@@ -203,7 +205,8 @@ function Projects({ openCase }) {
     <SectionHeading index="02" label="SELECTED WORK / 2024—26" title="BUILT TO MAKE" accent="A DIFFERENCE." />
     <div className="projects-intro"><p>Research, software, and intelligent systems—each shaped around a real question, a set of constraints, and something useful to learn.</p><span>{String(visibleProjects.length).padStart(2, '0')} PROJECT{visibleProjects.length === 1 ? '' : 'S'} <i>·</i> {activeFilter === 'All' ? 'ONE CURIOSITY' : activeFilter.toUpperCase()}</span></div>
     <div className="project-filters" role="group" aria-label="Filter projects by discipline">{filters.map(filter => <button key={filter} aria-pressed={activeFilter === filter} className={activeFilter === filter ? 'selected' : ''} onClick={() => setActiveFilter(filter)}>{filter}<span>{filter === 'All' ? projects.length : projects.filter(project => project.filter === filter).length}</span></button>)}</div>
-    <div className="projects-grid" aria-live="polite">{visibleProjects.map((project, i) => <ProjectCard key={project.id} project={project} index={i} onOpen={openCase} />)}</div>
+    <div className="project-system-map" role="group" aria-label="Project system map"><span className="system-map-center">NAITIK<br /><i> / WORK</i></span><div className="system-map-branches">{filters.filter(filter => filter !== 'All').map((filter, i) => <button key={filter} aria-pressed={activeFilter === filter} onClick={() => setActiveFilter(filter)} className={activeFilter === filter ? 'active' : ''}><i>0{i + 1}</i><b>{filter}</b><span>{projects.filter(project => project.filter === filter).map(project => project.name).join(' · ')}</span></button>)}</div></div>
+    <div className="projects-grid" aria-live="polite">{visibleProjects.map((project, i) => <ProjectCard key={project.id} project={project} index={i} onOpen={openCase} onHighlight={onHighlight} />)}</div>
     <div className="other-project"><span className="other-number">06</span><div><span className="case-label">ALSO IN MY RESUME</span><h3>SLM Arena <i>—</i> local LLM benchmarking</h3><p>A dashboard comparing AI models and presenting results clearly. Listed on my resume; its project folder wasn’t among the repositories reviewed.</p></div><div className="other-links"><span className="other-tag">RESUME PROJECT</span><a href="https://github.com/naitik24-code/Slm-Arena" target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a></div></div>
   </section>;
 }
@@ -246,7 +249,7 @@ function DigitalLab({ onProject }) {
   const [selected, setSelected] = useState(labNodes[0]);
   const choose = node => { setSelected(node); };
   const openRelated = () => { const p = projects.find(project => project.id === selected.project); if (p) onProject(p); };
-  return <section className="lab section-wrap section-pad reveal"><div className="lab-heading"><div className="section-kicker"><span>04</span><i />A SMALL INTERACTIVE SYSTEM</div><h2>FOUR FIELDS.<br /><em>ONE WAY OF THINKING.</em></h2><p>Select a node. See what it connects to.</p></div>
+  return <section id="lab" className="lab section-wrap section-pad reveal"><div className="lab-heading"><div className="section-kicker"><span>04</span><i />A SMALL INTERACTIVE SYSTEM</div><h2>FOUR FIELDS.<br /><em>ONE WAY OF THINKING.</em></h2><p>Select a node. See what it connects to.</p></div>
     <div className="lab-console"><div className="lab-map" role="group" aria-label="Choose an area of interest"><svg className="lab-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50 13 82 50 50 87 18 50Z"/><path d="M50 13 50 87M18 50h64"/><circle cx="50" cy="50" r="17" /></svg><div className="lab-center"><span>NP</span><i>SYSTEMS<br />THINKING</i></div>{labNodes.map(node => <button key={node.id} style={{ left: `${node.x}%`, top: `${node.y}%` }} className={`lab-node ${selected.id === node.id ? 'active' : ''}`} aria-pressed={selected.id === node.id} onClick={() => choose(node)}><i /><span>{node.label}</span></button>)}</div>
       <div className="lab-output" aria-live="polite"><span className="case-label">FIELD / {String(labNodes.indexOf(selected) + 1).padStart(2, '0')}</span><h3>{selected.label}</h3><p>{selected.text}</p><button className="underlined-link" onClick={openRelated}>SEE A RELATED PROJECT <Arrow /></button><div className="lab-output-foot"><span>SELECTED NODE</span><i>{selected.id.toUpperCase()}</i></div></div>
     </div>
@@ -255,18 +258,20 @@ function DigitalLab({ onProject }) {
 
 function Contact() {
   const [copied, setCopied] = useState(false);
-  const copy = async () => { try { await navigator.clipboard.writeText(profile.email); setCopied(true); setTimeout(() => setCopied(false), 1800); } catch { window.location.href = `mailto:${profile.email}`; } };
-  return <section id="contact" className="contact section-wrap section-pad"><div className="contact-glow" aria-hidden="true" /><div className="section-kicker"><span>05</span><i />THE NEXT CONVERSATION</div><h2>HAVE A COMPLEX<br />PROBLEM?<br /><em>LET’S BUILD THE SOLUTION.</em></h2><div className="contact-bottom"><div><p>Open to conversations about software engineering, AI, analytics, and opportunities to build thoughtful products.</p><a className="button button-lime" href={`mailto:${profile.email}`} data-cursor="SAY HELLO">START A CONVERSATION <Arrow diagonal /></a></div><div className="contact-links"><span className="case-label">FIND ME / REACH ME</span><a href={`mailto:${profile.email}`}>{profile.email} <Arrow diagonal /></a><a href={`tel:${profile.phone}`}>{profile.phone} <Arrow diagonal /></a><button onClick={copy}>{copied ? 'EMAIL COPIED ✓' : 'COPY EMAIL'} <span>⌘ C</span></button><a href="/Naitik-Pathak-Resume.pdf" target="_blank" rel="noreferrer">VIEW RESUME <Arrow diagonal /></a>{profile.github && <a href={profile.github} target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a>}{profile.linkedin && <a href={profile.linkedin} target="_blank" rel="noreferrer">LINKEDIN <Arrow diagonal /></a>}</div></div></section>;
+  const copy = async () => { try { await navigator.clipboard.writeText(profile.contact.email); setCopied(true); setTimeout(() => setCopied(false), 1800); } catch { window.location.href = `mailto:${profile.contact.email}`; } };
+  return <section id="contact" className="contact section-wrap section-pad"><div className="contact-glow" aria-hidden="true" /><div className="section-kicker"><span>05</span><i />THE NEXT CONVERSATION</div><h2>HAVE A COMPLEX<br />PROBLEM?<br /><em>LET’S BUILD THE SOLUTION.</em></h2><div className="contact-bottom"><div><p>{profile.availability}. Open to conversations about software engineering, AI, analytics, and thoughtful products.</p><a className="button button-lime" href={`mailto:${profile.contact.email}`} data-cursor="SAY HELLO">START A CONVERSATION <Arrow diagonal /></a></div><div className="contact-links"><span className="case-label">FIND ME / REACH ME</span><a href={`mailto:${profile.contact.email}`}>{profile.contact.email} <Arrow diagonal /></a><button onClick={copy}>{copied ? 'EMAIL COPIED ✓' : 'COPY EMAIL'} <span>COPY</span></button><a href={profile.contact.github} target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a><a href={profile.contact.linkedin} target="_blank" rel="noreferrer">LINKEDIN <Arrow diagonal /></a></div></div></section>;
 }
 
 function Footer() {
   const year = new Date().getFullYear();
-  return <footer className="footer section-wrap"><a href="#home" className="footer-brand">NP<span>.</span></a><span>BUILT WITH CURIOSITY IN INDIA</span><a href="#home">BACK TO TOP ↑</a><span>© {year} NAITIK PATHAK</span></footer>;
+  return <footer className="footer section-wrap"><a href="#home" className="footer-brand">{profile.monogram}<span>.</span></a><span>BUILT WITH CURIOSITY IN {profile.location.toUpperCase()}</span><a href="#home">BACK TO TOP ↑</a><span>© {year} {profile.name.toUpperCase()}</span></footer>;
 }
 
 function App() {
   const [active, setActive] = useState('home');
   const [simpleView, setSimpleView] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [highlightedProject, setHighlightedProject] = useState(null);
   const [caseProject, setCaseProject] = useState(null);
   const caseRef = useRef(null);
   caseRef.current = caseProject;
@@ -278,6 +283,7 @@ function App() {
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     return () => { observer.disconnect(); revealObserver.disconnect(); };
   }, []);
+  useEffect(() => { const update = () => { const max = document.documentElement.scrollHeight - innerHeight; setScrollProgress(max > 0 ? scrollY / max : 0); }; update(); addEventListener('scroll', update, { passive:true }); addEventListener('resize', update); return () => { removeEventListener('scroll', update); removeEventListener('resize', update); }; }, []);
   useEffect(() => {
     const nav = document.querySelector('.nav-shell');
     const update = () => nav?.classList.toggle('scrolled', scrollY > 24);
@@ -286,7 +292,7 @@ function App() {
   }, []);
   const closeCase = React.useCallback(() => setCaseProject(null), []);
   useEffect(() => { try { localStorage.setItem('simple-view', String(simpleView)); } catch {} }, [simpleView]);
-  return <div className={simpleView ? 'simple-view' : ''}><a className="skip-link" href="#main">Skip to content</a>{!simpleView && <AmbientCanvas />}<Cursor /><Navigation active={active} setActive={setActive} /><main id="main"><Hero simpleView={simpleView} setSimpleView={setSimpleView} /><div className="section-divider" /><About /><Principles /><Projects openCase={setCaseProject} /><Skills /><DigitalLab onProject={setCaseProject} /><Contact /></main><Footer />{caseProject && <CaseStudy project={caseProject} onClose={closeCase} onView={() => { document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} />}</div>;
+  return <div className={simpleView ? 'simple-view' : ''}><a className="skip-link" href="#main">Skip to content</a>{!simpleView && <><AmbientCanvas /><Suspense fallback={null}><Universe simple={simpleView} progress={scrollProgress} highlighted={highlightedProject} onSimple={setSimpleView} /></Suspense></>}<div className="scroll-progress" aria-hidden="true" style={{ transform:`scaleX(${scrollProgress})` }} /><Cursor /><Navigation active={active} setActive={setActive} /><main id="main"><Hero simpleView={simpleView} setSimpleView={setSimpleView} /><div className="section-divider" /><About /><Principles /><Projects openCase={setCaseProject} onHighlight={setHighlightedProject} /><Skills /><DigitalLab onProject={setCaseProject} /><Contact /></main><Footer />{caseProject && <CaseStudy project={caseProject} onClose={closeCase} onView={() => { document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} />}</div>;
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
