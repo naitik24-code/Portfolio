@@ -10,6 +10,23 @@ const points: [number, number, number][] = [[-2.6, .8, -.3], [2.7, .6, -.4], [-2
 const labels = ['OPTIVEST', 'QUANTOPT', 'CROPCARE', 'STEELLENS', 'INVENTORY', 'SLM ARENA'];
 const destinations = points.map(() => new THREE.Vector3());
 
+function ProjectObject({ index, active }: { index: number; active: boolean }) {
+  const pulse = useRef<THREE.Group>(null);
+  useFrame(({ clock }) => {
+    if (!pulse.current) return;
+    const t = clock.elapsedTime;
+    pulse.current.rotation.y = t * (index === 1 ? .22 : .12);
+    pulse.current.position.y = Math.sin(t * 1.2 + index) * .045;
+  });
+  const glow = active ? 1 : .65;
+  if (index === 0) return <group ref={pulse}><mesh rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[.62, .08, 8, 48, Math.PI * 1.55]} /><meshBasicMaterial color="#c6ff4d" transparent opacity={glow} /></mesh><mesh rotation={[Math.PI / 2, 0, .8]}><torusGeometry args={[.62, .08, 8, 48, Math.PI * 1.1]} /><meshBasicMaterial color="#9b7bff" transparent opacity={.7} /></mesh><mesh><sphereGeometry args={[.12, 12, 8]} /><meshBasicMaterial color="#f0f1ed" /></mesh></group>;
+  if (index === 1) return <group ref={pulse}>{Array.from({ length: 24 }, (_, i) => { const a = i * 2.399; const r = .35 + (i % 6) * .1; return <mesh key={i} position={[Math.cos(a) * r, Math.sin(a * 1.7) * .42, Math.sin(a) * r]}><sphereGeometry args={[.025 + (i % 3) * .012, 6, 6]} /><meshBasicMaterial color={i % 5 === 0 ? '#c6ff4d' : '#9b7bff'} transparent opacity={.72} /></mesh>; })}<mesh rotation={[0, 0, -.4]}><torusGeometry args={[.48, .018, 5, 40, Math.PI * 1.3]} /><meshBasicMaterial color="#68e8ff" /></mesh></group>;
+  if (index === 2) return <group ref={pulse}><mesh rotation={[0, 0, -.5]}><shapeGeometry args={[(() => { const s = new THREE.Shape(); s.moveTo(0, -.65); s.quadraticCurveTo(-.72, 0, 0, .72); s.quadraticCurveTo(.72, 0, 0, -.65); return s; })()]} /><meshBasicMaterial color="#c6ff4d" transparent opacity={.35} side={THREE.DoubleSide} /></mesh><mesh rotation={[0, 0, -.5]} position={[0, 0, .02]}><planeGeometry args={[.025, 1.25]} /><meshBasicMaterial color="#c6ff4d" /></mesh><mesh position={[0, .12, .03]}><planeGeometry args={[.95, .012]} /><meshBasicMaterial color="#c6ff4d" transparent opacity={.8} /></mesh></group>;
+  if (index === 3) return <group ref={pulse}>{Array.from({ length: 7 }, (_, i) => <mesh key={i} position={[(i - 3) * .18, -.22, 0]}><boxGeometry args={[.12, .35 + (i % 4) * .16, .12]} /><meshBasicMaterial color="#9b7bff" transparent opacity={.72} /></mesh>)}</group>;
+  if (index === 4) return <group ref={pulse}>{Array.from({ length: 12 }, (_, i) => { const low = i === 2 || i === 8; return <mesh key={i} position={[(i % 4 - 1.5) * .18, Math.floor(i / 4) * .16 - .16, 0]}><boxGeometry args={[.12, low ? .11 : .22 + (i % 3) * .08, .12]} /><meshBasicMaterial color={low ? '#ff8a3d' : '#c6ff4d'} transparent opacity={low ? 1 : .62} /></mesh>; })}</group>;
+  return <group ref={pulse}><mesh position={[-.27, 0, 0]}><sphereGeometry args={[.17, 16, 12]} /><meshBasicMaterial color="#9b7bff" wireframe /></mesh><mesh position={[.27, 0, 0]}><sphereGeometry args={[.17, 16, 12]} /><meshBasicMaterial color="#68e8ff" wireframe /></mesh><Line points={[[-.15, 0, 0], [.15, 0, 0]]} color="#68e8ff" transparent opacity={.75} lineWidth={1} /></group>;
+}
+
 function Core({ progress, highlighted }: CoreProps) {
   const group = useRef<THREE.Group>(null);
   const core = useRef<THREE.Mesh>(null);
@@ -46,12 +63,7 @@ function Core({ progress, highlighted }: CoreProps) {
       <meshBasicMaterial color={i === 1 ? '#9b7bff' : '#c6ff4d'} transparent opacity={.35 - i * .07} />
     </mesh>)}
     {points.map((p, i) => <group key={i} ref={el => nodes.current[i] = el} position={[0,0,0]}>
-      {i === 0 ? <mesh rotation={[Math.PI / 2,0,0]}><torusGeometry args={[.75,.13,8,40]} /><meshBasicMaterial color="#c6ff4d" /></mesh> : null}
-      {i === 1 ? <mesh><icosahedronGeometry args={[.68,1]} /><meshBasicMaterial color="#9b7bff" wireframe /></mesh> : null}
-      {i === 2 ? <mesh rotation={[0,0,-.5]}><shapeGeometry args={[(()=>{const s=new THREE.Shape();s.moveTo(0,-.7);s.quadraticCurveTo(-.8,0,0,.75);s.quadraticCurveTo(.8,0,0,-.7);return s;})()]} /><meshBasicMaterial color="#c6ff4d" side={THREE.DoubleSide} /></mesh> : null}
-      {i === 3 ? <mesh><cylinderGeometry args={[.5,.5,.8,8]} /><meshBasicMaterial color="#9b7bff" wireframe /></mesh> : null}
-      {i === 4 ? <mesh><boxGeometry args={[.75,.75,.75]} /><meshBasicMaterial color="#ff8a3d" wireframe /></mesh> : null}
-      {i === 5 ? <mesh><sphereGeometry args={[.55,16,12]} /><meshBasicMaterial color="#68e8ff" wireframe /></mesh> : null}
+      <ProjectObject index={i} active={Boolean(highlighted && labels[i].toLowerCase().replaceAll(' ', '').replace('retailinventory', 'inventory') === highlighted.replaceAll('-', ''))} />
       <mesh><sphereGeometry args={[.08,12,10]} /><meshBasicMaterial color="#f0f1ed" /></mesh>
       <pointLight color={i === 1 ? '#9b7bff' : i === 4 ? '#ff8a3d' : '#c6ff4d'} intensity={highlighted ? .9 : .35} distance={.8} />
     </group>)}
