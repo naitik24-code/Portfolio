@@ -5,6 +5,7 @@ import * as THREE from 'three';
 
 const points = [[-2.6, .8, -.3], [2.7, .6, -.4], [-2.3, -1.1, .1], [2.4, -1, .1], [0, 2, -.5], [0, -2, -.3]];
 const labels = ['OPTIVEST', 'QUANTOPT', 'CROPCARE', 'STEELLENS', 'INVENTORY', 'SLM ARENA'];
+const destinations = points.map(() => new THREE.Vector3());
 
 function Core({ progress = 0, highlighted = null }) {
   const group = useRef();
@@ -21,7 +22,8 @@ function Core({ progress = 0, highlighted = null }) {
     nodes.current.forEach((node, i) => {
       if (!node) return;
       const [x,y,z] = points[i];
-      node.position.lerp(new THREE.Vector3(x * spread, y * spread, z * spread), 1 - Math.exp(-dt * 2));
+      destinations[i].set(x * spread, y * spread, z * spread);
+      node.position.lerp(destinations[i], 1 - Math.exp(-dt * 2));
       const selected = highlighted && labels[i].toLowerCase().replace(' ', '') === highlighted.replace('-', '').replace('retailinventory','inventory');
       node.scale.setScalar((.045 + spread * .045) * (selected ? 1.9 : 1));
     });
@@ -56,10 +58,11 @@ function Core({ progress = 0, highlighted = null }) {
 
 function Scene({ progress, highlighted }) {
   function CameraPath() {
+    const target = useRef(new THREE.Vector3());
     useFrame(({ camera }) => {
       const p = THREE.MathUtils.clamp(progress, 0, 1);
-      const target = new THREE.Vector3(Math.sin(p * Math.PI * 1.5) * .75, p < .2 ? 0 : (p - .2) * .35, 8 - Math.sin(p * Math.PI) * .75);
-      camera.position.lerp(target, .035);
+      target.current.set(Math.sin(p * Math.PI * 1.5) * .75, p < .2 ? 0 : (p - .2) * .35, 8 - Math.sin(p * Math.PI) * .75);
+      camera.position.lerp(target.current, .035);
       camera.lookAt(Math.sin(p * Math.PI) * .18, 0, 0);
     });
     return null;

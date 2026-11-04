@@ -1,19 +1,10 @@
-export const profile = {
-  name: 'Naitik Pathak',
-  monogram: 'NP',
-  role: 'CSBS student · software & intelligent systems',
-  university: 'Chandigarh University',
-  location: 'Mohali, India',
-  email: 'naitikpathak2005@gmail.com',
-  phone: '+91-93541-58683',
-  github: 'https://github.com/naitik24-code',
-  linkedin: 'https://www.linkedin.com/in/naitik-pathak/',
-};
+import { profile } from './content/profile';
+export { profile };
 
 export const projects = [
   {
-    id: 'optivest', number: '01', name: 'OptiVest AI', short: 'Decisions with a portfolio view.', category: 'Fintech · Decision support', filter: 'Fintech', accent: 'lime',
-    summary: 'An adaptive investment decision-support concept combining return signals, candidate discovery, portfolio context, and constrained allocation recommendations.',
+    id: 'optivest', number: '01', name: 'OptiVest', short: 'AI investment rebalancing assistant.', category: 'AI / ML · Fintech', filter: 'Fintech', accent: 'lime',
+    summary: 'An AI investment rebalancing assistant combining return signals, candidate discovery, portfolio context, and constrained allocation recommendations.',
     problem: 'Asset predictions alone do not answer the investor’s real question: how should a portfolio change while accounting for risk, diversification, and current holdings?',
     approach: 'The documented workflow brings prediction and dynamic candidate discovery into a portfolio decision engine. It evaluates portfolio context, considers signals such as predicted return, volatility, momentum, and diversification, then generates allocation recommendations with tracking and paper-trading support.',
     architecture: ['Asset registry & market history', 'Prediction and candidate discovery', 'Portfolio-aware constrained allocation', 'Explanations, paper trading & outcome tracking'],
@@ -68,7 +59,7 @@ export const projects = [
     links: { github: 'https://github.com/naitik24-code/Crop-Care-Detection', demo: '' },
   },
   {
-    id: 'inventory', number: '05', name: 'Smart Inventory', short: 'From stock signals to timely action.', category: 'Product engineering · Analytics', filter: 'Product systems', accent: 'orange',
+    id: 'inventory', number: '05', name: 'Retail Inventory Dashboard', short: 'From stock signals to timely action.', category: 'Full Stack · Data', filter: 'Product systems', accent: 'lime',
     summary: 'An inventory dashboard combining stockout suggestions, reorder signals, severity-based alerts, and operational analytics.',
     problem: 'Inventory teams need a fast way to spot items at risk and turn noisy stock data into clear actions.',
     approach: 'A FastAPI service and SQLite database power a browser dashboard. The repository documents ABC/XYZ classification with XGBoost, DBSCAN-based anomaly flags, stockout suggestions, CSV upload refresh jobs, and alert analytics.',
@@ -84,11 +75,12 @@ export const projects = [
 ];
 
 export const skills = [
-  { group: 'Programming', items: ['Python', 'JavaScript', 'C++', 'SQL'] },
-  { group: 'Frontend', items: ['React', 'HTML5', 'CSS3'] },
-  { group: 'Backend', items: ['FastAPI', 'Flask', 'Node.js', 'REST APIs'] },
-  { group: 'AI & data', items: ['scikit-learn', 'pandas', 'LightGBM', 'XGBoost', 'TensorFlow', 'MobileNetV2'] },
-  { group: 'Tools', items: ['Git', 'GitHub', 'SQLite', 'MySQL', 'Azure AI Fundamentals'] },
+  { group: 'Languages', items: [...profile.skills.languages] },
+  { group: 'Frontend', items: [...profile.skills.frontend] },
+  { group: 'Backend', items: [...profile.skills.backend] },
+  { group: 'AI / ML', items: [...profile.skills.aiMl] },
+  { group: 'Data / Analytics', items: [...profile.skills.dataAnalytics] },
+  { group: 'Tools / Platforms', items: [...profile.skills.toolsPlatforms] },
 ];
 
 export const labNodes = [

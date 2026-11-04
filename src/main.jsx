@@ -5,6 +5,19 @@ import './style.css';
 
 const Universe = lazy(() => import('./scene/Universe'));
 
+function shouldStartSimpleView() {
+  try {
+    const remembered = localStorage.getItem('simple-view') === 'true';
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const narrow = matchMedia('(max-width: 768px)').matches;
+    const canvas = document.createElement('canvas');
+    const webgl = Boolean(canvas.getContext('webgl2') || canvas.getContext('webgl'));
+    return remembered || reduced || narrow || !webgl;
+  } catch {
+    return true;
+  }
+}
+
 const Arrow = ({ diagonal = false }) => <svg aria-hidden="true" viewBox="0 0 18 18" className="arrow-icon"><path d={diagonal ? 'M4 14 14 4M5 4h9v9' : 'M3 9h11M9 4l5 5-5 5'} /></svg>;
 
 function AmbientCanvas() {
@@ -72,7 +85,7 @@ function Navigation({ active, setActive }) {
   const [open, setOpen] = useState(false);
   const links = ['about', 'projects', 'skills', 'lab', 'contact'];
   return <header className="nav-shell">
-    <a className="brand" href="#home" aria-label="Naitik Pathak, home" onClick={() => setOpen(false)}><span className="brand-mark">N<span>.</span></span><span className="brand-name">NAITIK<br /><i>PATHAK</i></span></a>
+    <a className="brand" href="#home" aria-label={`${profile.name}, home`} onClick={() => setOpen(false)}><span className="brand-mark">N<span>.</span></span><span className="brand-name">NAITIK<br /><i>PATHAK</i></span></a>
     <div className="nav-status"><span className="status-dot" /> {profile.availability.toUpperCase()}</div>
     <button className="menu-toggle" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} onClick={() => setOpen(v => !v)}>{open ? 'CLOSE' : 'MENU'} <span>{open ? '−' : '+'}</span></button>
     <nav className={`nav-links ${open ? 'is-open' : ''}`} aria-label="Main navigation">
@@ -166,7 +179,7 @@ function ProjectCard({ project, index, onOpen, onHighlight }) {
     element.addEventListener('pointermove', move, { passive: true }); element.addEventListener('pointerleave', leave);
     return () => { element.removeEventListener('pointermove', move); element.removeEventListener('pointerleave', leave); };
   }, []);
-  return <article ref={card} className={`project-card project-${project.accent} reveal`} style={{ '--card-index': index }}>
+  return <article ref={card} className={`project-card project-${project.accent}`} style={{ '--card-index': index }}>
     <button className="project-open" onFocus={() => onHighlight(project.id)} onBlur={() => onHighlight(null)} onMouseEnter={() => onHighlight(project.id)} onMouseLeave={() => onHighlight(null)} onClick={() => onOpen(project)} data-cursor="OPEN CASE STUDY" aria-label={`Open ${project.name} case study`}>
       <div className="project-art"><ProjectGraphic type={project.visual} id={project.id} /><span className="art-index">{project.number} / 05</span></div>
       <div className="project-copy"><div className="project-top"><span>{project.category}</span><span className="project-arrow"><Arrow diagonal /></span></div><h3>{project.name}<small>{project.short}</small></h3><p>{project.summary}</p><div className="project-tags">{project.stack.slice(0, 4).map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-bottom"><span>VIEW CASE STUDY</span><Arrow /></div></div>
@@ -199,15 +212,15 @@ function CaseStudy({ project, onClose, onView }) {
 
 function Projects({ openCase, onHighlight }) {
   const [activeFilter, setActiveFilter] = useState('All');
-  const filters = ['All', ...new Set(projects.map(project => project.filter))];
-  const visibleProjects = activeFilter === 'All' ? projects : projects.filter(project => project.filter === activeFilter);
+  const filters = ['All', 'Fintech', 'Research', 'Applied AI', 'Product systems', 'LLM experiments'];
+  const visibleProjects = activeFilter === 'All' || activeFilter === 'LLM experiments' ? (activeFilter === 'All' ? projects : []) : projects.filter(project => project.filter === activeFilter);
   return <section id="projects" className="projects section-wrap section-pad">
     <SectionHeading index="02" label="SELECTED WORK / 2024—26" title="BUILT TO MAKE" accent="A DIFFERENCE." />
     <div className="projects-intro"><p>Research, software, and intelligent systems—each shaped around a real question, a set of constraints, and something useful to learn.</p><span>{String(visibleProjects.length).padStart(2, '0')} PROJECT{visibleProjects.length === 1 ? '' : 'S'} <i>·</i> {activeFilter === 'All' ? 'ONE CURIOSITY' : activeFilter.toUpperCase()}</span></div>
-    <div className="project-filters" role="group" aria-label="Filter projects by discipline">{filters.map(filter => <button key={filter} aria-pressed={activeFilter === filter} className={activeFilter === filter ? 'selected' : ''} onClick={() => setActiveFilter(filter)}>{filter}<span>{filter === 'All' ? projects.length : projects.filter(project => project.filter === filter).length}</span></button>)}</div>
-    <div className="project-system-map" role="group" aria-label="Project system map"><span className="system-map-center">NAITIK<br /><i> / WORK</i></span><div className="system-map-branches">{filters.filter(filter => filter !== 'All').map((filter, i) => <button key={filter} aria-pressed={activeFilter === filter} onClick={() => setActiveFilter(filter)} className={activeFilter === filter ? 'active' : ''}><i>0{i + 1}</i><b>{filter}</b><span>{projects.filter(project => project.filter === filter).map(project => project.name).join(' · ')}</span></button>)}</div></div>
+    <div className="project-filters" role="group" aria-label="Filter projects by discipline">{filters.map(filter => <button key={filter} aria-pressed={activeFilter === filter} className={activeFilter === filter ? 'selected' : ''} onClick={() => setActiveFilter(filter)}>{filter}<span>{filter === 'All' ? projects.length + 1 : filter === 'LLM experiments' ? 1 : projects.filter(project => project.filter === filter).length}</span></button>)}</div>
+    <div className="project-system-map" role="group" aria-label="Project system map"><span className="system-map-center">NAITIK<br /><i> / WORK</i></span><div className="system-map-branches">{filters.slice(1).map((filter, i) => { const matched = projects.filter(project => project.filter === filter); return <button key={filter} aria-pressed={activeFilter === filter} onClick={() => setActiveFilter(filter)} className={activeFilter === filter ? 'active' : ''}><i>0{i + 1}</i><b>{filter}</b><span>{filter === 'LLM experiments' ? 'SLM Arena' : matched.map(project => project.name).join(' · ')}</span></button>; })}</div></div>
     <div className="projects-grid" aria-live="polite">{visibleProjects.map((project, i) => <ProjectCard key={project.id} project={project} index={i} onOpen={openCase} onHighlight={onHighlight} />)}</div>
-    <div className="other-project"><span className="other-number">06</span><div><span className="case-label">ALSO IN MY RESUME</span><h3>SLM Arena <i>—</i> local LLM benchmarking</h3><p>A dashboard comparing AI models and presenting results clearly. Listed on my resume; its project folder wasn’t among the repositories reviewed.</p></div><div className="other-links"><span className="other-tag">RESUME PROJECT</span><a href="https://github.com/naitik24-code/Slm-Arena" target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a></div></div>
+    {(activeFilter === 'All' || activeFilter === 'LLM experiments') && <div className="other-project"><span className="other-number">06</span><div><span className="case-label">ALSO IN MY RESUME</span><h3>SLM Arena <i>—</i> local LLM benchmarking</h3><p>A dashboard comparing AI models and presenting results clearly. Listed on my resume; its project folder wasn’t among the repositories reviewed.</p></div><div className="other-links"><span className="other-tag">RESUME PROJECT</span><a href="https://github.com/naitik24-code/Slm-Arena" target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a></div></div>}
   </section>;
 }
 
@@ -226,8 +239,8 @@ function AllocationPlayground() {
     <div className="playground-heading"><div><span className="case-label">INTERACTIVE CONCEPT / 01</span><h3 id="playground-title">Tune the allocation.</h3></div><span className="playground-live"><i /> LIVE DEMO</span></div>
     <p>Move the controls and watch a sample allocation respond. This is a synthetic interface demo—not OptiVest output, financial advice, or a recommendation.</p>
     <div className="playground-controls">
-      <label><span>RISK TOLERANCE <b>{risk < 35 ? 'LOW' : risk > 68 ? 'HIGH' : 'BALANCED'}</b></span><input type="range" min="0" max="100" value={risk} onChange={event => setRisk(Number(event.target.value))} style={{ '--range-fill': `${risk}%` }} /></label>
-      <label><span>DIVERSIFICATION <b>{spread}%</b></span><input type="range" min="0" max="100" value={spread} onChange={event => setSpread(Number(event.target.value))} style={{ '--range-fill': `${spread}%` }} /></label>
+      <label><span>RISK TOLERANCE <b>{risk < 35 ? 'LOW' : risk > 68 ? 'HIGH' : 'BALANCED'}</b></span><input type="range" min="0" max="100" value={risk} aria-valuetext={`${risk} percent, ${risk < 35 ? 'low' : risk > 68 ? 'high' : 'balanced'} risk tolerance`} onChange={event => setRisk(Number(event.target.value))} style={{ '--range-fill': `${risk}%` }} /></label>
+      <label><span>DIVERSIFICATION <b>{spread}%</b></span><input type="range" min="0" max="100" value={spread} aria-valuetext={`${spread} percent diversification preference`} onChange={event => setSpread(Number(event.target.value))} style={{ '--range-fill': `${spread}%` }} /></label>
     </div>
     <div className="allocation-readout" aria-live="polite">{allocations.map(item => <div className="allocation-row" key={item.label}><span>{item.label}</span><div className="allocation-track"><i style={{ width: `${item.value}%`, background: item.color }} /></div><b>{item.value}%</b></div>)}</div>
     <div className="playground-foot"><span>100% TOTAL ALLOCATION</span><button onClick={() => { setRisk(50); setSpread(50); }}>RESET CONTROLS <span>↺</span></button></div>
@@ -269,14 +282,15 @@ function Footer() {
 
 function App() {
   const [active, setActive] = useState('home');
-  const [simpleView, setSimpleView] = useState(false);
+  const [simpleView, setSimpleView] = useState(shouldStartSimpleView);
+  const [sceneReady, setSceneReady] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [highlightedProject, setHighlightedProject] = useState(null);
   const [caseProject, setCaseProject] = useState(null);
   const caseRef = useRef(null);
   caseRef.current = caseProject;
   useEffect(() => {
-    const sections = ['home', 'about', 'projects', 'skills', 'contact'].map(id => document.getElementById(id)).filter(Boolean);
+    const sections = ['home', 'about', 'projects', 'skills', 'lab', 'contact'].map(id => document.getElementById(id)).filter(Boolean);
     const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); }), { rootMargin: '-35% 0px -55% 0px' });
     sections.forEach(section => observer.observe(section));
     const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } }), { threshold: 0.1 });
@@ -285,6 +299,14 @@ function App() {
   }, []);
   useEffect(() => { const update = () => { const max = document.documentElement.scrollHeight - innerHeight; setScrollProgress(max > 0 ? scrollY / max : 0); }; update(); addEventListener('scroll', update, { passive:true }); addEventListener('resize', update); return () => { removeEventListener('scroll', update); removeEventListener('resize', update); }; }, []);
   useEffect(() => {
+    if (simpleView) { setSceneReady(false); return; }
+    let timer;
+    const start = () => setSceneReady(true);
+    const idle = window.requestIdleCallback?.(start, { timeout: 1400 });
+    if (idle === undefined) timer = window.setTimeout(start, 700);
+    return () => { if (idle !== undefined) window.cancelIdleCallback?.(idle); if (timer) clearTimeout(timer); };
+  }, [simpleView]);
+  useEffect(() => {
     const nav = document.querySelector('.nav-shell');
     const update = () => nav?.classList.toggle('scrolled', scrollY > 24);
     update(); addEventListener('scroll', update, { passive: true });
@@ -292,7 +314,7 @@ function App() {
   }, []);
   const closeCase = React.useCallback(() => setCaseProject(null), []);
   useEffect(() => { try { localStorage.setItem('simple-view', String(simpleView)); } catch {} }, [simpleView]);
-  return <div className={simpleView ? 'simple-view' : ''}><a className="skip-link" href="#main">Skip to content</a>{!simpleView && <><AmbientCanvas /><Suspense fallback={null}><Universe simple={simpleView} progress={scrollProgress} highlighted={highlightedProject} onSimple={setSimpleView} /></Suspense></>}<div className="scroll-progress" aria-hidden="true" style={{ transform:`scaleX(${scrollProgress})` }} /><Cursor /><Navigation active={active} setActive={setActive} /><main id="main"><Hero simpleView={simpleView} setSimpleView={setSimpleView} /><div className="section-divider" /><About /><Principles /><Projects openCase={setCaseProject} onHighlight={setHighlightedProject} /><Skills /><DigitalLab onProject={setCaseProject} /><Contact /></main><Footer />{caseProject && <CaseStudy project={caseProject} onClose={closeCase} onView={() => { document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} />}</div>;
+  return <div className={simpleView ? 'simple-view' : ''}><a className="skip-link" href="#main">Skip to content</a>{!simpleView && <><AmbientCanvas />{sceneReady && <Suspense fallback={<div className="core-loading" role="status">INITIALIZING CORE</div>}><Universe simple={simpleView} progress={scrollProgress} highlighted={highlightedProject} onSimple={setSimpleView} /></Suspense>}</>}<div className="scroll-progress" aria-hidden="true" style={{ transform:`scaleX(${scrollProgress})` }} /><Cursor /><Navigation active={active} setActive={setActive} /><main id="main"><Hero simpleView={simpleView} setSimpleView={setSimpleView} /><div className="section-divider" /><About /><Principles /><Projects openCase={setCaseProject} onHighlight={setHighlightedProject} /><Skills /><DigitalLab onProject={setCaseProject} /><Contact /></main><Footer />{caseProject && <CaseStudy project={caseProject} onClose={closeCase} onView={() => { document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} />}</div>;
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
