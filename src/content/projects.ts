@@ -24,7 +24,7 @@ export const projects: Project[] = [
     resultNote: 'Reported historical backtest used an eight-asset universe from 2020 onward. APDE trailed equal-weight (41.49% CAGR) and momentum (44.54%) on CAGR, while exceeding SPY (16.76%). Results are specific to that test setup.',
     stack: ['Python', 'Machine learning', 'Portfolio optimization', 'TreeSHAP', 'Paper trading'],
     visual: 'portfolio',
-    links: { github: '', demo: '' },
+    links: { github: 'https://github.com/naitik24-code/OptiVest1' },
   },
   {
     id: 'steellens', number: '02', name: 'SteelLens', short: 'Reading the structure behind the numbers.', category: 'Financial analytics · Research', filter: 'Research', accent: 'violet',
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     resultNote: 'The core panel covers four firms over 20 quarters. The expanded panel covers ten selected producers and 128 active company-quarter observations. The ESG work assesses Tata Steel only; its score is a research model, not an official rating.',
     stack: ['Python', 'pandas', 'Financial analysis', 'Panel data', 'Data provenance'],
     visual: 'steel',
-    links: { github: '', demo: '' },
+    links: { github: '' },
   },
   {
     id: 'quantopt', number: '03', name: 'QuantOpt', short: 'Optimization under real market uncertainty.', category: 'Quantitative computing · Research', filter: 'Research', accent: 'cyan',
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     resultNote: 'In-sample, minimum-variance allocation reduced variance 7.69% versus equal weight. In the 222-day holdout, every tested strategy had a negative return; the best reported cumulative return was −7.94% for Monte Carlo maximum Sharpe. The result highlights estimation risk, not a guaranteed investing outcome.',
     stack: ['Python', 'Modern Portfolio Theory', 'SLSQP', 'Monte Carlo', 'Streamlit'],
     visual: 'quant',
-    links: { github: '', demo: '' },
+    links: { github: 'https://github.com/naitik24-code/QuantOpt' },
   },
   {
     id: 'cropcare', number: '04', name: 'CropCare', short: 'A diagnosis workflow from leaf image to next step.', category: 'Applied AI · Computer vision', filter: 'Applied AI', accent: 'green',
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     resultNote: '*The saved model evaluation reports cover 17 classes, but evaluation files in the project disagree on the reported accuracy and sample count. This portfolio therefore does not present a single accuracy claim as definitive.',
     stack: ['Python', 'FastAPI', 'React', 'LightGBM', 'OpenCV', 'HOG & GLCM'],
     visual: 'crop',
-    links: { github: 'https://github.com/naitik24-code/Crop-Care-Detection', demo: '' },
+    links: { github: 'https://github.com/naitik24-code/Crop-Care-Detection' },
   },
   {
     id: 'inventory', number: '05', name: 'Retail Inventory Dashboard', short: 'From stock signals to timely action.', category: 'Full Stack · Data', filter: 'Product systems', accent: 'lime',
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     resultNote: 'The project overview documents the workflows above. The 15% forecasting improvement mentioned in the resume is not backed by a result in the repository overview, so it is not presented here as a verified metric.',
     stack: ['Python', 'FastAPI', 'SQLite', 'XGBoost', 'DBSCAN', 'JavaScript'],
     visual: 'inventory',
-    links: { github: '', demo: '' },
+    links: { github: 'https://github.com/naitik24-code/retail-inventory-dashboard' },
   },
 ];
 
