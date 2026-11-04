@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#090a0b"/>
+  <circle cx="930" cy="270" r="210" fill="#9b7bff" opacity=".1"/>
+  <circle cx="930" cy="270" r="125" fill="#c6ff4d" opacity=".08"/>
+  <g fill="none" stroke="#c6ff4d" opacity=".45"><ellipse cx="930" cy="270" rx="260" ry="80" transform="rotate(-24 930 270)"/><ellipse cx="930" cy="270" rx="220" ry="70" transform="rotate(50 930 270)"/></g>
+  <circle cx="930" cy="270" r="82" fill="#111314" stroke="#c6ff4d" stroke-opacity=".55"/>
+  <text x="80" y="150" fill="#c6ff4d" font-family="monospace" font-size="20" letter-spacing="5">NAITIK PATHAK / PORTFOLIO</text>
+  <text x="80" y="270" fill="#f0f1ed" font-family="Arial, sans-serif" font-size="82" font-weight="700">BUILDING</text>
+  <text x="80" y="355" fill="#c6ff4d" font-family="Arial, sans-serif" font-size="82" font-weight="700">INTELLIGENT</text>
+  <text x="80" y="440" fill="#f0f1ed" font-family="Arial, sans-serif" font-size="82" font-weight="700">SYSTEMS</text>
+  <text x="82" y="520" fill="#898d88" font-family="monospace" font-size="18" letter-spacing="2">AI / ML · DATA PRODUCTS · FULL-STACK ENGINEERING</text>
+</svg>
