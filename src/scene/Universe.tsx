@@ -3,15 +3,18 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Line, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 
-const points = [[-2.6, .8, -.3], [2.7, .6, -.4], [-2.3, -1.1, .1], [2.4, -1, .1], [0, 2, -.5], [0, -2, -.3]];
+type CoreProps = { progress: number; highlighted: string | null };
+type UniverseProps = CoreProps & { simple: boolean; onSimple: (simple: boolean) => void };
+
+const points: [number, number, number][] = [[-2.6, .8, -.3], [2.7, .6, -.4], [-2.3, -1.1, .1], [2.4, -1, .1], [0, 2, -.5], [0, -2, -.3]];
 const labels = ['OPTIVEST', 'QUANTOPT', 'CROPCARE', 'STEELLENS', 'INVENTORY', 'SLM ARENA'];
 const destinations = points.map(() => new THREE.Vector3());
 
-function Core({ progress = 0, highlighted = null }) {
-  const group = useRef();
-  const core = useRef();
-  const rings = useRef([]);
-  const nodes = useRef([]);
+function Core({ progress, highlighted }: CoreProps) {
+  const group = useRef<THREE.Group>(null);
+  const core = useRef<THREE.Mesh>(null);
+  const rings = useRef<Array<THREE.Mesh | null>>([]);
+  const nodes = useRef<Array<THREE.Group | null>>([]);
   useFrame((state, dt) => {
     if (!group.current) return;
     const t = state.clock.elapsedTime;
@@ -39,7 +42,7 @@ function Core({ progress = 0, highlighted = null }) {
       <mesh scale={1.015}><icosahedronGeometry args={[.8, 2]} /><meshBasicMaterial color="#c6ff4d" wireframe transparent opacity={.08} /></mesh>
       <mesh scale={1.07}><sphereGeometry args={[.8, 32, 24]} /><meshBasicMaterial color="#9b7bff" side={THREE.BackSide} transparent opacity={.09} /></mesh>
     </Float>
-    {[0,1,2].map((i) => <mesh key={i} ref={el => rings.current[i] = el} geometry={ringGeo} rotation={[.7 + i * .65, .3 + i * .55, i * 1.4]} scale={1 + i * .23}>
+    {[0,1,2].map((i) => <mesh key={i} ref={el => rings.current[i] = el} geometry={ringGeo} rotation={[.7 + i * .65, .3 + i * .55, i * 1.4] as [number, number, number]} scale={1 + i * .23}>
       <meshBasicMaterial color={i === 1 ? '#9b7bff' : '#c6ff4d'} transparent opacity={.35 - i * .07} />
     </mesh>)}
     {points.map((p, i) => <group key={i} ref={el => nodes.current[i] = el} position={[0,0,0]}>
@@ -56,9 +59,9 @@ function Core({ progress = 0, highlighted = null }) {
   </group>;
 }
 
-function Scene({ progress, highlighted }) {
+function Scene({ progress, highlighted, onSimple }: CoreProps & { onSimple: (simple: boolean) => void }) {
   function CameraPath() {
-    const target = useRef(new THREE.Vector3());
+    const target = useRef<THREE.Vector3>(new THREE.Vector3());
     useFrame(({ camera }) => {
       const p = THREE.MathUtils.clamp(progress, 0, 1);
       target.current.set(Math.sin(p * Math.PI * 1.5) * .75, p < .2 ? 0 : (p - .2) * .35, 8 - Math.sin(p * Math.PI) * .75);
@@ -67,23 +70,26 @@ function Scene({ progress, highlighted }) {
     });
     return null;
   }
-  return <Canvas dpr={[1, 1.4]} camera={{ position: [0,0,8], fov: 42 }} gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }} frameloop="always" aria-hidden="true">
+  return <Canvas dpr={[1, 1.4]} camera={{ position: [0,0,8], fov: 42 }} gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }} frameloop="always" aria-hidden="true" onCreated={({ gl }) => {
+    const handleContextLoss = (event: Event) => { event.preventDefault(); onSimple(true); };
+    gl.domElement.addEventListener('webglcontextlost', handleContextLoss, { once: true });
+  }}>
     <CameraPath />
     <Stars radius={18} depth={12} count={220} factor={1.1} saturation={0} fade speed={.12} />
     <Core progress={progress} highlighted={highlighted} />
   </Canvas>;
 }
 
-export default function Universe({ simple, progress, highlighted, onSimple }) {
+export default function Universe({ simple, progress, highlighted, onSimple }: UniverseProps) {
   const [available, setAvailable] = useState(false);
   const [reason, setReason] = useState('');
   useEffect(() => {
     let supported = true, why = '';
     if (simple) { supported = false; why = 'Simple view is on.'; }
     else if (matchMedia('(prefers-reduced-motion: reduce)').matches) { supported = false; why = 'Reduced motion is enabled.'; }
-    else if (innerWidth < 700) { supported = false; why = 'The lighter mobile view is active.'; }
+    else if (innerWidth <= 768) { supported = false; why = 'The lighter mobile view is active.'; }
     try { const c = document.createElement('canvas'); if (!c.getContext('webgl2') && !c.getContext('webgl')) { supported = false; why = 'WebGL is unavailable in this browser.'; } } catch { supported = false; why = 'WebGL is unavailable in this browser.'; }
     setAvailable(supported); setReason(why);
   }, [simple]);
-  return <>{available && <div className="universe-canvas" aria-hidden="true"><Scene progress={progress} highlighted={highlighted} /></div>}{!available && !simple && reason && <div className="scene-fallback" role="status">{reason} <button onClick={() => onSimple(true)}>CONTINUE IN SIMPLE VIEW</button></div>}</>;
+  return <>{available && <div className="universe-canvas" aria-hidden="true"><Scene progress={progress} highlighted={highlighted} onSimple={onSimple} /></div>}{!available && !simple && reason && <div className="scene-fallback" role="status">{reason} <button onClick={() => onSimple(true)}>CONTINUE IN SIMPLE VIEW</button></div>}</>;
 }

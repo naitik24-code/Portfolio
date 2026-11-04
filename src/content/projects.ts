@@ -1,7 +1,17 @@
-import { profile } from './content/profile';
+import { profile } from './profile';
 export { profile };
 
-export const projects = [
+export type ProjectId = 'optivest' | 'quantopt' | 'steellens' | 'cropcare' | 'inventory' | 'slm-arena';
+export type Project = {
+  id: Exclude<ProjectId, 'slm-arena'>; number: string; name: string; short: string; category: string; filter: string;
+  accent: string; summary: string; problem: string; approach: string; architecture: string[];
+  results: { label: string; value: string }[]; resultNote: string; stack: string[]; visual: string;
+  links: { github?: string; demo?: string };
+};
+export type SkillGroup = { group: string; items: string[] };
+export type LabNode = { id: string; label: string; text: string; project: ProjectId; x: number; y: number };
+
+export const projects: Project[] = [
   {
     id: 'optivest', number: '01', name: 'OptiVest', short: 'AI investment rebalancing assistant.', category: 'AI / ML · Fintech', filter: 'Fintech', accent: 'lime',
     summary: 'An AI investment rebalancing assistant combining return signals, candidate discovery, portfolio context, and constrained allocation recommendations.',
@@ -74,7 +84,7 @@ export const projects = [
   },
 ];
 
-export const skills = [
+export const skills: SkillGroup[] = [
   { group: 'Languages', items: [...profile.skills.languages] },
   { group: 'Frontend', items: [...profile.skills.frontend] },
   { group: 'Backend', items: [...profile.skills.backend] },
@@ -83,7 +93,7 @@ export const skills = [
   { group: 'Tools / Platforms', items: [...profile.skills.toolsPlatforms] },
 ];
 
-export const labNodes = [
+export const labNodes: LabNode[] = [
   { id: 'engineering', label: 'Software engineering', text: 'Building interfaces and services that turn a complicated workflow into something usable.', project: 'inventory', x: 50, y: 13 },
   { id: 'ai', label: 'Artificial intelligence', text: 'Connecting models and signals to an end-to-end product experience.', project: 'cropcare', x: 82, y: 50 },
   { id: 'fintech', label: 'Fintech', text: 'Exploring how prediction, portfolio context, and constraints shape allocation decisions.', project: 'optivest', x: 50, y: 87 },

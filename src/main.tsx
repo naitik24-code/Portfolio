@@ -1,13 +1,10 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { labNodes as labNodeSource, profile, projects as projectSource, skills as skillSource } from './data';
-import type { LabNode, Project, SkillGroup } from './content/projects';
+import { labNodes, profile, projects, skills } from './content/projects';
 import './style.css';
 
 const Universe = lazy(() => import('./scene/Universe'));
-const projects = projectSource as Project[];
-const skills = skillSource as SkillGroup[];
-const labNodes = labNodeSource as LabNode[];
+import type { LabNode, Project } from './content/projects';
 
 function shouldStartSimpleView() {
   try {
