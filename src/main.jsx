@@ -106,13 +106,14 @@ function CoreVisual() {
   </div>;
 }
 
-function Hero() {
+function Hero({ simpleView, setSimpleView }) {
   return <section className="hero section-wrap" id="home">
     <div className="hero-topline"><span>PORTFOLIO / 2026</span><span>MOHALI, INDIA <i className="crosshair">✳</i></span></div>
     <div className="hero-copy"><p className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · AI · ANALYTICS</p>
       <h1><span>BUILDING</span><span><em>INTELLIGENT</em> SYSTEMS.</span></h1>
       <p className="hero-sub">I turn complex questions into useful software—across AI/ML, fintech, quantitative analytics, and full-stack product engineering.</p>
       <div className="hero-actions"><a className="button button-lime" href="#projects" data-cursor="EXPLORE">EXPLORE MY WORK <Arrow /></a><a className="text-link" href="#contact" data-cursor="CONNECT">LET’S CONNECT <Arrow diagonal /></a></div>
+      <button className="view-toggle" type="button" aria-pressed={simpleView} onClick={() => setSimpleView(value => !value)}>{simpleView ? 'ENABLE CORE VISUAL' : 'SIMPLE VIEW'} <span>↗</span></button>
     </div>
     <CoreVisual />
     <div className="hero-bottom"><span>SCROLL TO EXPLORE <i className="scroll-line" /></span><span className="hero-index">01 — 05</span></div>
@@ -259,6 +260,7 @@ function Footer() {
 
 function App() {
   const [active, setActive] = useState('home');
+  const [simpleView, setSimpleView] = useState(() => { try { return localStorage.getItem('simple-view') === 'true'; } catch { return false; } });
   const [caseProject, setCaseProject] = useState(null);
   const caseRef = useRef(null);
   caseRef.current = caseProject;
@@ -277,7 +279,8 @@ function App() {
     return () => removeEventListener('scroll', update);
   }, []);
   const closeCase = React.useCallback(() => setCaseProject(null), []);
-  return <><a className="skip-link" href="#main">Skip to content</a><AmbientCanvas /><Cursor /><Navigation active={active} setActive={setActive} /><main id="main"><Hero /><div className="section-divider" /><About /><Projects openCase={setCaseProject} /><Skills /><DigitalLab onProject={setCaseProject} /><Contact /></main><Footer />{caseProject && <CaseStudy project={caseProject} onClose={closeCase} onView={() => { document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} />}</>;
+  useEffect(() => { try { localStorage.setItem('simple-view', String(simpleView)); } catch {} }, [simpleView]);
+  return <div className={simpleView ? 'simple-view' : ''}><a className="skip-link" href="#main">Skip to content</a>{!simpleView && <AmbientCanvas />}<Cursor /><Navigation active={active} setActive={setActive} /><main id="main"><Hero simpleView={simpleView} setSimpleView={setSimpleView} /><div className="section-divider" /><About /><Projects openCase={setCaseProject} /><Skills /><DigitalLab onProject={setCaseProject} /><Contact /></main><Footer />{caseProject && <CaseStudy project={caseProject} onClose={closeCase} onView={() => { document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} />}</div>;
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
