@@ -60,6 +60,7 @@ function Core({ progress, highlighted }: CoreProps) {
 }
 
 function Scene({ progress, highlighted, onSimple }: CoreProps & { onSimple: (simple: boolean) => void }) {
+  const mobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   function CameraPath() {
     const target = useRef<THREE.Vector3>(new THREE.Vector3());
     useFrame(({ camera }) => {
@@ -70,12 +71,12 @@ function Scene({ progress, highlighted, onSimple }: CoreProps & { onSimple: (sim
     });
     return null;
   }
-  return <Canvas dpr={[1, 1.4]} camera={{ position: [0,0,8], fov: 42 }} gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }} frameloop="always" aria-hidden="true" onCreated={({ gl }) => {
+  return <Canvas dpr={mobile ? 1 : [1, 1.25]} camera={{ position: [0,0,mobile ? 9.5 : 8], fov: mobile ? 48 : 42 }} gl={{ antialias: !mobile, alpha: true, powerPreference: 'low-power' }} frameloop="always" aria-hidden="true" onCreated={({ gl }) => {
     const handleContextLoss = (event: Event) => { event.preventDefault(); onSimple(true); };
     gl.domElement.addEventListener('webglcontextlost', handleContextLoss, { once: true });
   }}>
     <CameraPath />
-    <Stars radius={18} depth={12} count={220} factor={1.1} saturation={0} fade speed={.12} />
+    <Stars radius={18} depth={12} count={mobile ? 36 : 160} factor={1.1} saturation={0} fade speed={mobile ? 0 : .08} />
     <Core progress={progress} highlighted={highlighted} />
   </Canvas>;
 }
@@ -86,8 +87,6 @@ export default function Universe({ simple, progress, highlighted, onSimple }: Un
   useEffect(() => {
     let supported = true, why = '';
     if (simple) { supported = false; why = 'Simple view is on.'; }
-    else if (matchMedia('(prefers-reduced-motion: reduce)').matches) { supported = false; why = 'Reduced motion is enabled.'; }
-    else if (innerWidth <= 768) { supported = false; why = 'The lighter mobile view is active.'; }
     try { const c = document.createElement('canvas'); if (!c.getContext('webgl2') && !c.getContext('webgl')) { supported = false; why = 'WebGL is unavailable in this browser.'; } } catch { supported = false; why = 'WebGL is unavailable in this browser.'; }
     setAvailable(supported); setReason(why);
   }, [simple]);
