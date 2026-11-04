@@ -3,7 +3,7 @@ export { profile };
 
 export type ProjectId = 'optivest' | 'quantopt' | 'steellens' | 'cropcare' | 'inventory' | 'slm-arena';
 export type Project = {
-  id: Exclude<ProjectId, 'slm-arena'>; number: string; name: string; short: string; category: string; filter: string;
+  id: ProjectId; number: string; name: string; short: string; category: string; filter: string;
   accent: string; summary: string; problem: string; approach: string; architecture: string[];
   results: { label: string; value: string }[]; resultNote: string; stack: string[]; visual: string;
   links: { github?: string; demo?: string };
@@ -81,6 +81,20 @@ export const projects: Project[] = [
     stack: ['Python', 'FastAPI', 'SQLite', 'XGBoost', 'DBSCAN', 'JavaScript'],
     visual: 'inventory',
     links: { github: 'https://github.com/naitik24-code/retail-inventory-dashboard', demo: 'https://retail-inventory-dashboard-backend-3hrpmddo6.vercel.app/#home' },
+  },
+  {
+    id: 'slm-arena', number: '06', name: 'SLM Arena', short: 'Benchmarking small language models.', category: 'AI / ML · Benchmarking', filter: 'LLM experiments', accent: 'cyan',
+    summary: 'A local model evaluation interface for comparing responses, latency, and token speed across small language models.',
+    problem: 'Testing models in separate tools makes it difficult to compare their responses to the same prompt and understand the tradeoffs.',
+    approach: 'SLM Arena sends prompts to selected Ollama models, streams their responses, and displays timing and token metrics together. Model availability depends on a reachable Ollama server and the models installed there.',
+    architecture: ['Choose models and enter a prompt', 'FastAPI coordinates parallel requests', 'Ollama generates model responses', 'Stream output and compare runtime metrics'],
+    results: [
+      { label: 'Models per run', value: 'Up to 3' }, { label: 'Response mode', value: 'Streaming' }, { label: 'Inference runtime', value: 'Ollama' },
+    ],
+    resultNote: 'Response quality and speed depend on the selected model and hardware. The public interface can load without a connected inference server; running comparisons requires Ollama to be reachable by the API.',
+    stack: ['React', 'Vite', 'FastAPI', 'Ollama', 'HTTPX'],
+    visual: 'slm',
+    links: { github: 'https://github.com/naitik24-code/Slm-Arena', demo: 'https://slm-arena-xi.vercel.app/#/' },
   },
 ];
 
