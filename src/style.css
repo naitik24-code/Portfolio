@@ -29,6 +29,9 @@
 @media(max-width:390px){.nav-status{font-size:6px;margin-right:9px}.project-open{grid-template-columns:1fr}.project-art{min-height:270px;border-right:0;border-bottom:1px solid var(--soft-line)}.graphic{min-height:270px}.project-copy{min-height:280px;padding:19px}.leaf-window{flex-direction:row}.leaf-scan{width:61%}.scan-readout{width:auto;display:grid;font-size:5px}.lab-node{font-size:5px;padding:8px 6px}.lab-map{min-height:310px}}
 .draft-mark{display:inline-block;vertical-align:middle;margin-left:.65rem;padding:5px 7px;border:1px solid rgba(198,255,77,.25);color:var(--lime);font:7px var(--mono);letter-spacing:1px}
 .core-loading{position:fixed;z-index:41;top:8px;left:12px;color:var(--lime);font:8px var(--mono);letter-spacing:1px;pointer-events:none}
+@media(max-width:1050px){.core-scene{right:0;width:min(60vw,630px)}.core-projects{inset:0}.hero-side-note{display:none}}
+.hero-topline,.hero-index,.hero-side-note{color:#92978f}.inventory-aside span:not(.selected),.inventory-kpis small,.inventory-kpis i,.contact-links>button>span{color:#92978f}
+.lab-center>i,.lab-output-foot>span{color:#92978f}
 @media(min-width:721px) and (max-width:1050px){.nav-shell{padding:0 35px}.brand{min-width:125px}.nav-status{display:none}.nav-links{gap:22px;margin-left:auto}}
 .case-links{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px}.case-links a,.other-links>a{display:inline-flex;align-items:center;gap:10px;color:var(--lime);font:8px var(--mono);letter-spacing:.7px;border-bottom:1px solid rgba(198,255,77,.35);padding:0 0 8px}.other-links{display:grid;justify-items:start;gap:12px}.other-links .other-tag{grid-column:auto}
 @media(max-width:720px){.other-links{grid-column:2;display:flex;align-items:center;flex-wrap:wrap;gap:12px}}

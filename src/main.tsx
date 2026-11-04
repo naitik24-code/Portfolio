@@ -88,7 +88,7 @@ function Navigation({ active, setActive }: { active: string; setActive: (id: str
   const [open, setOpen] = useState(false);
   const links = ['about', 'projects', 'skills', 'lab', 'contact'];
   return <header className="nav-shell">
-    <a className="brand" href="#home" aria-label={`${profile.name}, home`} onClick={() => setOpen(false)}><span className="brand-mark">N<span>.</span></span><span className="brand-name">NAITIK<br /><i>PATHAK</i></span></a>
+    <a className="brand" href="#home" onClick={() => setOpen(false)}><span className="brand-mark">N<span>.</span></span><span className="brand-name">NAITIK<br /><i>PATHAK</i></span></a>
     <div className="nav-status"><span className="status-dot" /> {profile.availability.toUpperCase()}</div>
     <button className="menu-toggle" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} onClick={() => setOpen(v => !v)}>{open ? 'CLOSE' : 'MENU'} <span>{open ? '−' : '+'}</span></button>
     <nav className={`nav-links ${open ? 'is-open' : ''}`} aria-label="Main navigation">
@@ -185,7 +185,7 @@ function ProjectCard({ project, index, onOpen, onHighlight }: { project: Project
     return () => { element.removeEventListener('pointermove', move); element.removeEventListener('pointerleave', leave); };
   }, []);
   return <article ref={card} className={`project-card project-${project.accent}`} style={{ '--card-index': index } as React.CSSProperties}>
-    <button className="project-open" onFocus={() => onHighlight(project.id)} onBlur={() => onHighlight(null)} onMouseEnter={() => onHighlight(project.id)} onMouseLeave={() => onHighlight(null)} onClick={() => onOpen(project)} data-cursor="OPEN CASE STUDY" aria-label={`Open ${project.name} case study`}>
+    <button className="project-open" onFocus={() => onHighlight(project.id)} onBlur={() => onHighlight(null)} onMouseEnter={() => onHighlight(project.id)} onMouseLeave={() => onHighlight(null)} onClick={() => onOpen(project)} data-cursor="OPEN CASE STUDY">
       <div className="project-art"><ProjectGraphic type={project.visual} id={project.id} /><span className="art-index">{project.number} / 05</span></div>
       <div className="project-copy"><div className="project-top"><span>{project.category}</span><span className="project-arrow"><Arrow diagonal /></span></div><h3>{project.name}<small>{project.short}</small></h3><p>{project.summary}</p><div className="project-tags">{project.stack.slice(0, 4).map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-bottom"><span>VIEW CASE STUDY</span><Arrow /></div></div>
     </button>
