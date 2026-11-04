@@ -1,9 +1,13 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { labNodes, profile, projects, skills } from './data';
+import { labNodes as labNodeSource, profile, projects as projectSource, skills as skillSource } from './data';
+import type { LabNode, Project, SkillGroup } from './content/projects';
 import './style.css';
 
 const Universe = lazy(() => import('./scene/Universe'));
+const projects = projectSource as Project[];
+const skills = skillSource as SkillGroup[];
+const labNodes = labNodeSource as LabNode[];
 
 function shouldStartSimpleView() {
   try {
@@ -21,10 +25,12 @@ function shouldStartSimpleView() {
 const Arrow = ({ diagonal = false }) => <svg aria-hidden="true" viewBox="0 0 18 18" className="arrow-icon"><path d={diagonal ? 'M4 14 14 4M5 4h9v9' : 'M3 9h11M9 4l5 5-5 5'} /></svg>;
 
 function AmbientCanvas() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = ref.current;
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const small = matchMedia('(max-width: 720px)').matches;
     const count = reduce ? 0 : small ? 24 : 44;
@@ -36,7 +42,7 @@ function AmbientCanvas() {
       hue: i % 5 === 0 ? '155, 123, 255' : '198, 255, 77',
     }));
     const resize = () => { const dpr = Math.min(devicePixelRatio || 1, 1.5); w = canvas.clientWidth; h = canvas.clientHeight; canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
-    const move = e => { pointer.x = e.clientX; pointer.y = e.clientY; };
+    const move = (e: PointerEvent) => { pointer.x = e.clientX; pointer.y = e.clientY; };
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
       const points = dots.map(p => {
@@ -81,7 +87,7 @@ function Cursor() {
   */
 }
 
-function Navigation({ active, setActive }) {
+function Navigation({ active, setActive }: { active: string; setActive: (id: string) => void }) {
   const [open, setOpen] = useState(false);
   const links = ['about', 'projects', 'skills', 'lab', 'contact'];
   return <header className="nav-shell">
@@ -96,14 +102,15 @@ function Navigation({ active, setActive }) {
 }
 
 function CoreVisual() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const scene = ref.current;
+    if (!scene) return;
     // Keep card tilt available in embedded desktop browsers that misreport
     // their pointer capability; reduced-motion remains the opt-out.
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const layers = [...scene.querySelectorAll('.core-sphere,.core-orbit,.core-halo')];
-    const move = event => {
+    const layers = [...scene.querySelectorAll<HTMLElement>('.core-sphere,.core-orbit,.core-halo')];
+    const move = (event: PointerEvent) => {
       const rect = scene.getBoundingClientRect();
       const x = (event.clientX - rect.left - rect.width / 2) / rect.width;
       const y = (event.clientY - rect.top - rect.height / 2) / rect.height;
@@ -123,7 +130,7 @@ function CoreVisual() {
   </div>;
 }
 
-function Hero({ simpleView, setSimpleView }) {
+function Hero({ simpleView, setSimpleView }: { simpleView: boolean; setSimpleView: React.Dispatch<React.SetStateAction<boolean>> }) {
   return <section className="hero section-wrap" id="home">
     <div className="hero-topline"><span>PORTFOLIO / SYSTEMS</span><span>{profile.location.toUpperCase()} <i className="crosshair" aria-hidden="true">✳</i></span></div>
     <div className="hero-copy"><p className="eyebrow"><span className="eyebrow-line" /> {profile.role.toUpperCase()}</p>
@@ -138,7 +145,7 @@ function Hero({ simpleView, setSimpleView }) {
   </section>;
 }
 
-function SectionHeading({ index, label, title, accent }) {
+function SectionHeading({ index, label, title, accent }: { index: string; label: string; title: string; accent?: string }) {
   return <div className="section-heading"><div className="section-kicker"><span>{index}</span><i />{label}</div><h2>{title}{accent && <> <em>{accent}</em></>}</h2></div>;
 }
 
@@ -156,7 +163,7 @@ function Principles() {
   return <section className="principles section-wrap section-pad reveal" id="principles"><SectionHeading index="02" label="HOW I THINK" title="USEFULNESS OVER" accent="NOISE." /><p className="principles-intro">I like the space between an idea and a working system: the assumptions, the data, the interface, and the honest limits of the result.</p><div className="principles-grid"><article><span>01</span><h3>START WITH THE QUESTION</h3><p>Before choosing a model or tool, define what decision the system should help someone make.</p></article><article><span>02</span><h3>MAKE THE SIGNAL CLEAR</h3><p>Good interfaces turn complex outputs into actions people can understand and inspect.</p></article><article><span>03</span><h3>SHOW THE LIMITS</h3><p>Uncertainty and provenance belong in the product—not hidden behind impressive numbers.</p></article></div></section>;
 }
 
-function ProjectGraphic({ type, id }) {
+function ProjectGraphic({ type, id }: { type: string; id: string }) {
   if (type === 'portfolio') return <div className="graphic portfolio-graphic"><div className="graphic-meta"><span>ALLOCATION ENGINE</span><span>01 / LIVE CONCEPT</span></div><div className="allocation-ring"><div className="ring-inner"><span>RISK<br /><b>01</b></span></div><i /><i /><i /><i /></div><div className="asset-lines"><span><i>A</i> ASSET SIGNAL <b>+2.8%</b></span><span><i>B</i> PORTFOLIO RISK <b>−1.4%</b></span><span><i>C</i> DIVERSIFICATION <b>↑ 08</b></span></div><div className="graphic-foot"><span>MODEL OUTPUT / SIMULATED VIEW</span><span className="tiny-wave">∿ ∿ ∿ ∿ ∿ ∿</span></div></div>;
   if (type === 'steel') return <div className="graphic steel-graphic"><div className="graphic-meta"><span>OPERATING LEVERAGE / SAMPLE VIEW</span><span>20 QUARTERS</span></div><div className="steel-chart"><div className="chart-y"><span>HIGH</span><span>EBIT</span><span>LOW</span></div><svg viewBox="0 0 620 230" preserveAspectRatio="none" role="img" aria-label="Illustrative concept chart showing revenue and EBIT movement"><defs><linearGradient id={`${id}-fill`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#9b7bff" stopOpacity=".18"/><stop offset="1" stopColor="#9b7bff" stopOpacity="0"/></linearGradient></defs><path className="chart-fill" d="M0 178 C45 153 55 188 92 152 S147 143 174 117 S223 158 258 126 S308 87 337 104 S385 54 414 84 S469 113 502 62 S550 80 620 27 V230 H0Z" fill={`url(#${id}-fill)`}/><path className="chart-line revenue" d="M0 178 C45 153 55 188 92 152 S147 143 174 117 S223 158 258 126 S308 87 337 104 S385 54 414 84 S469 113 502 62 S550 80 620 27"/><path className="chart-line ebit" d="M0 198 C45 188 55 201 92 182 S147 188 174 163 S223 181 258 160 S308 132 337 151 S385 110 414 128 S469 149 502 109 S550 126 620 83"/></svg><div className="chart-x"><span>FY 22</span><span>FY 24</span><span>FY 26</span></div></div><div className="graphic-foot"><span><i className="legend-violet" /> REVENUE <i className="legend-lime" /> EBIT PROXY</span><span>SCHEMATIC · NOT RAW DATA</span></div></div>;
   if (type === 'quant') return <div className="graphic quant-graphic"><div className="graphic-meta"><span>RISK / RETURN SPACE</span><span>25,000 SAMPLES</span></div><div className="quant-plot"><svg viewBox="0 0 620 260" preserveAspectRatio="none" role="img" aria-label="Conceptual portfolio risk-return plot"><path className="plot-grid" d="M0 52H620M0 104H620M0 156H620M0 208H620M124 0V260M248 0V260M372 0V260M496 0V260"/><path d="M42 224 C110 181 153 145 235 100 S385 46 572 28" className="frontier-line"/><path d="M42 224 C118 172 174 151 235 100 S385 46 572 28 L572 260H42Z" className="frontier-area"/><g className="plot-points"><circle cx="93" cy="199" r="4"/><circle cx="132" cy="171" r="3"/><circle cx="166" cy="154" r="3"/><circle cx="215" cy="121" r="3"/><circle cx="278" cy="96" r="3"/><circle cx="338" cy="78" r="3"/><circle cx="405" cy="59" r="3"/><circle cx="470" cy="46" r="3"/><circle cx="516" cy="35" r="3"/></g><circle cx="235" cy="100" r="7" className="plot-highlight"/><circle cx="405" cy="59" r="7" className="plot-highlight second"/></svg><span className="plot-label label-a">MIN VAR</span><span className="plot-label label-b">MAX SHARPE</span><span className="axis-y">EXPECTED RETURN</span><span className="axis-x">VOLATILITY →</span></div><div className="graphic-foot"><span>MARKOWITZ · SLSQP · MONTE CARLO</span><span>MODEL CONCEPT</span></div></div>;
@@ -164,12 +171,13 @@ function ProjectGraphic({ type, id }) {
   return <div className="graphic inventory-graphic"><div className="graphic-meta"><span>INVENTORY / ACTION CENTER</span><span>OPERATIONAL SIGNALS</span></div><div className="inventory-ui"><div className="inventory-aside"><span>OVERVIEW</span><span>INVENTORY</span><span className="selected">ALERTS <i>04</i></span><span>ANALYTICS</span></div><div className="inventory-main"><div className="inventory-kpis"><div><small>AT RISK</small><b>08 <i>items</i></b></div><div><small>REORDER SIGNAL</small><b>12 <i>items</i></b></div></div>{['VITAMIN C / 500MG','OAT MILK / 1L','PAPER / A4'].map((s, i) => <div className="inventory-row" key={s}><span><i className={`risk-dot risk-${i}`} />{s}</span><span>{['3 DAYS','6 DAYS','9 DAYS'][i]}</span><span>REVIEW <Arrow diagonal /></span></div>)}</div></div><div className="graphic-foot"><span>STOCKOUT SUGGESTIONS · REORDER LOGIC</span><span>ILLUSTRATIVE UI / SAMPLE VALUES</span></div></div>;
 }
 
-function ProjectCard({ project, index, onOpen, onHighlight }) {
-  const card = useRef(null);
+function ProjectCard({ project, index, onOpen, onHighlight }: { project: Project; index: number; onOpen: (project: Project) => void; onHighlight: (id: string | null) => void }) {
+  const card = useRef<HTMLElement>(null);
   useEffect(() => {
     const element = card.current;
+    if (!element) return;
     if (matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)').matches) return;
-    const move = event => {
+    const move = (event: PointerEvent) => {
       const rect = element.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - 0.5;
       const y = (event.clientY - rect.top) / rect.height - 0.5;
@@ -179,7 +187,7 @@ function ProjectCard({ project, index, onOpen, onHighlight }) {
     element.addEventListener('pointermove', move, { passive: true }); element.addEventListener('pointerleave', leave);
     return () => { element.removeEventListener('pointermove', move); element.removeEventListener('pointerleave', leave); };
   }, []);
-  return <article ref={card} className={`project-card project-${project.accent}`} style={{ '--card-index': index }}>
+  return <article ref={card} className={`project-card project-${project.accent}`} style={{ '--card-index': index } as React.CSSProperties}>
     <button className="project-open" onFocus={() => onHighlight(project.id)} onBlur={() => onHighlight(null)} onMouseEnter={() => onHighlight(project.id)} onMouseLeave={() => onHighlight(null)} onClick={() => onOpen(project)} data-cursor="OPEN CASE STUDY" aria-label={`Open ${project.name} case study`}>
       <div className="project-art"><ProjectGraphic type={project.visual} id={project.id} /><span className="art-index">{project.number} / 05</span></div>
       <div className="project-copy"><div className="project-top"><span>{project.category}</span><span className="project-arrow"><Arrow diagonal /></span></div><h3>{project.name}<small>{project.short}</small></h3><p>{project.summary}</p><div className="project-tags">{project.stack.slice(0, 4).map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-bottom"><span>VIEW CASE STUDY</span><Arrow /></div></div>
@@ -187,15 +195,15 @@ function ProjectCard({ project, index, onOpen, onHighlight }) {
   </article>;
 }
 
-function CaseStudy({ project, onClose, onView }) {
-  const dialog = useRef(null);
+function CaseStudy({ project, onClose, onView }: { project: Project; onClose: () => void; onView: () => void }) {
+  const dialog = useRef<HTMLElement>(null);
   useEffect(() => {
-    const old = document.activeElement; dialog.current?.focus();
-    const key = e => { if (e.key === 'Escape') onClose(); };
+    const old = document.activeElement as HTMLElement | null; dialog.current?.focus();
+    const key = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     addEventListener('keydown', key); document.body.classList.add('dialog-open');
     return () => { removeEventListener('keydown', key); document.body.classList.remove('dialog-open'); old?.focus?.(); };
   }, [onClose]);
-  return <div className="dialog-backdrop" onMouseDown={e => { if (e.target === e.currentTarget) onClose(); }}><article className={`case-dialog accent-${project.accent}`} role="dialog" aria-modal="true" aria-labelledby="case-title" tabIndex={-1} ref={dialog}>
+  return <div className="dialog-backdrop" onMouseDown={(e: React.MouseEvent<HTMLDivElement>) => { if (e.target === e.currentTarget) onClose(); }}><article className={`case-dialog accent-${project.accent}`} role="dialog" aria-modal="true" aria-labelledby="case-title" tabIndex={-1} ref={dialog}>
     <button className="dialog-close" onClick={onClose} aria-label="Close case study">CLOSE <span>×</span></button>
     <div className="case-overline"><span>CASE STUDY / {project.number}</span><span>{project.category}</span></div><h2 id="case-title">{project.name}<em>.</em></h2><p className="case-summary">{project.summary}</p>
     <div className="case-art"><ProjectGraphic type={project.visual} id={`detail-${project.id}`} /></div>
@@ -210,7 +218,7 @@ function CaseStudy({ project, onClose, onView }) {
   </article></div>;
 }
 
-function Projects({ openCase, onHighlight }) {
+function Projects({ openCase, onHighlight }: { openCase: (project: Project) => void; onHighlight: (id: string | null) => void }) {
   const [activeFilter, setActiveFilter] = useState('All');
   const filters = ['All', 'Fintech', 'Research', 'Applied AI', 'Product systems', 'LLM experiments'];
   const visibleProjects = activeFilter === 'All' || activeFilter === 'LLM experiments' ? (activeFilter === 'All' ? projects : []) : projects.filter(project => project.filter === activeFilter);
@@ -239,8 +247,8 @@ function AllocationPlayground() {
     <div className="playground-heading"><div><span className="case-label">INTERACTIVE CONCEPT / 01</span><h3 id="playground-title">Tune the allocation.</h3></div><span className="playground-live"><i /> LIVE DEMO</span></div>
     <p>Move the controls and watch a sample allocation respond. This is a synthetic interface demo—not OptiVest output, financial advice, or a recommendation.</p>
     <div className="playground-controls">
-      <label><span>RISK TOLERANCE <b>{risk < 35 ? 'LOW' : risk > 68 ? 'HIGH' : 'BALANCED'}</b></span><input type="range" min="0" max="100" value={risk} aria-valuetext={`${risk} percent, ${risk < 35 ? 'low' : risk > 68 ? 'high' : 'balanced'} risk tolerance`} onChange={event => setRisk(Number(event.target.value))} style={{ '--range-fill': `${risk}%` }} /></label>
-      <label><span>DIVERSIFICATION <b>{spread}%</b></span><input type="range" min="0" max="100" value={spread} aria-valuetext={`${spread} percent diversification preference`} onChange={event => setSpread(Number(event.target.value))} style={{ '--range-fill': `${spread}%` }} /></label>
+      <label><span>RISK TOLERANCE <b>{risk < 35 ? 'LOW' : risk > 68 ? 'HIGH' : 'BALANCED'}</b></span><input type="range" min="0" max="100" value={risk} aria-valuetext={`${risk} percent, ${risk < 35 ? 'low' : risk > 68 ? 'high' : 'balanced'} risk tolerance`} onChange={event => setRisk(Number(event.target.value))} style={{ '--range-fill': `${risk}%` } as React.CSSProperties} /></label>
+      <label><span>DIVERSIFICATION <b>{spread}%</b></span><input type="range" min="0" max="100" value={spread} aria-valuetext={`${spread} percent diversification preference`} onChange={event => setSpread(Number(event.target.value))} style={{ '--range-fill': `${spread}%` } as React.CSSProperties} /></label>
     </div>
     <div className="allocation-readout" aria-live="polite">{allocations.map(item => <div className="allocation-row" key={item.label}><span>{item.label}</span><div className="allocation-track"><i style={{ width: `${item.value}%`, background: item.color }} /></div><b>{item.value}%</b></div>)}</div>
     <div className="playground-foot"><span>100% TOTAL ALLOCATION</span><button onClick={() => { setRisk(50); setSpread(50); }}>RESET CONTROLS <span>↺</span></button></div>
@@ -254,13 +262,13 @@ function Skills() {
   return <section id="skills" className="skills section-wrap section-pad reveal"><SectionHeading index="03" label="TOOLS I WORK WITH" title="A PRACTICAL" accent="TOOLKIT." />
     <div className="skills-intro"><p>Technologies across my projects and coursework. Grouped by how I use them—no arbitrary proficiency scores.</p><span>SELECT A DISCIPLINE <i>↘</i></span></div>
     <div className="skill-filters" role="group" aria-label="Filter skills by category">{groups.map(group => <button className={active === group ? 'selected' : ''} key={group} onClick={() => setActive(group)}>{group}</button>)}</div>
-    <div className="skill-groups">{filtered.map((group, i) => <div className="skill-group" key={group.group}><div className="skill-group-name"><span>0{skills.indexOf(group) + 1}</span>{group.group.toUpperCase()}</div><div className="skill-pills">{group.items.map((skill, j) => <span className="skill-pill" key={skill} style={{ '--skill-delay': `${j * 35}ms` }}><i />{skill}</span>)}</div><div className="skill-group-mark">↗</div></div>)}</div>
+    <div className="skill-groups">{filtered.map((group, i) => <div className="skill-group" key={group.group}><div className="skill-group-name"><span>0{skills.indexOf(group) + 1}</span>{group.group.toUpperCase()}</div><div className="skill-pills">{group.items.map((skill, j) => <span className="skill-pill" key={skill} style={{ '--skill-delay': `${j * 35}ms` } as React.CSSProperties}><i />{skill}</span>)}</div><div className="skill-group-mark">↗</div></div>)}</div>
   </section>;
 }
 
-function DigitalLab({ onProject }) {
+function DigitalLab({ onProject }: { onProject: (project: Project) => void }) {
   const [selected, setSelected] = useState(labNodes[0]);
-  const choose = node => { setSelected(node); };
+  const choose = (node: LabNode) => { setSelected(node); };
   const openRelated = () => { const p = projects.find(project => project.id === selected.project); if (p) onProject(p); };
   return <section id="lab" className="lab section-wrap section-pad reveal"><div className="lab-heading"><div className="section-kicker"><span>04</span><i />A SMALL INTERACTIVE SYSTEM</div><h2>FOUR FIELDS.<br /><em>ONE WAY OF THINKING.</em></h2><p>Select a node. See what it connects to.</p></div>
     <div className="lab-console"><div className="lab-map" role="group" aria-label="Choose an area of interest"><svg className="lab-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50 13 82 50 50 87 18 50Z"/><path d="M50 13 50 87M18 50h64"/><circle cx="50" cy="50" r="17" /></svg><div className="lab-center"><span>NP</span><i>SYSTEMS<br />THINKING</i></div>{labNodes.map(node => <button key={node.id} style={{ left: `${node.x}%`, top: `${node.y}%` }} className={`lab-node ${selected.id === node.id ? 'active' : ''}`} aria-pressed={selected.id === node.id} onClick={() => choose(node)}><i /><span>{node.label}</span></button>)}</div>
@@ -271,8 +279,9 @@ function DigitalLab({ onProject }) {
 
 function Contact() {
   const [copied, setCopied] = useState(false);
+  const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.contact.email)}`;
   const copy = async () => { try { await navigator.clipboard.writeText(profile.contact.email); setCopied(true); setTimeout(() => setCopied(false), 1800); } catch { window.location.href = `mailto:${profile.contact.email}`; } };
-  return <section id="contact" className="contact section-wrap section-pad"><div className="contact-glow" aria-hidden="true" /><div className="section-kicker"><span>05</span><i />THE NEXT CONVERSATION</div><h2>HAVE A COMPLEX<br />PROBLEM?<br /><em>LET’S BUILD THE SOLUTION.</em></h2><div className="contact-bottom"><div><p>{profile.availability}. Open to conversations about software engineering, AI, analytics, and thoughtful products.</p><a className="button button-lime" href={`mailto:${profile.contact.email}`} data-cursor="SAY HELLO">START A CONVERSATION <Arrow diagonal /></a></div><div className="contact-links"><span className="case-label">FIND ME / REACH ME</span><a href={`mailto:${profile.contact.email}`}>{profile.contact.email} <Arrow diagonal /></a><button onClick={copy}>{copied ? 'EMAIL COPIED ✓' : 'COPY EMAIL'} <span>COPY</span></button><a href={profile.contact.github} target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a><a href={profile.contact.linkedin} target="_blank" rel="noreferrer">LINKEDIN <Arrow diagonal /></a></div></div></section>;
+  return <section id="contact" className="contact section-wrap section-pad"><div className="contact-glow" aria-hidden="true" /><div className="section-kicker"><span>05</span><i />THE NEXT CONVERSATION</div><h2>HAVE A COMPLEX<br />PROBLEM?<br /><em>LET’S BUILD THE SOLUTION.</em></h2><div className="contact-bottom"><div><p>{profile.availability}. Open to conversations about software engineering, AI, analytics, and thoughtful products.</p><a className="button button-lime" href={gmailCompose} target="_blank" rel="noreferrer" data-cursor="SAY HELLO">START A CONVERSATION <Arrow diagonal /></a></div><div className="contact-links"><span className="case-label">FIND ME / REACH ME</span><a href={gmailCompose} target="_blank" rel="noreferrer">{profile.contact.email} <Arrow diagonal /></a><button onClick={copy}>{copied ? 'EMAIL COPIED ✓' : 'COPY EMAIL'} <span>COPY</span></button><a href={profile.contact.github} target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a><a href={profile.contact.linkedin} target="_blank" rel="noreferrer">LINKEDIN <Arrow diagonal /></a></div></div></section>;
 }
 
 function Footer() {
@@ -285,12 +294,10 @@ function App() {
   const [simpleView, setSimpleView] = useState(shouldStartSimpleView);
   const [sceneReady, setSceneReady] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [highlightedProject, setHighlightedProject] = useState(null);
-  const [caseProject, setCaseProject] = useState(null);
-  const caseRef = useRef(null);
-  caseRef.current = caseProject;
+  const [highlightedProject, setHighlightedProject] = useState<string | null>(null);
+  const [caseProject, setCaseProject] = useState<Project | null>(null);
   useEffect(() => {
-    const sections = ['home', 'about', 'projects', 'skills', 'lab', 'contact'].map(id => document.getElementById(id)).filter(Boolean);
+    const sections = ['home', 'about', 'projects', 'skills', 'lab', 'contact'].map(id => document.getElementById(id)).filter((section): section is HTMLElement => section !== null);
     const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); }), { rootMargin: '-35% 0px -55% 0px' });
     sections.forEach(section => observer.observe(section));
     const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } }), { threshold: 0.1 });
@@ -300,7 +307,7 @@ function App() {
   useEffect(() => { const update = () => { const max = document.documentElement.scrollHeight - innerHeight; setScrollProgress(max > 0 ? scrollY / max : 0); }; update(); addEventListener('scroll', update, { passive:true }); addEventListener('resize', update); return () => { removeEventListener('scroll', update); removeEventListener('resize', update); }; }, []);
   useEffect(() => {
     if (simpleView) { setSceneReady(false); return; }
-    let timer;
+    let timer: ReturnType<typeof window.setTimeout> | undefined;
     const start = () => setSceneReady(true);
     const idle = window.requestIdleCallback?.(start, { timeout: 1400 });
     if (idle === undefined) timer = window.setTimeout(start, 700);
@@ -314,7 +321,11 @@ function App() {
   }, []);
   const closeCase = React.useCallback(() => setCaseProject(null), []);
   useEffect(() => { try { localStorage.setItem('simple-view', String(simpleView)); } catch {} }, [simpleView]);
+  const root = document.getElementById('root');
+  if (!root) throw new Error('Missing React root element.');
   return <div className={simpleView ? 'simple-view' : ''}><a className="skip-link" href="#main">Skip to content</a>{!simpleView && <><AmbientCanvas />{sceneReady && <Suspense fallback={<div className="core-loading" role="status">INITIALIZING CORE</div>}><Universe simple={simpleView} progress={scrollProgress} highlighted={highlightedProject} onSimple={setSimpleView} /></Suspense>}</>}<div className="scroll-progress" aria-hidden="true" style={{ transform:`scaleX(${scrollProgress})` }} /><Cursor /><Navigation active={active} setActive={setActive} /><main id="main"><Hero simpleView={simpleView} setSimpleView={setSimpleView} /><div className="section-divider" /><About /><Principles /><Projects openCase={setCaseProject} onHighlight={setHighlightedProject} /><Skills /><DigitalLab onProject={setCaseProject} /><Contact /></main><Footer />{caseProject && <CaseStudy project={caseProject} onClose={closeCase} onView={() => { document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }} />}</div>;
 }
 
-createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
+const root = document.getElementById('root');
+if (!root) throw new Error('Missing React root element.');
+createRoot(root).render(<React.StrictMode><App /></React.StrictMode>);
