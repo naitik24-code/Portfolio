@@ -17,7 +17,7 @@ export const profile = {
   // DRAFT: confirm the first-person wording before publishing.
   about: {
     statement: 'Building useful systems from data and ideas.',
-    paragraph: 'I work across AI/ML, computer vision, data products, and full-stack applications. I am interested in turning complex workflows into practical tools while making assumptions and limitations clear.',
+    paragraph: 'I work across AI/ML, computer vision, customer and data products, and full-stack applications. I am interested in turning complex workflows into practical tools while making assumptions and limitations clear.',
   },
   now: {
     building: { todo: true, note: 'Current project or activity not provided.' },

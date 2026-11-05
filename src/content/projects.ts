@@ -1,7 +1,7 @@
 import { profile } from './profile';
 export { profile };
 
-export type ProjectId = 'optivest' | 'quantopt' | 'steellens' | 'cropcare' | 'inventory' | 'slm-arena';
+export type ProjectId = 'optivest' | 'crm' | 'cropcare' | 'inventory' | 'slm-arena' | 'quantopt' | 'steellens';
 export type Project = {
   id: ProjectId; number: string; name: string; short: string; category: string; filter: string;
   accent: string; summary: string; problem: string; approach: string; architecture: string[];
@@ -27,7 +27,7 @@ export const projects: Project[] = [
     links: { github: 'https://github.com/naitik24-code/OptiVest1', demo: 'https://opti-vest1.vercel.app/' },
   },
   {
-    id: 'steellens', number: '02', name: 'SteelLens', short: 'Reading the structure behind the numbers.', category: 'Financial analytics · Research', filter: 'Research', accent: 'violet',
+    id: 'steellens', number: '07', name: 'SteelLens', short: 'Reading the structure behind the numbers.', category: 'Financial analytics · Research', filter: 'Research', accent: 'violet',
     summary: 'A reproducible research framework studying operating cost friction, degree of operating leverage, and EBIT sensitivity across Indian steel producers.',
     problem: 'Steelmakers carry capital-intensive operations, but financial statements do not neatly separate fixed and variable costs. That makes operating risk difficult to compare.',
     approach: 'SteelLens builds auditable quarterly panels and compares transparent accounting proxies with econometric cost decomposition. Its separate workflows cover a four-company core study, a selected ten-company expansion, and a Tata Steel ESG disclosure analysis.',
@@ -41,7 +41,7 @@ export const projects: Project[] = [
     links: { github: '' },
   },
   {
-    id: 'quantopt', number: '03', name: 'QuantOpt', short: 'Optimization under real market uncertainty.', category: 'Quantitative computing · Research', filter: 'Research', accent: 'cyan',
+    id: 'quantopt', number: '06', name: 'QuantOpt', short: 'Optimization under real market uncertainty.', category: 'Quantitative computing · Research', filter: 'Research', accent: 'cyan',
     summary: 'An Indian-equity portfolio optimization engine comparing mean-variance allocations, Monte Carlo search, equal weight, and risk parity.',
     problem: 'An optimized allocation can look convincing in-sample and still behave differently when market conditions change. QuantOpt tests both the mathematics and the out-of-sample outcome.',
     approach: 'The engine studies TCS, NTPC, Reliance, and Titan using Markowitz mean-variance methods, an SLSQP optimizer, 25,000 Monte Carlo allocations, a risk-parity strategy, an efficient frontier, and a chronological holdout.',
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     links: { github: 'https://github.com/naitik24-code/QuantOpt' },
   },
   {
-    id: 'cropcare', number: '04', name: 'CropCare', short: 'A diagnosis workflow from leaf image to next step.', category: 'Applied AI · Computer vision', filter: 'Applied AI', accent: 'green',
+    id: 'cropcare', number: '03', name: 'CropCare', short: 'A diagnosis workflow from leaf image to next step.', category: 'Applied AI · Computer vision', filter: 'Applied AI', accent: 'green',
     summary: 'A full-stack crop disease detection prototype that analyzes leaf images and returns a predicted class, confidence, and treatment guidance.',
     problem: 'A useful crop diagnosis experience needs to connect image analysis to a clear result a person can act on.',
     approach: 'The application combines image preprocessing and feature extraction with a LightGBM classifier, then exposes predictions through a FastAPI backend and React interface. The repository also contains an earlier vanilla-JavaScript interface.',
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     links: { github: 'https://github.com/naitik24-code/Crop-Care-Detection', demo: 'https://crop-care-detection.vercel.app/' },
   },
   {
-    id: 'inventory', number: '05', name: 'Retail Inventory Dashboard', short: 'From stock signals to timely action.', category: 'Full Stack · Data', filter: 'Product systems', accent: 'lime',
+    id: 'inventory', number: '04', name: 'Retail Inventory Dashboard', short: 'From stock signals to timely action.', category: 'Full Stack · Data', filter: 'Product systems', accent: 'lime',
     summary: 'An inventory dashboard combining stockout suggestions, reorder signals, severity-based alerts, and operational analytics.',
     problem: 'Inventory teams need a fast way to spot items at risk and turn noisy stock data into clear actions.',
     approach: 'A FastAPI service and SQLite database power a browser dashboard. The repository documents ABC/XYZ classification with XGBoost, DBSCAN-based anomaly flags, stockout suggestions, CSV upload refresh jobs, and alert analytics.',
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     links: { github: 'https://github.com/naitik24-code/retail-inventory-dashboard', demo: 'https://retail-inventory-dashboard-backend-3hrpmddo6.vercel.app/#home' },
   },
   {
-    id: 'slm-arena', number: '06', name: 'SLM Arena', short: 'Benchmarking small language models.', category: 'AI / ML · Benchmarking', filter: 'LLM experiments', accent: 'cyan',
+    id: 'slm-arena', number: '05', name: 'SLM Arena', short: 'Benchmarking small language models.', category: 'AI / ML · Benchmarking', filter: 'LLM experiments', accent: 'cyan',
     summary: 'A local model evaluation interface for comparing responses, latency, and token speed across small language models.',
     problem: 'Testing models in separate tools makes it difficult to compare their responses to the same prompt and understand the tradeoffs.',
     approach: 'SLM Arena sends prompts to selected Ollama models, streams their responses, and displays timing and token metrics together. Model availability depends on a reachable Ollama server and the models installed there.',
@@ -96,12 +96,28 @@ export const projects: Project[] = [
     visual: 'slm',
     links: { github: 'https://github.com/naitik24-code/Slm-Arena', demo: 'https://slm-arena-xi.vercel.app/#/' },
   },
+  {
+    id: 'crm', number: '02', name: 'Customer Relationship Management', short: 'One workspace for the customer lifecycle.', category: 'Full Stack · CRM', filter: 'Product systems', accent: 'violet',
+    summary: 'An end-to-end CRM suite for customer records, lead conversion, sales opportunities, products, support tickets, and audit activity.',
+    problem: 'Customer, sales, and support workflows become difficult to coordinate when their records and permissions are scattered across separate tools.',
+    approach: 'A React dashboard connects to a Node.js and Express API backed by MySQL and Sequelize. The documented system includes role-based access, JWT authentication, a transactional lead-conversion procedure, and audit logging.',
+    architecture: ['Authenticate users and enforce roles', 'Manage customers, leads, and products', 'Convert qualified leads into customers', 'Track opportunities, service tickets, and audit events'],
+    results: [
+      { label: 'Core domains', value: '8' }, { label: 'User roles', value: '4' }, { label: 'Database design', value: '5NF' },
+    ],
+    resultNote: 'The repository documents eight CRM domains and four roles. Its schema is described as 5NF-normalized; the live app may need a moment to wake when its free hosting has been idle.',
+    stack: ['React', 'Node.js', 'Express', 'MySQL', 'Sequelize', 'JWT'],
+    visual: 'crm',
+    links: { github: 'https://github.com/naitik24-code/Customer_Relationship_Database', demo: 'https://customer-relationship-database.onrender.com/login' },
+  },
 ];
+
+projects.sort((a, b) => Number(a.number) - Number(b.number));
 
 export const skills: SkillGroup[] = [
   { group: 'Languages', items: [...profile.skills.languages] },
-  { group: 'Frontend', items: [...profile.skills.frontend] },
-  { group: 'Backend', items: [...profile.skills.backend] },
+  { group: 'Frontend', items: [...profile.skills.frontend, 'Tailwind CSS'] },
+  { group: 'Backend', items: [...profile.skills.backend, 'Express', 'Sequelize', 'JWT', 'Role-based access control'] },
   { group: 'AI / ML', items: [...profile.skills.aiMl] },
   { group: 'Data / Analytics', items: [...profile.skills.dataAnalytics] },
   { group: 'Tools / Platforms', items: [...profile.skills.toolsPlatforms] },
@@ -110,6 +126,7 @@ export const skills: SkillGroup[] = [
 export const labNodes: LabNode[] = [
   { id: 'engineering', label: 'Software engineering', text: 'Building interfaces and services that turn a complicated workflow into something usable.', project: 'inventory', x: 50, y: 13 },
   { id: 'ai', label: 'Artificial intelligence', text: 'Connecting models and signals to an end-to-end product experience.', project: 'cropcare', x: 82, y: 50 },
+  { id: 'customer-systems', label: 'Customer systems', text: 'Bringing customer records, sales activity, service workflows, and permissions together in one accountable workspace.', project: 'crm', x: 81, y: 83 },
   { id: 'fintech', label: 'Fintech', text: 'Exploring how prediction, portfolio context, and constraints shape allocation decisions.', project: 'optivest', x: 50, y: 87 },
   { id: 'analytics', label: 'Data analytics', text: 'Making assumptions, data lineage, and uncertainty visible in research.', project: 'steellens', x: 18, y: 50 },
 ];

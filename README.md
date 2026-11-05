@@ -1,6 +1,6 @@
 # Naitik Pathak — Portfolio
 
-Premium, responsive React portfolio built with Vite. Project details are centralized in `src/data.js`; profile and social links are in the `profile` object there.
+Premium, responsive React portfolio built with Vite. Project details and repository/live-site links are centralized in `src/content/projects.ts`; profile and social links are in `src/content/profile.ts`.
 
 ## Run locally
 
@@ -25,4 +25,5 @@ The static site uses no paid APIs or backend. Project content and repository/liv
 - The saved CropCare evaluation reports disagree, so no definitive accuracy is advertised.
 - SteelLens results distinguish the four-company, ten-company, and Tata Steel ESG workflows.
 - SLM Arena has a full project card and case study. Running model comparisons still requires an Ollama server reachable by the API.
+- Customer Relationship Management is ordered near the top as a full-stack product, with its documented role-based access, lead conversion, and audit trail. The live Render app can take time to wake after inactivity.
 - Project graphics are original interface illustrations. Where numbers are not real project outputs, the graphic labels say schematic, concept, or simulated view.
