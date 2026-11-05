@@ -12,7 +12,7 @@ export const profile = {
   contact: {
     email: 'naitikpathak2005@gmail.com',
     github: 'https://github.com/naitik24-code',
-    linkedin: 'https://www.linkedin.com/in/naitik-pathak/',
+    linkedin: 'https://www.linkedin.com/in/naitik24/',
   },
   // DRAFT: confirm the first-person wording before publishing.
   about: {
@@ -25,7 +25,7 @@ export const profile = {
     availableFor: { todo: true, note: 'Specific opportunity types not provided.' },
   },
   education: { todo: true, note: 'Education details require owner confirmation.' },
-  resumeUrl: { todo: true, note: 'Confirm whether the bundled resume should be linked.' },
+  resumeUrl: 'https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing',
   skills: {
     languages: ['Python', 'JavaScript', 'C++', 'SQL'],
     frontend: ['React', 'HTML5', 'CSS3'],

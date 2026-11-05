@@ -1,35 +1,1706 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#090a0b" />
-    <meta name="description" content="Naitik Pathak builds practical AI/ML, customer platforms, computer vision, data products, and full-stack software systems." />
-    <meta property="og:title" content="Naitik Pathak — Software & Intelligent Systems" />
-    <meta property="og:description" content="Engineering the next. Selected projects in AI, fintech, quantitative analytics, and product engineering." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://naitik24-code.github.io/Portfolio/" />
-    <meta property="og:image" content="https://naitik24-code.github.io/Portfolio/og-image.svg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Naitik Pathak — Software & Intelligent Systems" />
-    <meta name="twitter:description" content="AI/ML, data products, and full-stack systems by Naitik Pathak." />
-    <meta name="twitter:image" content="https://naitik24-code.github.io/Portfolio/og-image.svg" />
-    <link rel="canonical" href="https://naitik24-code.github.io/Portfolio/" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"Person","name":"Naitik Pathak","url":"https://naitik24-code.github.io/Portfolio/","email":"mailto:naitikpathak2005@gmail.com","sameAs":["https://github.com/naitik24-code","https://www.linkedin.com/in/naitik-pathak/"]}
-    </script>
-    <title>Naitik Pathak — Software & Intelligent Systems</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <noscript>
-      <main style="max-width:48rem;margin:4rem auto;padding:1rem;color:#f0f1ed;background:#090a0b;font:1rem/1.6 system-ui">
-        <h1>Naitik Pathak</h1><p>AI/ML and full-stack developer based in India.</p>
-        <h2>Selected projects</h2><ul><li>OptiVest — AI investment rebalancing assistant</li><li>Customer Relationship Management — customer, lead, sales, and support workflows</li><li>CropCare — computer-vision crop disease detection</li><li>Retail Inventory Dashboard — inventory analytics</li><li>SLM Arena — small-language-model benchmarking</li><li>QuantOpt — portfolio optimization research</li><li>SteelLens — steel-company financial and ESG research</li></ul>
-        <h2>Contact</h2><p><a href="mailto:naitikpathak2005@gmail.com">Email</a> · <a href="https://github.com/naitik24-code">GitHub</a> · <a href="https://www.linkedin.com/in/naitik-pathak/">LinkedIn</a></p>
-      </main>
-    </noscript>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Naitik Pathak // SYS.HUD v4.02 — AI/ML &amp; Product Engineering</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="apple-touch-icon" href="/favicon.svg"/>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-low": "#1a1c1b",
+            "secondary-fixed": "#e8ddff",
+            "surface-variant": "#333534",
+            "secondary-fixed-dim": "#cdbdff",
+            "surface-container-highest": "#333534",
+            "on-error-container": "#ffdad6",
+            "inverse-primary": "#4a6700",
+            "on-surface": "#e2e3e0",
+            "on-secondary-fixed": "#20005e",
+            "on-primary-container": "#4f6e00",
+            "on-tertiary-fixed": "#001f25",
+            "on-tertiary-fixed-variant": "#004e59",
+            "on-primary-fixed": "#141f00",
+            "secondary": "#cdbdff",
+            "on-surface-variant": "#c3c9b0",
+            "surface-dim": "#121413",
+            "on-secondary-container": "#bda8ff",
+            "inverse-on-surface": "#2f312f",
+            "on-primary-fixed-variant": "#374e00",
+            "primary": "#ffffff",
+            "error": "#ffb4ab",
+            "outline": "#8d937c",
+            "on-background": "#e2e3e0",
+            "primary-fixed-dim": "#a2d824",
+            "outline-variant": "#434935",
+            "surface": "#121413",
+            "error-container": "#93000a",
+            "surface-bright": "#383a38",
+            "on-tertiary-container": "#006f7d",
+            "on-secondary": "#370095",
+            "surface-tint": "#a2d824",
+            "surface-container-lowest": "#0d0f0e",
+            "primary-fixed": "#bcf543",
+            "tertiary-container": "#a0efff",
+            "surface-container-high": "#282a29",
+            "background": "#121413",
+            "on-error": "#690005",
+            "on-secondary-fixed-variant": "#4f28ae",
+            "tertiary-fixed-dim": "#54d7ee",
+            "tertiary": "#ffffff",
+            "secondary-container": "#4f28ae",
+            "on-tertiary": "#00363e",
+            "on-primary": "#253600",
+            "inverse-surface": "#e2e3e0",
+            "primary-container": "#bcf543",
+            "surface-container": "#1e201f",
+            "tertiary-fixed": "#a0efff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.5rem",
+            "margin": "2.5rem",
+            "gutter": "1.5rem",
+            "space-2xl": "4rem",
+            "gutter-mobile": "0.75rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "margin-mobile": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Space Grotesk"],
+            "kicker": ["JetBrains Mono"],
+            "code-inline": ["JetBrains Mono"],
+            "body-md": ["Space Grotesk"],
+            "body-lg": ["Space Grotesk"],
+            "headline-md": ["Syne"],
+            "display-hero": ["Syne"],
+            "telemetry-data": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Syne"],
+            "headline-lg": ["Syne"],
+            "headline-sm": ["Syne"],
+            "display-hero-mobile": ["Syne"]
+          },
+          "fontSize": {
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "kicker": ["11px", { "lineHeight": "14px", "letterSpacing": "0.14em", "fontWeight": "500" }],
+            "code-inline": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-md": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "display-hero": ["72px", { "lineHeight": "76px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+            "telemetry-data": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-hero-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "800" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Laser grid background pattern */
+    .laser-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(67, 73, 53, 0.16) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(67, 73, 53, 0.16) 1px, transparent 1px);
+    }
+    /* Subtle scanlines effect */
+    .scanlines-overlay {
+      background: linear-gradient(rgba(18, 20, 19, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+      background-size: 100% 3px, 6px 100%;
+    }
+    .hud-bracket {
+      position: relative;
+    }
+    .hud-bracket::before {
+      content: "┌";
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #bcf543;
+      pointer-events: none;
+    }
+    .hud-bracket::after {
+      content: "┘";
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #bcf543;
+      pointer-events: none;
+    }
+    /* Pulse glow */
+    @keyframes hudPulse {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(1.15); }
+    }
+    .status-pulse {
+      animation: hudPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes hudCrosshair {
+      0%, 100% { transform: scale(1); opacity: 0.45; }
+      50% { transform: scale(1.08); opacity: 0.85; }
+    }
+    .crosshair-pulse {
+      animation: hudCrosshair 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-fixed selection:text-surface-container-lowest font-body-md overflow-x-hidden min-h-screen laser-grid relative">
+<!-- CRT Scanline overlay -->
+<div class="scanlines-overlay fixed inset-0 pointer-events-none z-40 opacity-40"></div>
+<!-- TOP HUD BAR -->
+<header class="bg-surface-container-lowest/90 backdrop-blur-md text-primary-fixed font-kicker text-kicker uppercase tracking-widest docked full-width top-0 sticky z-50 border-b border-outline-variant/40 flex justify-between items-center w-full px-margin-mobile md:px-margin max-w-full h-14">
+<div class="flex items-center gap-space-md">
+<a class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tighter hover:text-primary-fixed transition-colors duration-150 flex items-center gap-2.5" href="#home">
+  <!-- Brand Logo Icon -->
+  <span class="relative flex items-center justify-center w-8 h-8 rounded-lg bg-primary-fixed text-[#090a0b] font-bold shadow-[0_0_12px_rgba(188,245,67,0.35)] shrink-0 overflow-hidden">
+    <svg class="w-5 h-5" viewBox="0 0 64 64" fill="none">
+      <path d="M17 46V18h7l16 17V18h7v28h-7L24 29v17z" fill="#090a0b"/>
+      <circle cx="49" cy="15" r="4.5" fill="#9b7bff"/>
+    </svg>
+  </span>
+  <span class="flex flex-col leading-none">
+    <span class="text-xs font-mono text-primary-fixed tracking-wider">NP // SYS.HUD</span>
+    <span class="text-sm font-bold tracking-tight text-on-surface">NAITIK PATHAK</span>
+  </span>
+</a>
+<div class="hidden lg:flex items-center gap-2 px-2.5 py-0.5 border border-outline-variant/50 bg-surface-container-low font-kicker text-kicker">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-fixed status-pulse"></span>
+<span class="text-primary-fixed">● OPEN TO OPPORTUNITIES</span>
+</div>
+</div>
+<!-- Center Navigation Links -->
+<nav class="hidden md:flex items-center gap-6 text-[11px] nav-menu">
+<a class="nav-link text-primary-fixed border-b-2 border-primary-fixed pb-1 hover:text-primary-fixed transition-all duration-150" href="#home" data-section="home">RESEARCH</a>
+<a class="nav-link text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/50 transition-all duration-150 pb-1" href="#projects" data-section="projects">SYSTEMS</a>
+<a class="nav-link text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/50 transition-all duration-150 pb-1" href="#lab" data-section="lab">LAB_CONSTELLATION</a>
+<a class="nav-link text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/50 transition-all duration-150 pb-1" href="#skills" data-section="skills">SKILLS</a>
+<a class="nav-link text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/50 transition-all duration-150 pb-1" href="#contact" data-section="contact">CONTACT</a>
+</nav>
+<!-- Trailing Action -->
+<div class="flex items-center gap-3">
+  <a class="px-2.5 py-1 bg-surface-container-high border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed text-[11px] font-mono tracking-wider transition-colors duration-150 flex items-center gap-1.5" href="/classic/" title="Return to classic editorial portfolio">
+    <span class="material-symbols-outlined text-[14px]">history_edu</span>
+    <span>[ CLASSIC v1 ]</span>
+  </a>
+  <a class="hidden sm:flex px-2.5 py-1 bg-surface-container-high border border-outline-variant/60 text-tertiary-fixed hover:text-white hover:border-tertiary-fixed text-[11px] font-mono tracking-wider transition-colors duration-150 items-center gap-1.5" href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" rel="noopener noreferrer" title="View / Download Verified PDF Resume">
+    <span class="material-symbols-outlined text-[14px]">description</span>
+    <span>[ RESUME.PDF ]</span>
+  </a>
+  <a class="hidden sm:flex px-3 py-1.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker hover:bg-primary-fixed-dim transition-colors duration-150 active:translate-x-px active:translate-y-px" href="#contact">
+    [ EXECUTE_PROMPT ]
+  </a>
+  <div class="flex items-center gap-2 text-on-surface-variant">
+    <a href="https://github.com/naitik24-code" target="_blank" rel="noopener noreferrer" class="hover:text-primary-fixed transition-colors" title="GitHub Profile">
+      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/naitik24/" target="_blank" rel="noopener noreferrer" class="hover:text-tertiary-fixed transition-colors" title="LinkedIn Profile">
+      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+  </div>
+</div>
+</header>
+<main class="w-full relative z-10">
+<!-- ==================== HERO SECTION (#home) ==================== -->
+<section class="relative w-full pt-space-xl pb-space-2xl px-margin-mobile md:px-margin border-b border-outline-variant/40 overflow-hidden" id="home">
+<!-- HUD Corner Coordinate Markings -->
+<div class="flex justify-between items-center text-outline text-telemetry-data font-telemetry-data uppercase pb-space-md border-b border-outline-variant/20 mb-space-lg">
+<div class="flex items-center gap-2">
+<span class="text-primary-fixed font-bold">SYS.LOC: INDIA ✳</span>
+<span class="hidden sm:inline text-on-surface-variant">// LAT: 20.5937 N // LONG: 78.9629 E</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-tertiary-fixed font-kicker text-kicker">[SYS.HUD v4.02]</span>
+<span class="px-2 py-0.5 border border-primary-fixed/40 bg-surface-container text-primary-fixed font-kicker text-kicker">STATUS: ACTIVE // OPEN TO OPPORTUNITIES</span>
+</div>
+</div>
+<!-- Hero Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left: Statement & CTAs -->
+<div class="lg:col-span-6 flex flex-col justify-between pt-space-md">
+<div class="space-y-space-md">
+<div class="inline-flex items-center gap-2 text-primary-fixed font-kicker text-kicker uppercase tracking-widest border border-outline-variant/60 px-2.5 py-1 bg-surface-container-lowest">
+<span class="text-primary-fixed">✛</span> MODEL-DRIVEN PRODUCT ARCHITECTURES
+            </div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-headline-lg font-extrabold tracking-tight text-white uppercase leading-none break-words overflow-visible">
+              BUILDING <span class="text-primary-fixed">INTELLIGENT</span> SYSTEMS FROM DATA AND IDEAS.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+              AI/ML &amp; Full-Stack Product Engineer focusing on usefulness over noise, transparent system limits, and production-grade architectures. Transforming complex neural and econometric models into robust user platforms.
+            </p>
+</div>
+<!-- CTAs -->
+<div class="mt-space-xl flex flex-wrap items-center gap-4">
+<a class="px-6 py-3.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker font-bold uppercase tracking-wider hover:bg-primary-fixed-dim transition-all duration-150 shadow-[0_0_16px_-2px_rgba(188,245,67,0.3)] active:translate-x-px active:translate-y-px flex items-center gap-2" href="#projects">
+<span class="">[ EXPLORE WORK ↓ ]</span>
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+</a>
+<a class="px-5 py-3.5 border border-primary-fixed text-primary-fixed font-kicker text-kicker uppercase tracking-wider hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors duration-150 flex items-center gap-2 active:translate-x-px active:translate-y-px" href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+  <span class="material-symbols-outlined text-[18px]">description</span>
+  <span class="">[ RESUME / CV ↗ ]</span>
+</a>
+<a class="px-5 py-3.5 border border-outline-variant text-tertiary-fixed font-kicker text-kicker uppercase tracking-wider hover:border-tertiary-fixed hover:bg-tertiary-fixed/10 transition-colors duration-150 flex items-center gap-2 active:translate-x-px active:translate-y-px" href="https://www.linkedin.com/in/naitik24/" rel="noopener noreferrer" target="_blank">
+  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+  <span class="">[ LINKEDIN ↗ ]</span>
+</a>
+</div>
+<!-- Quick Telemetry Strip -->
+<div class="mt-space-xl pt-space-md border-t border-outline-variant/30 grid grid-cols-2 sm:grid-cols-4 gap-3 text-telemetry-data font-telemetry-data">
+<div class="border-l border-primary-fixed pl-2">
+<div class="text-on-surface font-bold text-headline-sm font-headline-sm">106+</div>
+<div class="text-outline uppercase text-[10px]">Assets Backtested</div>
+</div>
+<div class="border-l border-tertiary-fixed pl-2">
+<div class="text-on-surface font-bold text-headline-sm font-headline-sm">17</div>
+<div class="text-outline uppercase text-[10px]">CV Classes</div>
+</div>
+<div class="border-l border-secondary-fixed pl-2">
+<div class="text-on-surface font-bold text-headline-sm font-headline-sm">25k</div>
+<div class="text-outline uppercase text-[10px]">Monte Carlo Iter</div>
+</div>
+<div class="border-l border-primary-fixed pl-2">
+<div class="text-on-surface font-bold text-headline-sm font-headline-sm">8</div>
+<div class="text-outline uppercase text-[10px]">Core Enterprise Domains</div>
+</div>
+</div>
+</div>
+<!-- Right: 3D Universe Core visualization container -->
+<div class="lg:col-span-6 relative border border-outline-variant/60 bg-surface-container-lowest/90 backdrop-blur-md p-space-sm hud-bracket">
+<!-- Top HUD Header ribbon within 3D Card -->
+<div class="flex flex-wrap justify-between items-center px-space-sm py-1.5 border-b border-outline-variant/40 text-telemetry-data font-telemetry-data gap-2">
+<div class="flex items-center gap-2 text-primary-fixed">
+<span class="material-symbols-outlined text-[15px]">deployed_code</span>
+<span class="">ORBITAL_UNIVERSE_CORE // 3D_VIEWPORT</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-outline text-[11px]" id="hero-coords-readout">[X: -0.39, Y: +1.09, Z: 3.05]</span>
+<span class="px-2 py-0.5 border border-tertiary-fixed/60 text-tertiary-fixed text-[10px] uppercase font-kicker tracking-wider">
+                WEBGPU / THREE.JS
+              </span>
+</div>
+</div>
+<!-- Interactive 3D Control Cluster HUD Ribbon -->
+<div class="flex flex-wrap items-center justify-between px-space-sm py-1 bg-surface-container border-b border-outline-variant/30 text-[10px] font-kicker text-outline gap-1.5">
+<div class="flex items-center gap-1.5">
+<button class="px-1.5 py-0.5 border border-primary-fixed/60 text-primary-fixed bg-surface-container-low hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" id="btn-ctrl-orbit" onclick="toggleHudOrbit()">[ CAMERA: ORBIT / RESET ]</button>
+<button class="px-1.5 py-0.5 border border-outline-variant hover:border-tertiary-fixed text-on-surface-variant hover:text-tertiary-fixed transition-colors" id="btn-ctrl-speed" onclick="toggleHudSpeed()">[ SPEED: 1.0X ]</button>
+<button class="px-1.5 py-0.5 border border-outline-variant hover:border-secondary-fixed text-on-surface-variant hover:text-secondary-fixed transition-colors" id="btn-ctrl-wire" onclick="toggleHudWire()">[ WIREFRAME HUD ]</button>
+</div>
+<button class="px-1.5 py-0.5 border border-outline-variant/40 text-outline hover:text-primary-fixed transition-colors" id="btn-ctrl-mode" onclick="toggleHudMode()">[ 2D / 3D MODE ]</button>
+</div>
+<!-- 3D SCENE EMBED WITH ANIMATION PLACEHOLDER -->
+<div class="relative w-full h-[520px] bg-surface-container-lowest overflow-hidden flex items-center justify-center" id="viewport-3d-box">
+<!-- STITCH_THREEJS_START:ANIMATION_7 class="w-full h-full bg-transparent" -->
+<div class="w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_7" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_7');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Ultra-High-Fidelity Cyber-Editorial 3D Universe Engine for Naitik Pathak Portfolio
+// Includes Interactive Raycaster with hover/click node inspection, dynamic HUD tracking, gyroscopic rings, and particle constellation.
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+camera.position.set(0, 1.8, 21);
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+scene.add(ambientLight);
+
+const limeLight = new THREE.PointLight(0xc6ff4d, 5, 35);
+limeLight.position.set(8, 10, 10);
+scene.add(limeLight);
+
+const violetLight = new THREE.PointLight(0x9b7bff, 4.5, 35);
+violetLight.position.set(-10, -7, 8);
+scene.add(violetLight);
+
+const cyanLight = new THREE.PointLight(0x68e8ff, 3.5, 30);
+cyanLight.position.set(0, -9, -8);
+scene.add(cyanLight);
+
+// Master World Group
+const masterGroup = new THREE.Group();
+scene.add(masterGroup);
+
+// 1. Central Core: Multi-tiered Polyhedral Core with Inner Pulsing Plasma
+const coreGeo = new THREE.IcosahedronGeometry(2.8, 1);
+const coreMat = new THREE.MeshPhongMaterial({
+  color: 0x0c120f,
+  emissive: 0x1a3318,
+  specular: 0xc6ff4d,
+  shininess: 140,
+  flatShading: true,
+  transparent: true,
+  opacity: 0.94
+});
+const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+masterGroup.add(coreMesh);
+
+// Outer Wireframe Cage with Glowing Vertex Points
+const wireGeo = new THREE.IcosahedronGeometry(2.98, 1);
+const wireMat = new THREE.MeshBasicMaterial({
+  color: 0xc6ff4d,
+  wireframe: true,
+  transparent: true,
+  opacity: 0.85
+});
+const wireMesh = new THREE.Mesh(wireGeo, wireMat);
+masterGroup.add(wireMesh);
+
+const vPointsGeo = new THREE.BufferGeometry();
+vPointsGeo.setAttribute('position', wireGeo.attributes.position);
+const vPointsMat = new THREE.PointsMaterial({
+  color: 0xc6ff4d,
+  size: 0.26,
+  transparent: true,
+  opacity: 0.95
+});
+const vPoints = new THREE.Points(vPointsGeo, vPointsMat);
+masterGroup.add(vPoints);
+
+// Inner pulsing plasma octahedron
+const innerGeo = new THREE.OctahedronGeometry(1.65, 0);
+const innerMat = new THREE.MeshBasicMaterial({
+  color: 0x9b7bff,
+  wireframe: true,
+  transparent: true,
+  opacity: 0.75
+});
+const innerMesh = new THREE.Mesh(innerGeo, innerMat);
+masterGroup.add(innerMesh);
+
+// 2. Gyroscopic Orbital Rings with Segmented HUD Dashes
+function createDashedRing(radius, tube, color, rotX, rotY, segments = 64) {
+  const group = new THREE.Group();
+  const ringGeo = new THREE.TorusGeometry(radius, tube, 8, segments);
+  const ringMat = new THREE.MeshBasicMaterial({
+    color: color,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.65
+  });
+  const mesh = new THREE.Mesh(ringGeo, ringMat);
+  group.add(mesh);
+  group.rotation.x = rotX;
+  group.rotation.y = rotY;
+  return group;
+}
+
+const ring1 = createDashedRing(5.0, 0.04, 0x68e8ff, Math.PI / 3.2, 0.2);
+const ring2 = createDashedRing(6.6, 0.04, 0x9b7bff, -Math.PI / 4, 0.5);
+const ring3 = createDashedRing(8.4, 0.035, 0xc6ff4d, Math.PI / 2.1, -0.4);
+masterGroup.add(ring1);
+masterGroup.add(ring2);
+masterGroup.add(ring3);
+
+// 3. 7 Dynamic Project Nodes with Orbital Trails and Connecting Energy Beams
+const projectData = [
+  { name: "OPTIVEST", metric: "CAGR 40.06%", color: 0xc6ff4d, r: 5.8, speed: 0.45, angle: 0.2, yAmp: 0.9, size: 0.52 },
+  { name: "ENTERPRISE CRM", metric: "5NF SCHEMA", color: 0x68e8ff, r: 7.0, speed: -0.38, angle: 1.1, yAmp: 0.7, size: 0.48 },
+  { name: "CROPCARE CV", metric: "17 CLASSES", color: 0x9b7bff, r: 5.2, speed: 0.55, angle: 2.3, yAmp: 1.1, size: 0.46 },
+  { name: "RETAIL INVENTORY", metric: "DBSCAN DENSITY", color: 0xff8a3d, r: 7.8, speed: -0.30, angle: 3.4, yAmp: 0.8, size: 0.48 },
+  { name: "SLM ARENA", metric: "48 TOK/S", color: 0xc6ff4d, r: 6.4, speed: 0.40, angle: 4.2, yAmp: 0.6, size: 0.50 },
+  { name: "QUANTOPT ENGINE", metric: "25K MC PATHS", color: 0x68e8ff, r: 8.3, speed: -0.34, angle: 5.1, yAmp: 1.0, size: 0.47 },
+  { name: "STEEL LENS", metric: "128 QUARTERS", color: 0x9b7bff, r: 9.0, speed: 0.26, angle: 5.9, yAmp: 0.7, size: 0.49 }
+];
+
+const nodes = [];
+const raycastTargets = [];
+
+projectData.forEach((item, idx) => {
+  const nodeGroup = new THREE.Group();
+  
+  // Interactive Mesh
+  const nodeGeo = new THREE.OctahedronGeometry(item.size, 0);
+  const nodeMat = new THREE.MeshPhongMaterial({
+    color: item.color,
+    emissive: item.color,
+    emissiveIntensity: 0.6,
+    flatShading: true
+  });
+  const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
+  nodeMesh.userData = { id: idx, ...item };
+  nodeGroup.add(nodeMesh);
+  raycastTargets.push(nodeMesh);
+
+  // Outer wireframe halo
+  const haloGeo = new THREE.IcosahedronGeometry(item.size * 1.5, 0);
+  const haloMat = new THREE.MeshBasicMaterial({
+    color: item.color,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.55
+  });
+  const haloMesh = new THREE.Mesh(haloGeo, haloMat);
+  nodeGroup.add(haloMesh);
+
+  masterGroup.add(nodeGroup);
+
+  // Orbital ring path
+  const trailGeo = new THREE.RingGeometry(item.r - 0.03, item.r + 0.03, 72);
+  const trailMat = new THREE.MeshBasicMaterial({
+    color: item.color,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.18
+  });
+  const trailMesh = new THREE.Mesh(trailGeo, trailMat);
+  trailMesh.rotation.x = Math.PI / 2;
+  masterGroup.add(trailMesh);
+
+  // Laser beam connecting node to core
+  const lineMat = new THREE.LineBasicMaterial({
+    color: item.color,
+    transparent: true,
+    opacity: 0.35
+  });
+  const lineGeo = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(0, 0, 0),
+    new THREE.Vector3(0, 0, 0)
+  ]);
+  const beamLine = new THREE.Line(lineGeo, lineMat);
+  masterGroup.add(beamLine);
+
+  nodes.push({ group: nodeGroup, mesh: nodeMesh, halo: haloMesh, data: item, currentAngle: item.angle, beamLine });
+});
+
+// 4. Ambient Point Starfield / Data Particles
+const starCount = 500;
+const starGeo = new THREE.BufferGeometry();
+const starPos = new Float32Array(starCount * 3);
+for (let i = 0; i < starCount * 3; i += 3) {
+  starPos[i] = (Math.random() - 0.5) * 46;
+  starPos[i + 1] = (Math.random() - 0.5) * 42;
+  starPos[i + 2] = (Math.random() - 0.5) * 38;
+}
+starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+const starMat = new THREE.PointsMaterial({
+  color: 0x9b7bff,
+  size: 0.16,
+  transparent: true,
+  opacity: 0.7
+});
+const starField = new THREE.Points(starGeo, starMat);
+masterGroup.add(starField);
+
+// 5. Interactive Raycaster & Mouse Parallax
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2(-999, -999);
+let mouseX = 0;
+let mouseY = 0;
+let targetRotX = 0;
+let targetRotY = 0;
+let hoveredNode = null;
+
+function onMouseMove(e) {
+  const rect = container.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  mouseX = (x / (rect.width || window.innerWidth)) * 2 - 1;
+  mouseY = -(y / (rect.height || window.innerHeight)) * 2 + 1;
+  mouse.x = mouseX;
+  mouse.y = mouseY;
+  targetRotY = mouseX * 0.75;
+  targetRotX = -mouseY * 0.55;
+}
+window.addEventListener('mousemove', onMouseMove);
+
+// Click interaction: dispatch custom event to window for HUD updates
+function onPointerDown() {
+  if (hoveredNode) {
+    const customEvent = new CustomEvent('threejs-node-selected', { detail: hoveredNode.userData });
+    window.dispatchEvent(customEvent);
+  }
+}
+window.addEventListener('pointerdown', onPointerDown);
+
+function onResize() {
+  const w = container.clientWidth || window.innerWidth;
+  const h = container.clientHeight || window.innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+}
+window.addEventListener('resize', onResize);
+
+// 6. Animation Loop
+const clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const delta = clock.getDelta();
+  const time = clock.getElapsedTime();
+
+  // Smooth rotational interpolation
+  masterGroup.rotation.y += (targetRotY - masterGroup.rotation.y) * 0.05;
+  masterGroup.rotation.x += (targetRotX - masterGroup.rotation.x) * 0.05;
+
+  // Spin core
+  coreMesh.rotation.x += 0.28 * delta;
+  coreMesh.rotation.y += 0.42 * delta;
+  wireMesh.rotation.x -= 0.2 * delta;
+  wireMesh.rotation.y -= 0.32 * delta;
+  vPoints.rotation.x -= 0.2 * delta;
+  vPoints.rotation.y -= 0.32 * delta;
+  innerMesh.rotation.y += 0.6 * delta;
+  innerMesh.rotation.z += 0.45 * delta;
+
+  // Pulse inner core scale
+  const scalePulse = 1 + Math.sin(time * 3) * 0.08;
+  innerMesh.scale.set(scalePulse, scalePulse, scalePulse);
+
+  // Rotate rings
+  ring1.rotation.z += 0.35 * delta;
+  ring2.rotation.z -= 0.26 * delta;
+  ring3.rotation.z += 0.18 * delta;
+
+  // Orbit project nodes
+  nodes.forEach((n) => {
+    n.currentAngle += n.data.speed * delta;
+    const px = Math.cos(n.currentAngle) * n.data.r;
+    const pz = Math.sin(n.currentAngle) * n.data.r;
+    const py = Math.sin(time * 1.8 + n.data.r) * n.data.yAmp;
+    
+    n.group.position.set(px, py, pz);
+    n.group.rotation.x += 1.4 * delta;
+    n.group.rotation.y += 1.6 * delta;
+
+    // Update connector beam
+    const positions = n.beamLine.geometry.attributes.position.array;
+    positions[0] = 0; positions[1] = 0; positions[2] = 0;
+    positions[3] = px; positions[4] = py; positions[5] = pz;
+    n.beamLine.geometry.attributes.position.needsUpdate = true;
+  });
+
+  // Raycasting for interactive hover
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObjects(raycastTargets);
+  if (intersects.length > 0) {
+    const hit = intersects[0].object;
+    if (hoveredNode !== hit) {
+      if (hoveredNode) hoveredNode.scale.set(1, 1, 1);
+      hoveredNode = hit;
+      hoveredNode.scale.set(1.45, 1.45, 1.45);
+      container.style.cursor = 'pointer';
+      // Broadcast hover event to DOM
+      window.dispatchEvent(new CustomEvent('threejs-node-hover', { detail: hit.userData }));
+    }
+  } else {
+    if (hoveredNode) {
+      hoveredNode.scale.set(1, 1, 1);
+      hoveredNode = null;
+      container.style.cursor = 'default';
+      window.dispatchEvent(new CustomEvent('threejs-node-unhover'));
+    }
+  }
+
+  starField.rotation.y += 0.025 * delta;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_7 -->
+<!-- Floating Overlay Coordinate HUD Overlays -->
+<div class="absolute top-4 left-4 pointer-events-none text-telemetry-data font-telemetry-data text-[10px] text-outline-variant/90 space-y-1">
+<div class="text-primary-fixed">✛ RENDER_LAYER: WEBGPU_SIM</div>
+<div class="">✛ INFERENCE_TICK: 14.2ms</div>
+<div class="">✛ EPSILON_STATE: CONVERGED</div>
+<div class="text-tertiary-fixed">✛ QUATERNION: [0.18, 0.88, 0.42, 0.05]</div>
+</div>
+<!-- Orbiting Project Tags Overlay -->
+<div class="absolute bottom-4 right-4 pointer-events-none text-right font-kicker text-kicker space-y-1">
+<div class="inline-block px-2 py-0.5 bg-surface-container-high/85 border border-outline-variant text-on-surface-variant text-[10px]">
+                NODE: OPTIVEST (CAGR 40.06%)
+              </div>
+<br/>
+<div class="inline-block px-2 py-0.5 bg-surface-container-high/85 border border-outline-variant text-on-surface-variant text-[10px]">
+                NODE: CROPCARE (17 CV CLASSES)
+              </div>
+<br/>
+<div class="inline-block px-2 py-0.5 bg-surface-container-high/85 border border-primary-fixed/50 text-primary-fixed text-[10px]">
+                7 ORBITING CLUSTERS TRACKED ✳
+              </div>
+</div>
+<!-- Subtle Crosshair in Center -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+<div class="w-14 h-14 border border-primary-fixed/30 flex items-center justify-center crosshair-pulse relative">
+<span class="text-primary-fixed text-xs font-mono">+</span>
+<div class="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-primary-fixed"></div>
+<div class="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-primary-fixed"></div>
+</div>
+</div>
+</div>
+<!-- Viewport footer status -->
+<div class="flex justify-between items-center px-space-sm pt-2 text-telemetry-data font-telemetry-data text-[11px] text-outline">
+<span class="">ROTATION: QUATERNION INTERPOLATION</span>
+<span class="text-primary-fixed flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-fixed inline-block status-pulse"></span>
+              60 FPS NOMINAL // LATENCY: 14.2ms
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== PRINCIPLES SECTION (#principles) ==================== -->
+<section class="w-full py-space-2xl px-margin-mobile md:px-margin border-b border-outline-variant/40 bg-surface-container-lowest" id="principles">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-space-xl pb-space-sm border-b border-outline-variant/30">
+<div>
+<span class="text-primary-fixed font-kicker text-kicker uppercase tracking-widest block mb-2">01 // PHILOSOPHY &amp; CRAFT</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight font-bold">
+            USEFULNESS OVER NOISE.
+          </h2>
+</div>
+<p class="text-on-surface-variant font-telemetry-data text-telemetry-data max-w-md mt-4 md:mt-0">
+          [METRIC: PRODUCTION RESILIENCE] A rigorous engineering ethos forged through end-to-end data pipeline construction and algorithmic honesty.
+        </p>
+</div>
+<!-- 3-Column Brutalist Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 01 -->
+<div class="border border-outline-variant/50 bg-surface-container-low p-space-lg flex flex-col justify-between relative hud-bracket hover:border-primary-fixed transition-colors duration-200">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-md pb-2 border-b border-outline-variant/30">
+<span class="">COORD: 01.A</span>
+<span class="text-primary-fixed font-kicker text-kicker">[DECISION_FIRST]</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold mb-space-sm">
+              START WITH THE QUESTION
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Define the user's operational decision before choosing a model. Complexity is an operational cost, not an engineering trophy.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant/20 flex items-center justify-between text-telemetry-data font-telemetry-data text-outline text-[11px]">
+<span class="">SIGNAL_TO_NOISE</span>
+<span class="text-primary-fixed">98.4%</span>
+</div>
+</div>
+<!-- Card 02 -->
+<div class="border border-outline-variant/50 bg-surface-container-low p-space-lg flex flex-col justify-between relative hud-bracket hover:border-tertiary-fixed transition-colors duration-200">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-md pb-2 border-b border-outline-variant/30">
+<span class="">COORD: 02.B</span>
+<span class="text-tertiary-fixed font-kicker text-kicker">[INTERPRETABILITY]</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold mb-space-sm">
+              MAKE THE SIGNAL CLEAR
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Turn convoluted mathematical distributions and SHAP feature attributions into interpretable, actionable UI signals that executives can trust immediately.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant/20 flex items-center justify-between text-telemetry-data font-telemetry-data text-outline text-[11px]">
+<span class="">COGNITIVE_OVERHEAD</span>
+<span class="text-tertiary-fixed">MINIMAL</span>
+</div>
+</div>
+<!-- Card 03 -->
+<div class="border border-outline-variant/50 bg-surface-container-low p-space-lg flex flex-col justify-between relative hud-bracket hover:border-secondary-fixed transition-colors duration-200">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-md pb-2 border-b border-outline-variant/30">
+<span class="">COORD: 03.C</span>
+<span class="text-secondary-fixed font-kicker text-kicker">[TRANSPARENCY]</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold mb-space-sm">
+              SHOW THE LIMITS
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Explicit error bars, out-of-sample data lineage, and failure mode transparency take total precedence over synthetic vanity metrics.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant/20 flex items-center justify-between text-telemetry-data font-telemetry-data text-outline text-[11px]">
+<span class="">OUT_OF_SAMPLE_VALIDATION</span>
+<span class="text-secondary-fixed">STRICT</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SELECTED PROJECTS SHOWCASE (#projects) ==================== -->
+<section class="w-full py-space-2xl px-margin-mobile md:px-margin border-b border-outline-variant/40" id="projects">
+<!-- Section Header -->
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-space-lg">
+<div>
+<span class="text-primary-fixed font-kicker text-kicker uppercase tracking-widest block mb-1">02 // VERIFIED SYSTEMS</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase font-bold">
+            PRODUCTION WORKSPACES.
+          </h2>
+</div>
+<p class="text-on-surface-variant font-telemetry-data text-telemetry-data mt-2 lg:mt-0">
+          [CATALOG: 07 VERIFIED REPOSITORIES // FULL REPRODUCIBILITY]
+        </p>
+</div>
+<!-- Category Filter Bar -->
+<div class="flex flex-wrap items-center gap-2 mb-space-xl pb-3 border-b border-outline-variant/40 font-kicker text-kicker">
+<button class="filter-btn active px-3 py-1.5 border border-primary-fixed bg-surface-container text-primary-fixed" onclick="filterProjects('all')">ALL (07)</button>
+<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('fintech')">FINTECH</button>
+<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('research')">RESEARCH</button>
+<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('applied-ai')">APPLIED AI</button>
+<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('product-systems')">PRODUCT SYSTEMS</button>
+<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('llm-experiments')">LLM EXPERIMENTS</button>
+</div>
+<!-- Bento Grid for 7 Projects -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter" id="projects-grid">
+<!-- PROJECT 01: OptiVest (Fintech / Research) - Large 8 Cols Card -->
+<div class="project-card md:col-span-8 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-primary-fixed transition-colors duration-200" data-category="fintech research applied-ai">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
+<span class="text-primary-fixed font-bold">#001 // FINTECH CORE</span>
+<span class="text-on-surface-variant">PYTORCH · TREESHAP · SLSQP</span>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 my-2">
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase font-bold">
+                OptiVest
+              </h3>
+<span class="px-2.5 py-0.5 border border-primary-fixed text-primary-fixed font-kicker text-kicker">
+                APDE CAGR 40.06%
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
+              An institutional portfolio optimization engine synthesizing 106 equity assets via TreeSHAP feature attributions and SLSQP non-linear risk parity constraints.
+            </p>
+<!-- Sparkline Visual / Micro telemetry bar -->
+<div class="mt-4 p-3 bg-surface-container-low border border-outline-variant/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-telemetry-data font-telemetry-data">
+<div class="flex items-center gap-3">
+<span class="text-outline text-xs">ANNUALIZED SHARPE:</span>
+<span class="text-primary-fixed font-bold">2.41</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-outline text-xs">MAX DRAWDOWN:</span>
+<span class="text-tertiary-fixed font-bold">-8.12%</span>
+</div>
+<!-- Inline SVG Sparkline -->
+<div class="flex items-center gap-2">
+<span class="text-outline text-[10px]">CUMULATIVE RUN:</span>
+<svg class="w-24 h-5 overflow-visible" fill="none" stroke="#bcf543" stroke-width="1.5">
+<polyline points="0,18 15,14 30,16 45,9 60,11 75,4 90,1"></polyline>
+<circle cx="90" cy="1" fill="#bcf543" r="2.5"></circle>
+</svg>
+</div>
+</div>
+</div>
+<!-- Trailing Actions & Direct Links -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
+  <button class="px-3.5 py-1.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker uppercase font-bold hover:bg-primary-fixed-dim transition-colors flex items-center gap-1.5 active:translate-x-px active:translate-y-px" onclick="openModal('optivest')">
+    <span>[ INSPECT CASE STUDY ]</span>
+    <span class="material-symbols-outlined text-sm">visibility</span>
+  </button>
+  <div class="flex items-center gap-2">
+    <a href="https://github.com/naitik24-code/OptiVest1" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed transition-colors flex items-center gap-1">
+      <span>GITHUB</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+    <a href="https://opti-vest1.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-primary-fixed/60 text-primary-fixed hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors flex items-center gap-1">
+      <span>DEMO</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+  </div>
+</div>
+</div>
+<!-- PROJECT 02: Enterprise CRM (Product Systems) - 4 Cols -->
+<div class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-tertiary-fixed transition-colors duration-200" data-category="product-systems">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
+<span class="text-tertiary-fixed font-bold">#002 // SYSTEM</span>
+<span class="text-on-surface-variant">POSTGRES · JWT/RBAC</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase font-bold">
+              Enterprise CRM
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+              Complete multi-tier enterprise platform covering 8 operational business domains under a strict 5NF relational schema with 4 role tiers.
+            </p>
+<!-- 5NF Relational Schema Table Badge Micro-visualization -->
+<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data space-y-1.5">
+<div class="flex items-center justify-between text-[11px] pb-1 border-b border-outline-variant/30">
+<span class="text-tertiary-fixed font-bold">SCHEMA: 5NF_NORMALIZED</span>
+<span class="text-outline">ACID COMPLIANT</span>
+</div>
+<div class="grid grid-cols-3 gap-1 text-[10px] text-center text-outline">
+<div class="bg-surface-container py-1 border border-outline-variant/30 text-on-surface">USERS_RBAC</div>
+<div class="bg-surface-container py-1 border border-outline-variant/30 text-on-surface">DOMAINS [8]</div>
+<div class="bg-surface-container py-1 border border-outline-variant/30 text-tertiary-fixed">AUDIT_LOGS</div>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
+  <button class="text-tertiary-fixed font-kicker text-kicker hover:underline uppercase flex items-center gap-1" onclick="openModal('crm')">
+    [ INSPECT SPECS ]
+  </button>
+  <div class="flex items-center gap-2">
+    <a href="https://github.com/naitik24-code/Customer_Relationship_Database" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-outline-variant/60 text-on-surface-variant hover:text-tertiary-fixed hover:border-tertiary-fixed transition-colors flex items-center gap-1">
+      <span>GITHUB</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+    <a href="https://customer-relationship-database.onrender.com/login" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-tertiary-fixed/60 text-tertiary-fixed hover:bg-tertiary-fixed hover:text-on-tertiary-fixed transition-colors flex items-center gap-1">
+      <span>LIVE</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+  </div>
+</div>
+</div>
+<!-- PROJECT 03: CropCare CV (Applied AI) - 4 Cols -->
+<div class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-primary-fixed transition-colors duration-200" data-category="applied-ai">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
+<span class="text-primary-fixed font-bold">#003 // VISION</span>
+<span class="text-on-surface-variant">OPENCV · FASTAPI</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase font-bold">
+              CropCare CV
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+              Plant pathology diagnosis classifier identifying 17 disease varieties via HSV color segmentation and GLCM statistical texture matrices.
+            </p>
+<!-- HSV Color Histogram Bar Micro-visual -->
+<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data">
+<div class="flex justify-between text-[11px] mb-1.5 text-outline">
+<span class="">HSV_SEGMENTATION</span>
+<span class="text-primary-fixed font-bold">17 CLASSES</span>
+</div>
+<div class="h-3 w-full flex rounded-none overflow-hidden border border-outline-variant/40">
+<div class="bg-[#bcf543] h-full" style="width: 42%" title="Hue Leaf Area"></div>
+<div class="bg-[#54d7ee] h-full" style="width: 28%" title="Saturation Matrix"></div>
+<div class="bg-[#cdbdff] h-full" style="width: 18%" title="Value Variance"></div>
+<div class="bg-[#ffb4ab] h-full" style="width: 12%" title="Pathology Necrosis"></div>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
+  <button class="text-primary-fixed font-kicker text-kicker hover:underline uppercase flex items-center gap-1" onclick="openModal('cropcare')">
+    [ INSPECT MODEL ]
+  </button>
+  <div class="flex items-center gap-2">
+    <a href="https://github.com/naitik24-code/Crop-Care-Detection" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed transition-colors flex items-center gap-1">
+      <span>GITHUB</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+    <a href="https://crop-care-detection.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-primary-fixed/60 text-primary-fixed hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors flex items-center gap-1">
+      <span>DEMO</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+  </div>
+</div>
+</div>
+<!-- PROJECT 04: Retail Inventory Dashboard - 4 Cols -->
+<div class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-secondary-fixed transition-colors duration-200" data-category="product-systems applied-ai">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
+<span class="text-secondary-fixed font-bold">#004 // LOGISTICS</span>
+<span class="text-on-surface-variant">XGBOOST · DBSCAN</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase font-bold">
+              Retail Inventory
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+              Dynamic supply forecasting combining ABC/XYZ demand clustering with spatial density DBSCAN for real-time stock-out anomaly detection.
+            </p>
+<!-- DBSCAN Cluster Scatter Micro-visual -->
+<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data flex items-center justify-between">
+<div class="text-[11px] text-outline">
+<div class="">DBSCAN DENSITY:</div>
+<div class="text-secondary-fixed font-bold">EPS: 0.35 // MIN_PTS: 8</div>
+</div>
+<svg class="w-20 h-7 overflow-visible" fill="none">
+<circle cx="6" cy="18" fill="#cdbdff" r="2.5"></circle>
+<circle cx="14" cy="14" fill="#cdbdff" r="2"></circle>
+<circle cx="22" cy="19" fill="#cdbdff" r="2.5"></circle>
+<circle cx="36" cy="8" fill="#54d7ee" r="2"></circle>
+<circle cx="44" cy="11" fill="#54d7ee" r="2.5"></circle>
+<circle cx="52" cy="6" fill="#54d7ee" r="2"></circle>
+<circle cx="70" cy="4" fill="#ffb4ab" r="3"></circle><!-- Anomaly -->
+</svg>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
+  <button class="text-secondary-fixed font-kicker text-kicker hover:underline uppercase flex items-center gap-1" onclick="openModal('inventory')">
+    [ FORECAST MATRIX ]
+  </button>
+  <div class="flex items-center gap-2">
+    <a href="https://github.com/naitik24-code/retail-inventory-dashboard" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-outline-variant/60 text-on-surface-variant hover:text-secondary-fixed hover:border-secondary-fixed transition-colors flex items-center gap-1">
+      <span>GITHUB</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+    <a href="https://retail-inventory-dashboard-backend-3hrpmddo6.vercel.app/#home" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-secondary-fixed/60 text-secondary-fixed hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-colors flex items-center gap-1">
+      <span>DEMO</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+  </div>
+</div>
+</div>
+<!-- PROJECT 05: SLM Arena (LLM Experiments) - 4 Cols -->
+<div class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-tertiary-fixed transition-colors duration-200" data-category="llm-experiments research">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
+<span class="text-tertiary-fixed font-bold">#005 // BENCHMARK</span>
+<span class="text-on-surface-variant">OLLAMA · STREAMING</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase font-bold">
+              SLM Arena
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+              Parallel execution testbed for local Small Language Models (Llama 3.2, Mistral, Phi-3) streaming TTFT latency against tokens/sec throughput.
+            </p>
+<!-- Parallel Latency Gauges Micro-visual -->
+<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data space-y-1 text-[11px]">
+<div class="flex justify-between text-outline">
+<span class="">LLAMA 3.2 (3B):</span>
+<span class="text-tertiary-fixed">48 tok/s (18ms TTFT)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5">
+<div class="bg-tertiary-fixed h-full" style="width: 82%"></div>
+</div>
+<div class="flex justify-between text-outline pt-1">
+<span class="">PHI-3 MINI:</span>
+<span class="text-primary-fixed">64 tok/s (12ms TTFT)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5">
+<div class="bg-primary-fixed h-full" style="width: 95%"></div>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
+  <button class="text-tertiary-fixed font-kicker text-kicker hover:underline uppercase flex items-center gap-1" onclick="openModal('slm-arena')">
+    [ STREAMING BENCHMARK ]
+  </button>
+  <div class="flex items-center gap-2">
+    <a href="https://github.com/naitik24-code/Slm-Arena" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-outline-variant/60 text-on-surface-variant hover:text-tertiary-fixed hover:border-tertiary-fixed transition-colors flex items-center gap-1">
+      <span>GITHUB</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+    <a href="https://slm-arena-xi.vercel.app/#/" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-tertiary-fixed/60 text-tertiary-fixed hover:bg-tertiary-fixed hover:text-on-tertiary-fixed transition-colors flex items-center gap-1">
+      <span>DEMO</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+  </div>
+</div>
+</div>
+<!-- PROJECT 06: QuantOpt (Fintech / Research) - 6 Cols -->
+<div class="project-card md:col-span-6 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-primary-fixed transition-colors duration-200" data-category="fintech research">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
+<span class="text-primary-fixed font-bold">#006 // QUANTITATIVE</span>
+<span class="text-on-surface-variant">NUMPY · SCIPY</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase font-bold">
+              QuantOpt Engine
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+              Simulation workbench evaluating 25,000 Monte Carlo paths for Indian equity derivatives, enforcing minimum-variance borders and transaction friction penalties.
+            </p>
+<!-- Monte Carlo Convergence Distribution Curve -->
+<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data flex items-center justify-between">
+<div class="space-y-0.5 text-[11px]">
+<div class="text-outline">MC RUNS: 25,000 PATHS</div>
+<div class="text-primary-fixed font-bold">CONVERGENCE: &lt; 0.00085 ε</div>
+</div>
+<svg class="w-32 h-8 overflow-visible" fill="none">
+<path d="M 0 28 Q 16 26 32 18 Q 48 2 64 2 Q 80 2 96 18 Q 112 26 128 28" fill="rgba(188, 245, 67, 0.12)" stroke="#bcf543" stroke-width="1.5"></path>
+<line stroke="#8d937c" stroke-dasharray="2 2" stroke-width="1" x1="64" x2="64" y1="0" y2="30"></line>
+</svg>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
+  <button class="px-3 py-1.5 bg-surface-container-high border border-primary-fixed/60 text-primary-fixed font-kicker text-kicker hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors flex items-center gap-1" onclick="openModal('quantopt')">
+    <span>[ PARITY SIMULATION ]</span>
+  </button>
+  <div class="flex items-center gap-2">
+    <a href="https://github.com/naitik24-code/QuantOpt" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed transition-colors flex items-center gap-1">
+      <span>GITHUB</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+    </a>
+  </div>
+</div>
+</div>
+<!-- PROJECT 07: SteelLens (Research / Financial Analytics) - 6 Cols -->
+<div class="project-card md:col-span-6 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-secondary-fixed transition-colors duration-200" data-category="research fintech">
+<div>
+<div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
+<span class="text-secondary-fixed font-bold">#007 // ECONOMETRIC</span>
+<span class="text-on-surface-variant">STATSMODELS · PANDAS</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase font-bold">
+              SteelLens
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+              Econometric panel investigating Degree of Operating Leverage (DOL) stability across 128 firm-quarters in heavy infrastructure capital goods.
+            </p>
+<!-- Regression R-Squared Micro-panel -->
+<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data flex items-center justify-between">
+<div class="space-y-0.5 text-[11px]">
+<div class="text-outline">HORIZON: 128 QUARTERS</div>
+<div class="text-secondary-fixed font-bold">R²: 0.884 // F-STAT: 94.2</div>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="h-6 w-1 bg-secondary-fixed"></div>
+<div class="h-4 w-1 bg-secondary-fixed/70"></div>
+<div class="h-5 w-1 bg-secondary-fixed/50"></div>
+<div class="h-7 w-1 bg-secondary-fixed"></div>
+<div class="h-3 w-1 bg-secondary-fixed/40"></div>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
+  <button class="px-3 py-1.5 bg-surface-container-high border border-secondary-fixed/60 text-secondary-fixed font-kicker text-kicker hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-colors flex items-center gap-1" onclick="openModal('steellens')">
+    <span>[ PANEL REGRESSION ]</span>
+  </button>
+  <span class="text-outline text-telemetry-data font-telemetry-data text-xs">[ PROVENANCE VERIFIED ]</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== CASE STUDY DEEP-DIVE MODAL PREVIEW (OptiVest) ==================== -->
+<div class="fixed inset-0 z-50 hidden bg-surface-container-lowest/85 backdrop-blur-md flex items-center justify-center p-4 md:p-6" id="case-study-modal">
+<div class="w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-surface-container border border-primary-fixed p- space-md md:p-space-lg shadow-2xl relative hud-bracket">
+<!-- Title Bar -->
+<div class="flex justify-between items-center border-b border-outline-variant/40 pb-space-sm mb-space-md sticky top-0 bg-surface-container/95 backdrop-blur-sm z-20">
+<div class="flex items-center gap-3">
+<span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker font-bold tracking-widest">SPECIFICATION</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold uppercase tracking-tight">
+          OPTIVEST // TECHNICAL ARCHITECTURE
+        </h3>
+</div>
+<button class="text-on-surface hover:text-primary-fixed p-1 text-headline-sm font-bold transition-colors" onclick="closeModal()">
+        ✕
+      </button>
+</div>
+<!-- 01 Problem & Algorithmic Solution Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md mb-space-md">
+<div class="p-3 bg-surface-container-low border border-outline-variant/40">
+<span class="text-outline font-kicker text-kicker uppercase flex items-center gap-1 mb-1">
+<span class="text-error">✕</span> 01 // PROBLEM STATEMENT
+        </span>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Classical Markowitz Mean-Variance optimization yields unstable inverse covariance matrices with extreme corner solutions. Portfolios collapse under macro regime shifts due to out-of-distribution momentum crashes.
+        </p>
+</div>
+<div class="p-3 bg-surface-container-low border border-outline-variant/40">
+<span class="text-primary-fixed font-kicker text-kicker uppercase flex items-center gap-1 mb-1">
+<span class="">✓</span> 02 // THE APDE SOLUTION
+        </span>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Synthesizes TreeSHAP non-linear feature attribution scores with Sequential Least Squares Programming (SLSQP), establishing non-negative convex frontiers with bounded asset risk parity [0.02, 0.15].
+        </p>
+</div>
+</div>
+<!-- Multi-Stage Architecture Flow Pipeline (4 Stages) -->
+<div class="mb-space-lg">
+<div class="text-telemetry-data font-telemetry-data text-outline uppercase mb-2 flex items-center justify-between">
+<span class="">[MULTI-STAGE EXECUTION PIPELINE]</span>
+<span class="text-primary-fixed text-xs font-mono">LATENCY: &lt; 78ms REBALANCE</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-telemetry-data font-telemetry-data">
+<div class="p-3 bg-surface-container-low border border-outline-variant/40 relative">
+<div class="text-primary-fixed font-bold mb-1">01. MARKET FEED</div>
+<p class="text-on-surface-variant text-[11px]">Ingesting 106 equity asset histories, rolling volatility vectors, and macro tick datasets.</p>
+</div>
+<div class="p-3 bg-surface-container-low border border-outline-variant/40 relative">
+<div class="text-tertiary-fixed font-bold mb-1">02. TREESHAP ATTRIB</div>
+<p class="text-on-surface-variant text-[11px]">Ensemble gradient boost feature attributions scoring marginal predictive signals.</p>
+</div>
+<div class="p-3 bg-surface-container-low border border-outline-variant/40 relative">
+<div class="text-secondary-fixed font-bold mb-1">03. SLSQP OPTIMIZER</div>
+<p class="text-on-surface-variant text-[11px]">Nonlinear inequality constraint solver penalizing concentration and friction.</p>
+</div>
+<div class="p-3 bg-surface-container-low border border-outline-variant/40 relative">
+<div class="text-primary-fixed font-bold mb-1">04. CONVEX ALLOC</div>
+<p class="text-on-surface-variant text-[11px]">Final bounded target portfolio vectors delivered with SHAP explanation cards.</p>
+</div>
+</div>
+</div>
+<!-- Interactive Allocation Risk / Diversification Simulator Widget -->
+<div class="p-space-md border border-outline-variant/70 bg-surface-container-lowest mb-space-lg">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-[18px]">tune</span>
+<span class="font-kicker text-kicker text-primary-fixed uppercase tracking-wider">ALLOCATION PLAYGROUND // LIVE RISK SIMULATOR</span>
+</div>
+<span class="font-telemetry-data text-telemetry-data text-primary-fixed font-bold" id="risk-val">RISK TOLERANCE: 50%</span>
+</div>
+<input class="w-full accent-primary-fixed bg-surface-container-high h-2.5 cursor-pointer mb-4" id="risk-slider" max="95" min="5" oninput="updateSim(this.value)" type="range" value="50"/>
+<!-- Metrics readout -->
+<div class="grid grid-cols-3 gap-3 text-center text-telemetry-data font-telemetry-data mb-4">
+<div class="p-2 border border-outline-variant/30 bg-surface-container-low">
+<div class="text-outline text-[10px]">PROJECTED APDE CAGR</div>
+<div class="text-primary-fixed font-bold text-headline-sm font-headline-sm" id="sim-cagr">40.06%</div>
+</div>
+<div class="p-2 border border-outline-variant/30 bg-surface-container-low">
+<div class="text-outline text-[10px]">ANNUALIZED SHARPE</div>
+<div class="text-tertiary-fixed font-bold text-headline-sm font-headline-sm" id="sim-sharpe">2.41</div>
+</div>
+<div class="p-2 border border-outline-variant/30 bg-surface-container-low">
+<div class="text-outline text-[10px]">MAX DRAWDOWN</div>
+<div class="text-error font-bold text-headline-sm font-headline-sm" id="sim-dd">-8.12%</div>
+</div>
+</div>
+<!-- Dynamic Asset Percentage Breakdown Bar -->
+<div class="space-y-1.5 text-telemetry-data font-telemetry-data">
+<div class="flex justify-between text-outline text-[11px]">
+<span class="">ESTIMATED ASSET MIX VECTOR:</span>
+<span class="text-on-surface" id="asset-mix-label">EQUITIES: 52% | SYSTEMATIC DEBT: 28% | HEDGING PARITY: 20%</span>
+</div>
+<div class="w-full h-3 flex overflow-hidden border border-outline-variant/50">
+<div class="bg-primary-fixed h-full transition-all duration-200" id="bar-equity" style="width: 52%"></div>
+<div class="bg-tertiary-fixed h-full transition-all duration-200" id="bar-debt" style="width: 28%"></div>
+<div class="bg-secondary-fixed h-full transition-all duration-200" id="bar-hedge" style="width: 20%"></div>
+</div>
+</div>
+</div>
+<!-- Honest Engineering Limitations Box -->
+<div class="p-3 bg-surface-container-low border border-outline-variant/40 mb-space-lg text-telemetry-data font-telemetry-data">
+<div class="flex items-center gap-2 text-outline uppercase text-[11px] mb-1">
+<span class="material-symbols-outlined text-[15px] text-error">warning</span>
+<span class="text-error font-bold">PRODUCTION SYSTEM LIMITATIONS &amp; BOUNDS:</span>
+</div>
+<p class="text-on-surface-variant text-[11px]">
+        1. Model assumes non-zero market liquidity in micro-caps; extreme flash crash events require secondary circuit breaker tripwire.<br/>
+        2. High-frequency rebalancing is penalized: optimal cadence is calibrated to bi-weekly intervals to prevent excessive brokerage slippage.
+      </p>
+</div>
+<!-- Modal Actions -->
+<div class="flex justify-between items-center pt-space-sm border-t border-outline-variant/30">
+<span class="text-outline text-telemetry-data font-telemetry-data text-xs">REPRODUCIBLE NOTEBOOK AVAILABLE ON GITHUB</span>
+<button class="px-5 py-2.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker uppercase font-bold hover:bg-primary-fixed-dim transition-colors" onclick="closeModal()">
+        [ CLOSE INSPECTOR ]
+      </button>
+</div>
+</div>
+</div>
+<!-- ==================== DIGITAL SYSTEMS LAB (#lab) ==================== -->
+<section class="w-full py-space-2xl px-margin-mobile md:px-margin border-b border-outline-variant/40 bg-surface-container-lowest" id="lab">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-space-xl">
+<div>
+<span class="text-primary-fixed font-kicker text-kicker uppercase tracking-widest block mb-1">03 // DOMAIN CONVERGENCE</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase font-bold">
+            SYSTEMS LAB CONSTELLATION.
+          </h2>
+</div>
+<p class="text-on-surface-variant font-telemetry-data text-telemetry-data max-w-sm mt-2 md:mt-0">
+          [TOPOLOGY: 5 INTERLOCKED DISCIPLINES COUPLING ALGORITHMIC RIGOR TO PRODUCT UTILITY]
+        </p>
+</div>
+<!-- Pentagon Constellation Console -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Interactive Vector Pentagon -->
+<div class="lg:col-span-7 flex justify-center p-space-md border border-outline-variant/50 bg-surface-container-low relative hud-bracket">
+<svg class="w-full max-w-[420px] h-auto text-outline select-none" viewbox="0 0 500 500">
+<!-- Connecting Pentagon Web Lines -->
+<polygon fill="none" points="250,50 440,190 370,410 130,410 60,190" stroke="#434935" stroke-dasharray="4 4" stroke-width="1.5"></polygon>
+<line stroke="#434935" stroke-width="1" x1="250" x2="370" y1="50" y2="410"></line>
+<line stroke="#434935" stroke-width="1" x1="250" x2="130" y1="50" y2="410"></line>
+<line stroke="#434935" stroke-width="1" x1="440" x2="130" y1="190" y2="410"></line>
+<line stroke="#434935" stroke-width="1" x1="60" x2="370" y1="190" y2="410"></line>
+<line stroke="#434935" stroke-width="1" x1="60" x2="440" y1="190" y2="190"></line>
+<!-- Core Nodes -->
+<!-- Node 1: AI (Top) -->
+<g class="cursor-pointer group" onclick="selectLabNode('ai')">
+<circle class="group-hover:stroke-primary-fixed transition-colors" cx="250" cy="50" fill="#121413" r="15" stroke="#bcf543" stroke-width="2.5"></circle>
+<circle cx="250" cy="50" fill="#bcf543" r="6"></circle>
+<text fill="#bcf543" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" x="250" y="28">ARTIFICIAL INTELLIGENCE</text>
+</g>
+<!-- Node 2: Fintech (Top Right) -->
+<g class="cursor-pointer group" onclick="selectLabNode('fintech')">
+<circle class="group-hover:stroke-tertiary-fixed transition-colors" cx="440" cy="190" fill="#121413" r="15" stroke="#54d7ee" stroke-width="2.5"></circle>
+<circle cx="440" cy="190" fill="#54d7ee" r="6"></circle>
+<text fill="#54d7ee" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="start" x="445" y="225">FINTECH</text>
+</g>
+<!-- Node 3: Data Analytics (Bottom Right) -->
+<g class="cursor-pointer group" onclick="selectLabNode('data')">
+<circle class="group-hover:stroke-secondary-fixed transition-colors" cx="370" cy="410" fill="#121413" r="15" stroke="#cdbdff" stroke-width="2.5"></circle>
+<circle cx="370" cy="410" fill="#cdbdff" r="6"></circle>
+<text fill="#cdbdff" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="start" x="375" y="440">DATA ANALYTICS</text>
+</g>
+<!-- Node 4: Customer Systems (Bottom Left) -->
+<g class="cursor-pointer group" onclick="selectLabNode('crm')">
+<circle class="group-hover:stroke-outline transition-colors" cx="130" cy="410" fill="#121413" r="15" stroke="#8d937c" stroke-width="2.5"></circle>
+<circle cx="130" cy="410" fill="#8d937c" r="6"></circle>
+<text fill="#e2e3e0" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="end" x="125" y="440">CUSTOMER SYSTEMS</text>
+</g>
+<!-- Node 5: Software Engineering (Top Left) -->
+<g class="cursor-pointer group" onclick="selectLabNode('swe')">
+<circle class="group-hover:stroke-primary-fixed transition-colors" cx="60" cy="190" fill="#121413" r="15" stroke="#bcf543" stroke-width="2.5"></circle>
+<circle cx="60" cy="190" fill="#bcf543" r="6"></circle>
+<text fill="#bcf543" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="end" x="55" y="225">SOFTWARE ENG</text>
+</g>
+<!-- Center Core -->
+<circle cx="250" cy="240" fill="#1a1c1b" r="28" stroke="#434935" stroke-width="1.5"></circle>
+<text fill="#e2e3e0" font-family="'JetBrains Mono', monospace" font-size="10" text-anchor="middle" x="250" y="244">SYNAPSE</text>
+</svg>
+</div>
+<!-- Active Detail Card -->
+<div class="lg:col-span-5 border border-outline-variant/60 bg-surface-container p-space-lg hud-bracket" id="lab-detail-panel">
+<div class="flex justify-between items-center pb-2 border-b border-outline-variant/30 text-telemetry-data font-telemetry-data mb-space-md">
+<span class="text-primary-fixed font-bold" id="lab-node-tag">ACTIVE SELECTION: [ARTIFICIAL INTELLIGENCE]</span>
+<span class="text-outline">CONSTELLATION v4</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold uppercase mb-2" id="lab-node-title">
+            Deep Learning &amp; Representation
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md" id="lab-node-desc">
+            Constructing lightweight CV backbones (MobileNetV2), ensemble decision architectures (TreeSHAP / LightGBM), and fine-tuned SLM pipelines tailored for edge latency.
+          </p>
+<div class="space-y-2 text-telemetry-data font-telemetry-data mb-space-md">
+<div class="p-2 bg-surface-container-low border border-outline-variant/30 flex justify-between">
+<span class="text-outline">PRIMARY RUNTIME:</span>
+<span class="text-primary-fixed" id="lab-node-runtime">PyTorch / ONNX / WebGPU</span>
+</div>
+<div class="p-2 bg-surface-container-low border border-outline-variant/30 flex justify-between">
+<span class="text-outline">TARGET LATENCY:</span>
+<span class="text-tertiary-fixed" id="lab-node-latency">&lt; 35ms per batch item</span>
+</div>
+<div class="p-2 bg-surface-container-low border border-outline-variant/30 flex justify-between">
+<span class="text-outline">KEY REPOSITORY:</span>
+<span class="text-secondary-fixed" id="lab-node-project">CropCare CV // SLM Arena</span>
+</div>
+</div>
+<div class="pt-2 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="text-outline text-xs font-mono">CLICK ANY NODE IN GRAPH TO INSPECT</span>
+<a class="text-primary-fixed font-kicker text-kicker hover:underline uppercase" href="#projects">
+            [ VIEW SYSTEMS → ]
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== ENGINEERING SKILLS & TOOLKIT (#skills) ==================== -->
+<section class="w-full py-space-2xl px-margin-mobile md:px-margin border-b border-outline-variant/40" id="skills">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-space-xl pb-space-sm border-b border-outline-variant/30">
+<div>
+<span class="text-primary-fixed font-kicker text-kicker uppercase tracking-widest block mb-1">04 // PRODUCTION STACK</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase font-bold">
+            ENGINEERING CAPABILITIES.
+          </h2>
+</div>
+<p class="text-on-surface-variant font-telemetry-data text-telemetry-data">
+          [BENCHMARK: COMPILED &amp; TESTED TOOLKITS]
+        </p>
+</div>
+<!-- Functional Categories Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Category 1: Languages -->
+<div class="border border-outline-variant/50 bg-surface-container-lowest p-space-md hud-bracket hover:border-primary-fixed transition-colors">
+<div class="flex justify-between items-center mb-space-md pb-2 border-b border-outline-variant/30 text-telemetry-data font-telemetry-data">
+<span class="text-primary-fixed font-bold">LANGUAGES</span>
+<span class="text-outline">[04]</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">Python</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">JavaScript (ES6+)</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">C++</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">SQL</span>
+</div>
+</div>
+<!-- Category 2: AI / ML -->
+<div class="border border-outline-variant/50 bg-surface-container-lowest p-space-md hud-bracket hover:border-tertiary-fixed transition-colors">
+<div class="flex justify-between items-center mb-space-md pb-2 border-b border-outline-variant/30 text-telemetry-data font-telemetry-data">
+<span class="text-tertiary-fixed font-bold">AI / ML RUNTIMES</span>
+<span class="text-outline">[05]</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">scikit-learn</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">LightGBM</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">XGBoost</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">TensorFlow</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">MobileNetV2</span>
+</div>
+</div>
+<!-- Category 3: Frontend -->
+<div class="border border-outline-variant/50 bg-surface-container-lowest p-space-md hud-bracket hover:border-secondary-fixed transition-colors">
+<div class="flex justify-between items-center mb-space-md pb-2 border-b border-outline-variant/30 text-telemetry-data font-telemetry-data">
+<span class="text-secondary-fixed font-bold">FRONTEND CLIENTS</span>
+<span class="text-outline">[05]</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">React</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">HTML5</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">CSS3</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">Tailwind CSS</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">Three.js</span>
+</div>
+</div>
+<!-- Category 4: Backend -->
+<div class="border border-outline-variant/50 bg-surface-container-lowest p-space-md hud-bracket hover:border-primary-fixed transition-colors">
+<div class="flex justify-between items-center mb-space-md pb-2 border-b border-outline-variant/30 text-telemetry-data font-telemetry-data">
+<span class="text-primary-fixed font-bold">BACKEND &amp; APIS</span>
+<span class="text-outline">[08]</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">FastAPI</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">Flask</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">Node.js</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">Express</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">Sequelize</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">REST APIs</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">JWT</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">RBAC</span>
+</div>
+</div>
+<!-- Category 5: Data & Analytics -->
+<div class="border border-outline-variant/50 bg-surface-container-lowest p-space-md hud-bracket hover:border-tertiary-fixed transition-colors">
+<div class="flex justify-between items-center mb-space-md pb-2 border-b border-outline-variant/30 text-telemetry-data font-telemetry-data">
+<span class="text-tertiary-fixed font-bold">DATA PERSISTENCE</span>
+<span class="text-outline">[03]</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">pandas</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">SQLite</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">MySQL</span>
+</div>
+</div>
+<!-- Category 6: Tools & Cloud -->
+<div class="border border-outline-variant/50 bg-surface-container-lowest p-space-md hud-bracket hover:border-secondary-fixed transition-colors">
+<div class="flex justify-between items-center mb-space-md pb-2 border-b border-outline-variant/30 text-telemetry-data font-telemetry-data">
+<span class="text-secondary-fixed font-bold">DEVOPS &amp; CLOUD</span>
+<span class="text-outline">[03]</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">Git</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">GitHub Actions</span>
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant text-on-surface font-kicker text-kicker uppercase">Azure AI Fundamentals</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== HIGH-CONVERSION TERMINAL CONTACT SECTION (#contact) ==================== -->
+<section class="w-full py-space-2xl px-margin-mobile md:px-margin border-b border-outline-variant/40 bg-surface-container-lowest" id="contact">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-space-xl">
+<span class="text-primary-fixed font-kicker text-kicker uppercase tracking-widest block mb-2">06 // THE NEXT CONVERSATION</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase font-bold tracking-tight">
+            HAVE A COMPLEX PROBLEM? LET'S BUILD THE SOLUTION.
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto mt-space-sm">
+            Whether you are scaling high-throughput ML pipelines, designing institutional quantitative systems, or looking for an autonomous product engineer.
+          </p>
+</div>
+<!-- Cyber Terminal Box -->
+<div class="border border-outline-variant/60 bg-surface-container p-space-lg hud-bracket shadow-xl">
+<!-- Realistic bash titlebar -->
+<div class="flex justify-between items-center pb-space-sm border-b border-outline-variant/40 text-telemetry-data font-telemetry-data">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 bg-error rounded-none inline-block"></span>
+<span class="w-2.5 h-2.5 bg-outline rounded-none inline-block"></span>
+<span class="w-2.5 h-2.5 bg-primary-fixed rounded-none inline-block"></span>
+<span class="text-primary-fixed ml-2 font-mono font-bold">naitik@sys-hud:~$</span>
+<span class="text-on-surface hidden sm:inline">bash --interactive</span>
+</div>
+<span class="text-primary-fixed font-mono">PORT: 443 // TLS_STABLE</span>
+</div>
+<!-- Terminal Content & Email Interaction -->
+<div class="py-space-lg font-telemetry-data text-telemetry-data space-y-4">
+<div class="text-outline">
+              &gt;_ INITIALIZING SECURE COMMUNICATION CHANNEL TO NAITIK PATHAK...<br/>
+              &gt;_ HANDSHAKE COMPLETED. SESSION ENCRYPTED VIA ECDHE-RSA-AES256-GCM.
+            </div>
+<!-- Email Interaction Box -->
+<div class="p-space-md bg-surface-container-low border border-primary-fixed/40 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<div class="text-outline text-xs uppercase mb-1">TARGET EMAIL IDENTITY:</div>
+<div class="text-primary-fixed font-bold text-headline-sm font-headline-sm tracking-tight select-all">
+                  naitikpathak2005@gmail.com
+                </div>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 bg-surface-container-highest border border-outline-variant hover:border-primary-fixed text-on-surface font-kicker text-kicker uppercase transition-colors flex items-center gap-2 active:translate-x-px active:translate-y-px" id="copy-email-btn" onclick="copyEmailToClipboard()">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span class="" id="copy-text">COPY EMAIL</span>
+</button>
+<a class="px-4 py-2 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker uppercase font-bold hover:bg-primary-fixed-dim transition-colors flex items-center gap-2 active:translate-x-px active:translate-y-px" href="https://mail.google.com/mail/?view=cm&fs=1&to=naitikpathak2005@gmail.com" target="_blank" rel="noopener noreferrer">
+<span class="">COMPOSE ON GMAIL</span>
+<span class="material-symbols-outlined text-[16px]">send</span>
+</a>
+</div>
+</div>
+<!-- Social verification pills -->
+<div class="pt-2 flex flex-wrap items-center gap-3">
+<span class="text-outline text-xs">DIRECT LINKAGES:</span>
+<a class="px-3 py-1.5 bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-tertiary-fixed hover:border-tertiary-fixed font-kicker text-kicker uppercase transition-colors flex items-center gap-1.5" href="https://github.com/naitik24-code" rel="noopener noreferrer" target="_blank">
+  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+  <span>GITHUB://DEV ↗</span>
+</a>
+<a class="px-3 py-1.5 bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed font-kicker text-kicker uppercase transition-colors flex items-center gap-1.5" href="https://www.linkedin.com/in/naitik24/" rel="noopener noreferrer" target="_blank">
+  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+  <span>LINKEDIN://NAITIK24 ↗</span>
+</a>
+<a class="px-3 py-1.5 bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-tertiary-fixed hover:border-tertiary-fixed font-kicker text-kicker uppercase transition-colors flex items-center gap-1.5" href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+  <span class="material-symbols-outlined text-[16px]">description</span>
+  <span>RESUME.PDF ↗</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-surface-container-lowest text-on-surface-variant font-telemetry-data text-telemetry-data uppercase docked full-width bottom border-t border-outline-variant/40 flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin py-space-lg gap-gutter relative z-20">
+<div class="flex items-center gap-3 text-outline">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">NP</span>
+<span class="">SYS.LOC 37.7749 // -122.4194 // [SYS.TIME UTC+0] // ALL PROTOCOLS VERIFIED © NAITIK PATHAK</span>
+</div>
+<!-- Links -->
+<div class="flex flex-wrap items-center gap-6">
+<a class="hover:text-tertiary-fixed hover:underline transition-colors duration-150 active:translate-y-px" href="https://github.com/naitik24-code" rel="noopener noreferrer" target="_blank">GITHUB://DEV</a>
+<a class="hover:text-tertiary-fixed hover:underline transition-colors duration-150 active:translate-y-px" href="#projects">ARXIV://PAPERS</a>
+<a class="hover:text-tertiary-fixed hover:underline transition-colors duration-150 active:translate-y-px" href="#contact">TERMINAL://PGP</a>
+<a class="text-primary-fixed hover:text-tertiary-fixed hover:underline transition-colors duration-150 active:translate-y-px" href="#home">STATUS://OPERATIONAL</a>
+</div>
+</footer>
+<!-- Micro-interactions and state logic scripts -->
+<script>
+    // Project filter logic
+    function filterProjects(category) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active', 'border-primary-fixed', 'text-primary-fixed', 'bg-surface-container');
+        btn.classList.add('border-outline-variant/60', 'text-on-surface-variant');
+      });
+      event.target.classList.add('active', 'border-primary-fixed', 'text-primary-fixed', 'bg-surface-container');
+      event.target.classList.remove('border-outline-variant/60', 'text-on-surface-variant');
+
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        if (category === 'all') {
+          card.style.display = '';
+        } else {
+          const cardCats = card.getAttribute('data-category') || '';
+          if (cardCats.includes(category)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    }
+
+    // Modal controls for OptiVest & deep specs
+    function openModal(id) {
+      const modal = document.getElementById('case-study-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('case-study-modal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Interactive Allocation Playground Slider logic with live asset percentages
+    function updateSim(val) {
+      document.getElementById('risk-val').innerText = `RISK TOLERANCE: ${val}%`;
+      const ratio = val / 100;
+      const cagr = (18.2 + ratio * 43.7).toFixed(2);
+      const sharpe = (1.20 + (1 - Math.abs(ratio - 0.52)) * 2.3).toFixed(2);
+      const dd = (-3.8 - ratio * 13.2).toFixed(2);
+
+      document.getElementById('sim-cagr').innerText = `${cagr}%`;
+      document.getElementById('sim-sharpe').innerText = sharpe;
+      document.getElementById('sim-dd').innerText = `${dd}%`;
+
+      // Calculate dynamic asset mix
+      const equityPct = Math.round(20 + ratio * 65);
+      const debtPct = Math.round(Math.max(5, 55 - ratio * 45));
+      const hedgePct = 100 - equityPct - debtPct;
+
+      document.getElementById('bar-equity').style.width = `${equityPct}%`;
+      document.getElementById('bar-debt').style.width = `${debtPct}%`;
+      document.getElementById('bar-hedge').style.width = `${hedgePct}%`;
+      document.getElementById('asset-mix-label').innerText = `EQUITIES: ${equityPct}% | SYSTEMATIC DEBT: ${debtPct}% | HEDGING PARITY: ${hedgePct}%`;
+    }
+
+    // Interactive Systems Lab Node Switcher
+    const labNodes = {
+      ai: {
+        tag: 'ACTIVE SELECTION: [ARTIFICIAL INTELLIGENCE]',
+        title: 'Deep Learning & Representation',
+        desc: 'Constructing lightweight CV backbones (MobileNetV2), ensemble decision architectures (TreeSHAP / LightGBM), and fine-tuned SLM pipelines tailored for edge latency.',
+        runtime: 'PyTorch / ONNX / WebGPU',
+        latency: '< 35ms per batch item',
+        project: 'CropCare CV // SLM Arena'
+      },
+      fintech: {
+        tag: 'ACTIVE SELECTION: [FINTECH COMPUTING]',
+        title: 'Algorithmic Portfolio Engineering',
+        desc: 'Constrained quadratic programming, SLSQP optimizers, and TreeSHAP attribution matrices simulating out-of-sample drawdowns across multi-asset baskets.',
+        runtime: 'SciPy / NumPy / Pandas',
+        latency: '78ms rebalance cycle',
+        project: 'OptiVest // QuantOpt Engine'
+      },
+      data: {
+        tag: 'ACTIVE SELECTION: [DATA ANALYTICS]',
+        title: 'High-Volume Anomaly Intelligence',
+        desc: 'Combining DBSCAN clustering with statistical regression panels (DOL econometric models) across enterprise timelines with strict outlier filters.',
+        runtime: 'Statsmodels / Scikit-learn',
+        latency: 'Real-time clustering stream',
+        project: 'Retail Inventory // SteelLens'
+      },
+      crm: {
+        tag: 'ACTIVE SELECTION: [CUSTOMER SYSTEMS]',
+        title: 'Relational 5NF Multi-Role Backbones',
+        desc: 'Architecting zero-redundancy transactional foundations enforcing strict JWT validation, fine-grained access policies, and audit trails across 8 isolated domains.',
+        runtime: 'Node.js / Sequelize / PostgreSQL',
+        latency: 'Sub-15ms query execution',
+        project: 'Enterprise CRM'
+      },
+      swe: {
+        tag: 'ACTIVE SELECTION: [SOFTWARE ENGINEERING]',
+        title: 'Production-Grade Distributed Pipelines',
+        desc: 'Building responsive telemetry consoles, asynchronous API gateways, and reproducible testing suites with resilient automated CI/CD lifecycles.',
+        runtime: 'FastAPI / React / Docker',
+        latency: 'Zero-downtime microservices',
+        project: 'SYS.HUD Architecture / Core APIs'
+      }
+    };
+
+    function selectLabNode(key) {
+      const data = labNodes[key];
+      if (!data) return;
+      document.getElementById('lab-node-tag').innerText = data.tag;
+      document.getElementById('lab-node-title').innerText = data.title;
+      document.getElementById('lab-node-desc').innerText = data.desc;
+      document.getElementById('lab-node-runtime').innerText = data.runtime;
+      document.getElementById('lab-node-latency').innerText = data.latency;
+      document.getElementById('lab-node-project').innerText = data.project;
+    }
+
+    // Clipboard interaction with prompt feedback
+    function copyEmailToClipboard() {
+      const email = 'naitikpathak2005@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        const textSpan = document.getElementById('copy-text');
+        textSpan.innerText = 'COPIED TO CLIPBOARD!';
+        textSpan.parentElement.classList.add('border-primary-fixed', 'text-primary-fixed');
+        setTimeout(() => {
+          textSpan.innerText = 'COPY EMAIL';
+          textSpan.parentElement.classList.remove('border-primary-fixed', 'text-primary-fixed');
+        }, 2200);
+      });
+    }
+
+    // Dynamic coordinates HUD simulation in Hero Viewport
+    let coordTick = 0;
+    setInterval(() => {
+      coordTick += 0.05;
+      const x = (-0.39 + Math.sin(coordTick) * 0.14).toFixed(2);
+      const y = (+1.09 + Math.cos(coordTick * 0.8) * 0.11).toFixed(2);
+      const z = (+3.05 + Math.sin(coordTick * 0.5) * 0.06).toFixed(2);
+      const el = document.getElementById('hero-coords-readout');
+      if (el) el.innerText = `[X: ${x >= 0 ? '+' + x : x}, Y: ${y >= 0 ? '+' + y : y}, Z: ${z}]`;
+    }, 450);
+
+    // 3D Control cluster functions
+    let isSpeedFast = false;
+    let isWireframe = false;
+    let isOrbitReset = false;
+
+    function toggleHudOrbit() {
+      isOrbitReset = !isOrbitReset;
+      const btn = document.getElementById('btn-ctrl-orbit');
+      if (isOrbitReset) {
+        btn.classList.add('border-primary-fixed', 'text-primary-fixed', 'bg-primary-fixed/20');
+        btn.innerText = '[ CAMERA: LOCKED ]';
+      } else {
+        btn.classList.remove('bg-primary-fixed/20');
+        btn.innerText = '[ CAMERA: ORBIT / RESET ]';
+      }
+    }
+
+    function toggleHudSpeed() {
+      isSpeedFast = !isSpeedFast;
+      const btn = document.getElementById('btn-ctrl-speed');
+      if (isSpeedFast) {
+        btn.innerText = '[ SPEED: 2.0X ]';
+        btn.classList.add('text-tertiary-fixed', 'border-tertiary-fixed');
+      } else {
+        btn.innerText = '[ SPEED: 1.0X ]';
+        btn.classList.remove('text-tertiary-fixed', 'border-tertiary-fixed');
+      }
+    }
+
+    function toggleHudWire() {
+      isWireframe = !isWireframe;
+      const btn = document.getElementById('btn-ctrl-wire');
+      if (isWireframe) {
+        btn.innerText = '[ WIREFRAME: ACTIVE ]';
+        btn.classList.add('text-secondary-fixed', 'border-secondary-fixed');
+      } else {
+        btn.innerText = '[ WIREFRAME HUD ]';
+        btn.classList.remove('text-secondary-fixed', 'border-secondary-fixed');
+      }
+    }
+
+    function toggleHudMode() {
+      const btn = document.getElementById('btn-ctrl-mode');
+      const box = document.getElementById('viewport-3d-box');
+      if (box.dataset.mode === '2d') {
+        box.dataset.mode = '3d';
+        btn.innerText = '[ 2D / 3D MODE ]';
+        btn.classList.remove('text-primary-fixed');
+        box.querySelector('threejs-scene').style.opacity = '1';
+      } else {
+        box.dataset.mode = '2d';
+        btn.innerText = '[ 2D FALLBACK ACTIVE ]';
+        btn.classList.add('text-primary-fixed');
+        box.querySelector('threejs-scene').style.opacity = '0.4';
+      }
+    }
+    // Intersection Observer for scroll spy to move the yellow / primary indicator line
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = ['home', 'projects', 'lab', 'skills', 'contact'].map(id => document.getElementById(id)).filter(Boolean);
+
+      function setActiveNav(id) {
+        navLinks.forEach(link => {
+          if (link.getAttribute('data-section') === id) {
+            link.classList.add('text-primary-fixed', 'border-b-2', 'border-primary-fixed');
+            link.classList.remove('text-on-surface-variant');
+          } else {
+            link.classList.remove('text-primary-fixed', 'border-b-2', 'border-primary-fixed');
+            link.classList.add('text-on-surface-variant');
+          }
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveNav(entry.target.id);
+          }
+        });
+      }, {
+        rootMargin: '-30% 0px -50% 0px',
+        threshold: 0.1
+      });
+
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
+</body></html>

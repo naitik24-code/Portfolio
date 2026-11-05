@@ -93,6 +93,10 @@ function Navigation({ active, setActive }: { active: string; setActive: (id: str
     <button className="menu-toggle" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} onClick={() => setOpen(v => !v)}>{open ? 'CLOSE' : 'MENU'} <span>{open ? '−' : '+'}</span></button>
     <nav className={`nav-links ${open ? 'is-open' : ''}`} aria-label="Main navigation">
       {links.map(link => <a key={link} href={`#${link}`} className={active === link ? 'active' : ''} onClick={() => { setActive(link); setOpen(false); }}><span>{link}</span><i /></a>)}
+      <a className="nav-hud-toggle" href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', border: '1px solid var(--lime, #c6ff4d)', borderRadius: '4px', color: 'var(--lime, #c6ff4d)', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textDecoration: 'none' }} title="Return to HUD Edition">
+        <span style={{ fontSize: '0.65rem', padding: '1px 4px', background: 'var(--lime, #c6ff4d)', color: '#000', borderRadius: '2px', fontWeight: 700 }}>MAIN</span>
+        <span>HUD EDITION ↗</span>
+      </a>
       <a className="nav-contact" href="#contact" onClick={() => setOpen(false)}>LET’S TALK <Arrow diagonal /></a>
     </nav>
   </header>;
@@ -133,7 +137,11 @@ function Hero({ simpleView, setSimpleView }: { simpleView: boolean; setSimpleVie
     <div className="hero-copy"><p className="eyebrow"><span className="eyebrow-line" /> {profile.role.toUpperCase()}</p>
       <h1><span>BUILDING</span><span><em>INTELLIGENT</em> SYSTEMS.</span></h1>
       <p className="hero-sub">I build practical intelligent systems, analytical products, and full-stack interfaces that make complex workflows useful.</p>
-      <div className="hero-actions"><a className="button button-lime" href="#projects" data-cursor="EXPLORE">EXPLORE MY WORK <Arrow /></a><a className="text-link" href="#contact" data-cursor="CONNECT">LET’S CONNECT <Arrow diagonal /></a></div>
+      <div className="hero-actions">
+        <a className="button button-lime" href="#projects" data-cursor="EXPLORE">EXPLORE MY WORK <Arrow /></a>
+        <a className="button" style={{ border: '1px solid var(--line-subtle, rgba(255,255,255,0.15))', color: 'var(--text-main, #f0f1ed)' }} href={typeof profile.resumeUrl === 'string' ? profile.resumeUrl : '/Naitik-Pathak-Resume.pdf'} target="_blank" rel="noopener noreferrer" data-cursor="RESUME">RESUME / CV <Arrow diagonal /></a>
+        <a className="text-link" href="#contact" data-cursor="CONNECT">LET’S CONNECT <Arrow diagonal /></a>
+      </div>
       <button className="view-toggle" type="button" aria-pressed={simpleView} onClick={() => setSimpleView(value => !value)}>{simpleView ? 'ENABLE CORE VISUAL' : 'SIMPLE VIEW'} <span>↗</span></button>
     </div>
     <CoreVisual />
@@ -289,7 +297,7 @@ function Contact() {
   const [copied, setCopied] = useState(false);
   const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.contact.email)}`;
   const copy = async () => { try { await navigator.clipboard.writeText(profile.contact.email); setCopied(true); setTimeout(() => setCopied(false), 1800); } catch { window.location.href = `mailto:${profile.contact.email}`; } };
-  return <section id="contact" className="contact section-wrap section-pad"><div className="contact-glow" aria-hidden="true" /><div className="section-kicker"><span>06</span><i />THE NEXT CONVERSATION</div><h2>HAVE A COMPLEX<br />PROBLEM?<br /><em>LET’S BUILD THE SOLUTION.</em></h2><div className="contact-bottom"><div><p>{profile.availability}. Open to conversations about software engineering, AI, analytics, and thoughtful products.</p><a className="button button-lime" href={gmailCompose} target="_blank" rel="noreferrer" data-cursor="SAY HELLO">START A CONVERSATION <Arrow diagonal /></a></div><div className="contact-links"><span className="case-label">FIND ME / REACH ME</span><a href={gmailCompose} target="_blank" rel="noreferrer">{profile.contact.email} <Arrow diagonal /></a><button onClick={copy}>{copied ? 'EMAIL COPIED ✓' : 'COPY EMAIL'} <span>COPY</span></button><a href={profile.contact.github} target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a><a href={profile.contact.linkedin} target="_blank" rel="noreferrer">LINKEDIN <Arrow diagonal /></a></div></div></section>;
+  return <section id="contact" className="contact section-wrap section-pad"><div className="contact-glow" aria-hidden="true" /><div className="section-kicker"><span>06</span><i />THE NEXT CONVERSATION</div><h2>HAVE A COMPLEX<br />PROBLEM?<br /><em>LET’S BUILD THE SOLUTION.</em></h2><div className="contact-bottom"><div><p>{profile.availability}. Open to conversations about software engineering, AI, analytics, and thoughtful products.</p><a className="button button-lime" href={gmailCompose} target="_blank" rel="noreferrer" data-cursor="SAY HELLO">START A CONVERSATION <Arrow diagonal /></a></div><div className="contact-links"><span className="case-label">FIND ME / REACH ME</span><a href={gmailCompose} target="_blank" rel="noreferrer">{profile.contact.email} <Arrow diagonal /></a><button onClick={copy}>{copied ? 'EMAIL COPIED ✓' : 'COPY EMAIL'} <span>COPY</span></button><a href={typeof profile.resumeUrl === 'string' ? profile.resumeUrl : '/Naitik-Pathak-Resume.pdf'} target="_blank" rel="noreferrer">RESUME / CV <Arrow diagonal /></a><a href={profile.contact.github} target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a><a href={profile.contact.linkedin} target="_blank" rel="noreferrer">LINKEDIN <Arrow diagonal /></a></div></div></section>;
 }
 
 function Footer() {
