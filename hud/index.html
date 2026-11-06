@@ -170,8 +170,317 @@
       animation: hudCrosshair 3s ease-in-out infinite;
     }
   </style>
+
+  <style>
+    /* Clean Matrix Digital Rain Backdrop */
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 35;
+      pointer-events: none;
+      opacity: 0.22;
+      display: none;
+    }
+    .matrix-active-glow {
+      box-shadow: 0 0 15px rgba(188, 245, 67, 0.4) !important;
+      border-color: #bcf543 !important;
+      color: #bcf543 !important;
+    }
+    /* Smooth card hover lift without clutter */
+    .project-card {
+      transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -8px rgba(188, 245, 67, 0.15);
+    }
+  </style>
+
+
+  <style id="hud-cinematic-styles">
+    /* HUD Cinematic Boot Loader Overlay */
+    #hud-boot-screen {
+      position: fixed;
+      inset: 0;
+      background: #090b0a;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+    }
+    #hud-boot-screen.boot-finished {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .boot-box {
+      width: 100%;
+      max-width: 520px;
+      background: rgba(14, 17, 16, 0.95);
+      border: 1px solid rgba(188, 245, 67, 0.4);
+      box-shadow: 0 0 50px -10px rgba(188, 245, 67, 0.25);
+      padding: 1.5rem;
+      position: relative;
+    }
+    .boot-radar {
+      width: 44px;
+      height: 44px;
+      border: 2px dashed #bcf543;
+      border-radius: 50%;
+      animation: radarSpin 2s linear infinite;
+    }
+    @keyframes radarSpin {
+      100% { transform: rotate(360deg); }
+    }
+    /* Robust Theme colorway overrides (Zero stacking context breaking) */
+    body.theme-cyan {
+      --primary-fixed: #54d7ee;
+      --primary-fixed-dim: #2cbacf;
+      --outline: #54d7ee;
+    }
+    body.theme-violet {
+      --primary-fixed: #cdbdff;
+      --primary-fixed-dim: #9b7bff;
+      --outline: #cdbdff;
+    }
+    body.theme-cyan .text-primary-fixed, body.theme-cyan [class*="text-primary"] {
+      color: #54d7ee !important;
+    }
+    body.theme-cyan .border-primary-fixed, body.theme-cyan [class*="border-primary"] {
+      border-color: #54d7ee !important;
+    }
+    body.theme-cyan .bg-primary-fixed {
+      background-color: #54d7ee !important;
+    }
+    body.theme-violet .text-primary-fixed, body.theme-violet [class*="text-primary"] {
+      color: #cdbdff !important;
+    }
+    body.theme-violet .border-primary-fixed, body.theme-violet [class*="border-primary"] {
+      border-color: #cdbdff !important;
+    }
+    body.theme-violet .bg-primary-fixed {
+      background-color: #cdbdff !important;
+    }
+    #hud-floating-dock {
+      position: fixed !important;
+      bottom: 1.25rem !important;
+      right: 1.25rem !important;
+      z-index: 9999 !important;
+    }
+  </style>
+
+
+  <style id="xray-mode-styles">
+    /* Blueprint / X-Ray Wireframe HUD Mode */
+    body.xray-active {
+      background: #020504 !important;
+      background-image: 
+        linear-gradient(to right, rgba(84, 215, 238, 0.22) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(84, 215, 238, 0.22) 1px, transparent 1px) !important;
+      background-size: 24px 24px !important;
+    }
+    body.xray-active .project-card,
+    body.xray-active .hud-bracket,
+    body.xray-active .bg-surface-container-lowest,
+    body.xray-active .bg-surface-container,
+    body.xray-active .bg-surface-container-low {
+      background: rgba(4, 12, 10, 0.65) !important;
+      border: 1px dashed rgba(84, 215, 238, 0.6) !important;
+      box-shadow: inset 0 0 15px rgba(84, 215, 238, 0.08) !important;
+    }
+    body.xray-active .text-primary-fixed {
+      color: #54d7ee !important;
+    }
+    body.xray-active .bg-primary-fixed {
+      background-color: #54d7ee !important;
+      color: #000 !important;
+    }
+    /* Shockwave pulse for core click */
+    .shockwave-flash {
+      box-shadow: 0 0 100px 30px rgba(188, 245, 67, 0.7) !important;
+      transition: box-shadow 0.15s ease-out;
+    }
+  </style>
+
+
+  <style id="emp-glitch-styles">
+    /* Screen Glitch & Chromatic Aberration Anomaly */
+    @keyframes empDistortion {
+      0% { transform: translate(0, 0) skew(0deg); filter: hue-rotate(0deg); }
+      15% { transform: translate(-4px, 2px) skew(2.5deg); filter: hue-rotate(90deg) contrast(1.4); }
+      30% { transform: translate(5px, -3px) skew(-2deg); filter: invert(0.2) contrast(1.8); }
+      45% { transform: translate(-3px, 4px) skew(1deg); filter: hue-rotate(180deg); }
+      60% { transform: translate(2px, -2px) skew(-1.5deg); filter: none; }
+      80% { transform: translate(-1px, 1px) skew(0.5deg); }
+      100% { transform: translate(0, 0) skew(0deg); }
+    }
+    body.emp-active {
+      animation: empDistortion 0.45s ease-in-out;
+    }
+    body.emp-active #webgl-canvas, body.emp-active #viewport-3d-box {
+      filter: drop-shadow(4px 0 0 rgba(255, 0, 80, 0.7)) drop-shadow(-4px 0 0 rgba(0, 255, 255, 0.7));
+    }
+  </style>
+
+
+
+
+
+
+
+
+<style id="emp-active-styles">
+  body.emp-active {
+    filter: invert(1) hue-rotate(180deg) contrast(1.5) !important;
+    animation: empFlicker 0.4s ease-out;
+  }
+  @keyframes empFlicker {
+    0% { filter: invert(0); }
+    25% { filter: invert(1) hue-rotate(90deg) contrast(2); }
+    50% { filter: invert(0.8) hue-rotate(240deg); }
+    75% { filter: invert(1) hue-rotate(180deg); }
+    100% { filter: invert(0); }
+  }
+</style>
+
+
+<style id="ultra-creative-styles">
+  /* CRT Scanline & Phosphor Overlay */
+  body.crt-active::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.45) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
+    z-index: 99998;
+    background-size: 100% 3px, 6px 100%;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  body.crt-active {
+    text-shadow: 0 0 2px rgba(188, 245, 67, 0.5);
+  }
+
+  /* Pitch Deck Slide Carousel Modal */
+  #pitch-deck-modal {
+    display: none;
+  }
+  #pitch-deck-modal.active {
+    display: flex;
+  }
+
+  /* Keycard Generator Modal */
+  #keycard-modal {
+    display: none;
+  }
+  #keycard-modal.active {
+    display: flex;
+  }
+
+  /* Role View Filter Badge Glow */
+  .role-preset-btn.active {
+    background-color: var(--primary-fixed, #bcf543) !important;
+    color: #000 !important;
+    font-weight: 800 !important;
+    border-color: var(--primary-fixed, #bcf543) !important;
+  }
+</style>
+
+
+<style id="tactical-crosshair-styles">
+  body.tactical-cursor-active, 
+  body.tactical-cursor-active * {
+    cursor: none !important;
+  }
+  #tactical-reticle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--primary-fixed, #bcf543);
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 999999;
+    display: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.12s ease-out, height 0.12s ease-out, border-color 0.15s ease;
+  }
+  body.tactical-cursor-active #tactical-reticle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  #reticle-coords {
+    position: absolute;
+    bottom: -18px;
+    left: 18px;
+    font-family: monospace;
+    font-size: 8px;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    color: var(--primary-fixed, #bcf543);
+    text-shadow: 0 0 6px rgba(0,0,0,0.9);
+  }
+</style>
+
 </head>
+
+
+
 <body class="bg-background text-on-surface antialiased selection:bg-primary-fixed selection:text-surface-container-lowest font-body-md overflow-x-hidden min-h-screen laser-grid relative">
+<!-- TACTICAL RETICLE -->
+<div id="tactical-reticle" class="w-8 h-8 rounded-full border border-primary-fixed flex items-center justify-center">
+  <div class="w-1.5 h-1.5 rounded-full bg-primary-fixed shadow-[0_0_10px_rgba(188,245,67,1)]"></div>
+  <div class="absolute w-2 h-0.5 bg-primary-fixed -top-1 left-1/2 -translate-x-1/2"></div>
+  <div class="absolute w-2 h-0.5 bg-primary-fixed -bottom-1 left-1/2 -translate-x-1/2"></div>
+  <div class="absolute h-2 w-0.5 bg-primary-fixed top-1/2 -left-1 -translate-y-1/2"></div>
+  <div class="absolute h-2 w-0.5 bg-primary-fixed top-1/2 -right-1 -translate-y-1/2"></div>
+  <span id="reticle-coords">X:0000 Y:0000</span>
+</div>
+
+<!-- ==================== CINEMATIC QUANTUM BOOT SCREEN ==================== -->
+<div id="hud-boot-screen">
+  <div class="boot-box font-mono text-left hud-bracket">
+    <div class="flex items-center justify-between border-b border-outline-variant/40 pb-2 mb-3">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 bg-primary-fixed animate-ping rounded-full inline-block"></span>
+        <span class="text-primary-fixed text-xs font-bold tracking-widest uppercase">NP // QUANTUM KERNEL v5.02</span>
+      </div>
+      <span class="text-outline text-[10px]">BIOS POST // 60 FPS</span>
+    </div>
+
+    <div class="flex items-center gap-4 my-4">
+      <div class="boot-radar shrink-0"></div>
+      <div class="space-y-1 text-xs text-on-surface-variant font-mono">
+        <div id="boot-log-1" class="text-primary-fixed font-bold">&gt; SYSTEM BOOT INITIATED...</div>
+        <div id="boot-log-2" class="text-outline">&gt; Loading WebGPU 3D Constellation...</div>
+        <div id="boot-log-3" class="text-outline">&gt; Initializing Neural Attributions...</div>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="w-full bg-surface-container-high h-1.5 overflow-hidden border border-outline-variant/50 my-2">
+      <div id="boot-progress-bar" class="bg-primary-fixed h-full transition-all duration-300" style="width: 15%"></div>
+    </div>
+
+    <div class="flex justify-between items-center text-[10px] text-outline pt-3 border-t border-outline-variant/20">
+      <span>QUANTUM PROTOCOL: READY</span>
+      <button id="boot-action-btn" onclick="skipBoot()" class="px-3 py-1 bg-primary-fixed text-black font-bold uppercase hover:bg-primary-fixed-dim rounded shadow-[0_0_12px_rgba(188,245,67,0.4)] cursor-pointer">
+        [ ENTER SYSTEM ↵ ]
+      </button>
+    </div>
+  </div>
+</div>
+
+<canvas id="matrix-canvas"></canvas>
 <!-- CRT Scanline overlay -->
 <div class="scanlines-overlay fixed inset-0 pointer-events-none z-40 opacity-40"></div>
 <!-- TOP HUD BAR -->
@@ -204,29 +513,27 @@
 <a class="nav-link text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/50 transition-all duration-150 pb-1" href="#contact" data-section="contact">CONTACT</a>
 </nav>
 <!-- Trailing Action -->
-<div class="flex items-center gap-2 sm:gap-3">
-  <a class="px-2 py-1 bg-surface-container-high border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed text-[10px] sm:text-[11px] font-mono tracking-wider transition-colors duration-150 flex items-center gap-1" href="/" title="Return to Portal Gateway">
-    <span class="material-symbols-outlined text-[13px] sm:text-[14px]">apps</span>
-    <span class="hidden xs:inline">[ GATEWAY ]</span>
-    <span class="xs:hidden">[ GATE ]</span>
+<div class="flex items-center gap-2">
+  <a class="px-2 py-0.5 bg-surface-container-high border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed text-[10px] font-mono tracking-wider transition-colors duration-150 flex items-center gap-1" href="/" title="Gateway Dimension">
+    <span class="material-symbols-outlined text-[13px]">apps</span>
+    <span class="hidden sm:inline">GATEWAY</span>
   </a>
-  <a class="px-2 py-1 bg-surface-container-high border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed text-[10px] sm:text-[11px] font-mono tracking-wider transition-colors duration-150 flex items-center gap-1" href="/classic/" title="Return to classic editorial portfolio">
-    <span class="material-symbols-outlined text-[13px] sm:text-[14px]">history_edu</span>
-    <span>[ CLASSIC ]</span>
+
+  <a class="hidden sm:flex px-2.5 py-0.5 bg-surface-container-high border border-tertiary-fixed/40 text-tertiary-fixed hover:text-white hover:border-tertiary-fixed text-[10px] font-mono tracking-wider transition-colors duration-150 items-center gap-1" href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+    <span class="material-symbols-outlined text-[13px]">description</span>
+    <span>RESUME</span>
   </a>
-  <a class="hidden sm:flex px-2.5 py-1 bg-surface-container-high border border-outline-variant/60 text-tertiary-fixed hover:text-white hover:border-tertiary-fixed text-[11px] font-mono tracking-wider transition-colors duration-150 items-center gap-1.5" href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" rel="noopener noreferrer" title="View / Download Verified PDF Resume">
-    <span class="material-symbols-outlined text-[14px]">description</span>
-    <span>[ RESUME.PDF ]</span>
+
+  <a class="px-2.5 py-1 bg-primary-fixed text-on-primary-fixed font-kicker text-[10px] uppercase font-bold hover:bg-primary-fixed-dim transition-colors duration-150" href="#contact">
+    CONTACT
   </a>
-  <a class="hidden md:flex px-3 py-1.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker hover:bg-primary-fixed-dim transition-colors duration-150 active:translate-x-px active:translate-y-px" href="#contact">
-    [ EXECUTE_PROMPT ]
-  </a>
-  <div class="flex items-center gap-1.5 sm:gap-2 text-on-surface-variant pl-0.5">
+
+  <div class="flex items-center gap-1 text-on-surface-variant pl-0.5">
     <a href="https://github.com/naitik24-code" target="_blank" rel="noopener noreferrer" class="p-1 hover:text-primary-fixed transition-colors" title="GitHub Profile">
-      <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
     </a>
     <a href="https://www.linkedin.com/in/naitik24/" target="_blank" rel="noopener noreferrer" class="p-1 hover:text-tertiary-fixed transition-colors" title="LinkedIn Profile">
-      <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
     </a>
   </div>
 </div>
@@ -325,6 +632,12 @@
 <div class="w-full h-full bg-transparent" style="display:block;">
 <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
 <div id="threejs-container-ANIMATION_7" style="width:100%;height:100%"></div>
+
+<script>
+  window.singularityFactor = 1.0;
+  window.currentSpaceWeatherIdx = 0;
+</script>
+
 <script>
 (function() {
   const container = document.getElementById('threejs-container-ANIMATION_7');
@@ -503,7 +816,7 @@ projectData.forEach((item, idx) => {
   const beamLine = new THREE.Line(lineGeo, lineMat);
   masterGroup.add(beamLine);
 
-  nodes.push({ group: nodeGroup, mesh: nodeMesh, halo: haloMesh, data: item, currentAngle: item.angle, beamLine });
+  nodes.push({ group: nodeGroup, mesh: nodeMesh, halo: haloMesh, data: item, currentAngle: item.angle, beamLine, trailMesh });
 });
 
 // 4. Ambient Point Starfield / Data Particles
@@ -547,11 +860,36 @@ function onMouseMove(e) {
 }
 window.addEventListener('mousemove', onMouseMove);
 
-// Click interaction: dispatch custom event to window for HUD updates
+// Click interaction: 3D Camera Focus + Smooth Scroll directly to project card
+const nodeCardMap = {
+  0: 'card-optivest',
+  1: 'card-crm',
+  2: 'card-cropcare',
+  3: 'card-inventory',
+  4: 'card-slm-arena',
+  5: 'card-quantopt',
+  6: 'card-steellens'
+};
+
 function onPointerDown() {
   if (hoveredNode) {
-    const customEvent = new CustomEvent('threejs-node-selected', { detail: hoveredNode.userData });
-    window.dispatchEvent(customEvent);
+    const id = hoveredNode.userData.id;
+    const cardId = nodeCardMap[id];
+    playHapticSound('pulse');
+
+    // Camera recoil punch on node click
+    camera.position.z -= 2.5;
+    setTimeout(() => { camera.position.z += 2.5; }, 180);
+
+    // Smooth scroll down to the targeted project card
+    if (cardId) {
+      const targetCard = document.getElementById(cardId);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetCard.classList.add('shockwave-flash');
+        setTimeout(() => targetCard.classList.remove('shockwave-flash'), 1200);
+      }
+    }
   }
 }
 window.addEventListener('pointerdown', onPointerDown);
@@ -581,6 +919,13 @@ window.addEventListener('touchmove', (e) => {
     targetRotX = -mouseY * 0.55;
   }
 }, { passive: true });
+
+
+// Expose Three.js handles to global window object
+window._threeMasterGroup = masterGroup;
+window._threeCoreMesh = coreMesh;
+window._threeStarField = starField;
+window._threeNodes = nodes;
 
 // 6. Animation Loop
 const clock = new THREE.Clock();
@@ -612,16 +957,21 @@ function animate() {
   ring2.rotation.z -= 0.26 * delta;
   ring3.rotation.z += 0.18 * delta;
 
-  // Orbit project nodes
+  // Orbit project nodes (Freezes when Camera is locked so you can easily target & click any project!)
+  const orbitSpeed = window.isOrbitReset ? 0 : (window.isSpeedFast ? 2.0 : 1.0);
   nodes.forEach((n) => {
-    n.currentAngle += n.data.speed * delta;
-    const px = Math.cos(n.currentAngle) * n.data.r;
-    const pz = Math.sin(n.currentAngle) * n.data.r;
+    n.currentAngle += n.data.speed * delta * orbitSpeed;
+    const activeRadius = n.data.r * (typeof window.singularityFactor !== "undefined" ? window.singularityFactor : 1.0);
+    const px = Math.cos(n.currentAngle) * activeRadius;
+    const pz = Math.sin(n.currentAngle) * activeRadius;
+    // pz calculated above
     const py = Math.sin(time * 1.8 + n.data.r) * n.data.yAmp;
     
     n.group.position.set(px, py, pz);
-    n.group.rotation.x += 1.4 * delta;
-    n.group.rotation.y += 1.6 * delta;
+    if (!window.isOrbitReset) {
+      n.group.rotation.x += 1.4 * delta;
+      n.group.rotation.y += 1.6 * delta;
+    }
 
     // Update connector beam
     const positions = n.beamLine.geometry.attributes.position.array;
@@ -630,26 +980,48 @@ function animate() {
     n.beamLine.geometry.attributes.position.needsUpdate = true;
   });
 
-  // Raycasting for interactive hover
+  // Raycasting for interactive hover + Dynamic 2D Screen Space Tooltip
   raycaster.setFromCamera(mouse, camera);
   const intersects = raycaster.intersectObjects(raycastTargets);
+  const tooltip = document.getElementById('node-target-tooltip');
+  const tTitle = document.getElementById('tooltip-node-title');
+  const tDesc = document.getElementById('tooltip-node-desc');
+
   if (intersects.length > 0) {
     const hit = intersects[0].object;
     if (hoveredNode !== hit) {
       if (hoveredNode) hoveredNode.scale.set(1, 1, 1);
       hoveredNode = hit;
-      hoveredNode.scale.set(1.45, 1.45, 1.45);
+      hoveredNode.scale.set(1.5, 1.5, 1.5);
       container.style.cursor = 'pointer';
-      // Broadcast hover event to DOM
-      window.dispatchEvent(new CustomEvent('threejs-node-hover', { detail: hit.userData }));
+      playHapticSound('hover');
+    }
+
+    // Project 3D vector to screen space
+    if (tooltip && hit.parent) {
+      const pos = new THREE.Vector3();
+      hit.getWorldPosition(pos);
+      pos.project(camera);
+
+      const hw = container.clientWidth / 2;
+      const hh = container.clientHeight / 2;
+      const sx = pos.x * hw + hw;
+      const sy = -pos.y * hh + hh;
+
+      tooltip.style.left = sx + 'px';
+      tooltip.style.top = sy + 'px';
+      tooltip.classList.remove('hidden');
+
+      if (tTitle) tTitle.innerText = hit.userData.name;
+      if (tDesc) tDesc.innerText = hit.userData.metric;
     }
   } else {
     if (hoveredNode) {
       hoveredNode.scale.set(1, 1, 1);
       hoveredNode = null;
       container.style.cursor = 'default';
-      window.dispatchEvent(new CustomEvent('threejs-node-unhover'));
     }
+    if (tooltip) tooltip.classList.add('hidden');
   }
 
   starField.rotation.y += 0.025 * delta;
@@ -691,14 +1063,59 @@ animate();
 <div class="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-primary-fixed"></div>
 </div>
 </div>
+
+<!-- Dynamic 3D Node Target Floating Hover Tooltip -->
+
+  <!-- EXTENDED 3D UNIVERSE CONTROLS & SPACE WEATHER -->
+  <div class="absolute top-3 right-3 z-30 flex flex-wrap items-center gap-1.5 font-mono text-[9px]">
+    <!-- Space Weather Cycler -->
+    <button id="btn-space-weather" onclick="cycleSpaceWeather()" class="px-2 py-0.5 rounded bg-black/60 border border-outline-variant text-outline hover:text-primary-fixed hover:border-primary-fixed backdrop-blur-sm cursor-pointer transition-all">
+      🌌 WEATHER: DEEP VOID
+    </button>
+    <!-- Singularity Gravity Collapse -->
+    <button onclick="triggerSingularityCollapse()" class="px-2 py-0.5 rounded bg-black/60 border border-outline-variant text-outline hover:text-error hover:border-error backdrop-blur-sm cursor-pointer transition-all" title="Collapse orbits into gravitational singularity">
+      🌀 SINGULARITY
+    </button>
+    <!-- Stack Filter Pills -->
+    <div class="hidden sm:flex items-center gap-1 bg-black/70 p-0.5 rounded border border-outline-variant/60 backdrop-blur-sm">
+      <button onclick="filter3DConstellation('all')" class="constellation-filter-btn px-1.5 py-0.5 rounded bg-primary-fixed text-black font-bold">ALL</button>
+      <button onclick="filter3DConstellation('ai')" class="constellation-filter-btn px-1.5 py-0.5 rounded text-outline hover:text-white">AI/ML</button>
+      <button onclick="filter3DConstellation('systems')" class="constellation-filter-btn px-1.5 py-0.5 rounded text-outline hover:text-white">SYSTEMS</button>
+      <button onclick="filter3DConstellation('fintech')" class="constellation-filter-btn px-1.5 py-0.5 rounded text-outline hover:text-white">FINTECH</button>
+    </div>
+  </div>
+
+  <div id="node-target-tooltip" class="absolute pointer-events-none z-30 hidden transition-all duration-150 transform -translate-x-1/2 -translate-y-full mb-3">
+  <div class="px-2.5 py-1 bg-black/90 border border-primary-fixed text-primary-fixed font-mono text-[10px] tracking-wider rounded shadow-[0_0_15px_rgba(188,245,67,0.35)] flex items-center gap-1.5 backdrop-blur-md">
+    <span class="w-1.5 h-1.5 rounded-full bg-primary-fixed animate-ping"></span>
+    <span id="tooltip-node-title" class="font-bold">OPTIVEST</span>
+    <span class="text-white/40">|</span>
+    <span id="tooltip-node-desc" class="text-white/80">CAGR 40.06%</span>
+    <span class="text-primary-fixed font-bold">CLICK ↗</span>
+  </div>
+</div>
 </div>
 <!-- Viewport footer status -->
-<div class="flex justify-between items-center px-space-sm pt-2 text-telemetry-data font-telemetry-data text-[11px] text-outline">
-<span class="">ROTATION: QUATERNION INTERPOLATION</span>
-<span class="text-primary-fixed flex items-center gap-1.5">
-<span class="w-2 h-2 rounded-full bg-primary-fixed inline-block status-pulse"></span>
-              60 FPS NOMINAL // LATENCY: 14.2ms
-            </span>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center px-space-sm pt-2 text-telemetry-data font-telemetry-data text-[11px] text-outline gap-2 border-t border-outline-variant/30 mt-1">
+  <div class="flex items-center gap-3">
+    <span>ROTATION: QUATERNION INTERPOLATION</span>
+    <span class="text-white/30 hidden md:inline">|</span>
+    <!-- Live Waveform Oscilloscope Needle Canvas -->
+    <div class="flex items-center gap-1.5 bg-black/60 px-2 py-0.5 rounded border border-outline-variant/40">
+      <span class="text-[9px] text-primary-fixed font-bold">OSCILLOSCOPE:</span>
+      <canvas id="hud-scope-canvas" width="80" height="14" class="block"></canvas>
+    </div>
+  </div>
+  <div class="flex items-center gap-2">
+    <!-- EMP Glitch Reboot Trigger Button -->
+    <button onclick="triggerEmpShatter()" class="px-2 py-0.5 border border-error/50 bg-error/10 text-error hover:bg-error hover:text-white rounded text-[10px] font-mono transition-all uppercase flex items-center gap-1 cursor-pointer" title="Simulate EMP Discharge">
+      <span>⚡</span> [ EMP SHOCK ]
+    </button>
+    <span class="text-primary-fixed flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-primary-fixed inline-block status-pulse"></span>
+      60 FPS NOMINAL // LATENCY: 14.2ms
+    </span>
+  </div>
 </div>
 </div>
 </div>
@@ -716,7 +1133,10 @@ animate();
           [METRIC: PRODUCTION RESILIENCE] A rigorous engineering ethos forged through end-to-end data pipeline construction and algorithmic honesty.
         </p>
 </div>
-<!-- 3-Column Brutalist Cards Grid -->
+
+
+
+  <!-- 3-Column Brutalist Cards Grid -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
 <!-- Card 01 -->
 <div class="border border-outline-variant/50 bg-surface-container-low p-space-lg flex flex-col justify-between relative hud-bracket hover:border-primary-fixed transition-colors duration-200">
@@ -803,7 +1223,7 @@ animate();
 <!-- Bento Grid for 7 Projects -->
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter" id="projects-grid">
 <!-- PROJECT 01: OptiVest (Fintech / Research) - Large 8 Cols Card -->
-<div class="project-card md:col-span-8 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-primary-fixed transition-colors duration-200" data-category="fintech research applied-ai">
+<div id="card-optivest" class="project-card md:col-span-8 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-primary-fixed transition-colors duration-200" data-category="fintech research applied-ai">
 <div>
 <div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
 <span class="text-primary-fixed font-bold">#001 // FINTECH CORE</span>
@@ -841,11 +1261,21 @@ animate();
 </div>
 </div>
 <!-- Trailing Actions & Direct Links -->
-<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
-  <button class="px-3.5 py-1.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker uppercase font-bold hover:bg-primary-fixed-dim transition-colors flex items-center gap-1.5 active:translate-x-px active:translate-y-px" onclick="openModal('optivest')">
-    <span>[ INSPECT CASE STUDY ]</span>
-    <span class="material-symbols-outlined text-sm">visibility</span>
-  </button>
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-3">
+  <div class="flex items-center gap-3">
+    <button class="px-3.5 py-1.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker uppercase font-bold hover:bg-primary-fixed-dim transition-colors flex items-center gap-1.5 active:translate-x-px active:translate-y-px cursor-pointer" onclick="openModal('optivest')">
+      <span>[ INSPECT CASE STUDY ]</span>
+      <span class="material-symbols-outlined text-sm">visibility</span>
+    </button>
+    <div class="hidden sm:flex items-center gap-2 font-mono text-[10px] text-outline border-l border-outline-variant/40 pl-3">
+      <span class="w-1.5 h-1.5 rounded-full bg-primary-fixed animate-ping"></span>
+      <span class="text-white font-bold">106 ASSETS</span>
+      <span>&bull;</span>
+      <span class="text-primary-fixed font-bold">SHARPE 2.42</span>
+      <span>&bull;</span>
+      <span class="text-cyan font-bold">SLSQP OPTIMIZER</span>
+    </div>
+  </div>
   <div class="flex items-center gap-2">
     <a href="https://github.com/naitik24-code/OptiVest1" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 text-[11px] font-kicker uppercase border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed transition-colors flex items-center gap-1">
       <span>GITHUB</span> <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
@@ -857,7 +1287,7 @@ animate();
 </div>
 </div>
 <!-- PROJECT 02: Enterprise CRM (Product Systems) - 4 Cols -->
-<div class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-tertiary-fixed transition-colors duration-200" data-category="product-systems">
+<div id="card-crm" class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-tertiary-fixed transition-colors duration-200" data-category="product-systems">
 <div>
 <div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
 <span class="text-tertiary-fixed font-bold">#002 // SYSTEM</span>
@@ -869,6 +1299,35 @@ animate();
 <p class="font-body-md text-body-md text-on-surface-variant mt-2">
               Complete multi-tier enterprise platform covering 8 operational business domains under a strict 5NF relational schema with 4 role tiers.
             </p>
+
+<!-- Interactive 5NF Relational & RBAC Simulator -->
+<div class="mt-4 p-3 bg-surface-container-low border border-tertiary-fixed/30 rounded-lg space-y-2 text-[10px] font-mono">
+  <div class="flex items-center justify-between text-outline pb-1 border-b border-outline-variant/30">
+    <span class="text-tertiary-fixed font-bold">▶ RBAC ROLE-BASED ACCESS GATE (5NF)</span>
+    <span id="crm-active-role" class="text-white font-bold">ROLE: ADMIN</span>
+  </div>
+  <div class="flex items-center gap-1.5">
+    <button onclick="window.simulateCrmRole('admin')" class="crm-role-btn px-2 py-0.5 rounded bg-tertiary-fixed text-black font-bold">ADMIN</button>
+    <button onclick="window.simulateCrmRole('manager')" class="crm-role-btn px-2 py-0.5 rounded border border-outline-variant text-outline hover:text-white">MANAGER</button>
+    <button onclick="window.simulateCrmRole('analyst')" class="crm-role-btn px-2 py-0.5 rounded border border-outline-variant text-outline hover:text-white">ANALYST</button>
+    <button onclick="window.simulateCrmRole('auditor')" class="crm-role-btn px-2 py-0.5 rounded border border-outline-variant text-outline hover:text-white">AUDITOR</button>
+  </div>
+  <div class="p-2 rounded bg-black/50 border border-outline-variant/30 font-mono text-[9px] text-on-surface-variant space-y-1">
+    <div class="flex justify-between">
+      <span>JWT SCOPE:</span>
+      <span id="crm-jwt-scope" class="text-tertiary-fixed font-bold">urn:crm:all:write</span>
+    </div>
+    <div class="flex justify-between">
+      <span>TABLE ACCESS:</span>
+      <span id="crm-table-access" class="text-white font-bold">8 / 8 DOMAINS (UNRESTRICTED)</span>
+    </div>
+    <div class="flex justify-between">
+      <span>QUERY LATENCY:</span>
+      <span id="crm-query-ms" class="text-cyan font-bold">2.4 ms (INDEXED B-TREE)</span>
+    </div>
+  </div>
+</div>
+
 <!-- 5NF Relational Schema Table Badge Micro-visualization -->
 <div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data space-y-1.5">
 <div class="flex items-center justify-between text-[11px] pb-1 border-b border-outline-variant/30">
@@ -897,7 +1356,7 @@ animate();
 </div>
 </div>
 <!-- PROJECT 03: CropCare CV (Applied AI) - 4 Cols -->
-<div class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-primary-fixed transition-colors duration-200" data-category="applied-ai">
+<div id="card-cropcare" class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-primary-fixed transition-colors duration-200" data-category="applied-ai">
 <div>
 <div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
 <span class="text-primary-fixed font-bold">#003 // VISION</span>
@@ -909,18 +1368,23 @@ animate();
 <p class="font-body-md text-body-md text-on-surface-variant mt-2">
               Plant pathology diagnosis classifier identifying 17 disease varieties via HSV color segmentation and GLCM statistical texture matrices.
             </p>
-<!-- HSV Color Histogram Bar Micro-visual -->
+<!-- Interactive Mini Leaf Pathology Diagnostic Simulator -->
 <div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data">
-<div class="flex justify-between text-[11px] mb-1.5 text-outline">
-<span class="">HSV_SEGMENTATION</span>
-<span class="text-primary-fixed font-bold">17 CLASSES</span>
-</div>
-<div class="h-3 w-full flex rounded-none overflow-hidden border border-outline-variant/40">
-<div class="bg-[#bcf543] h-full" style="width: 42%" title="Hue Leaf Area"></div>
-<div class="bg-[#54d7ee] h-full" style="width: 28%" title="Saturation Matrix"></div>
-<div class="bg-[#cdbdff] h-full" style="width: 18%" title="Value Variance"></div>
-<div class="bg-[#ffb4ab] h-full" style="width: 12%" title="Pathology Necrosis"></div>
-</div>
+  <div class="flex justify-between text-[10px] mb-2 text-outline">
+    <span>LIVE INFERENCE SCANNER</span>
+    <span id="cropcare-scan-status" class="text-primary-fixed font-bold">READY</span>
+  </div>
+  <!-- Sample leaf selector pills -->
+  <div class="flex gap-1.5 mb-2">
+    <button onclick="simulateCropScan('healthy')" class="flex-1 py-1 px-1 text-[9px] font-mono border border-outline-variant/60 hover:border-primary-fixed text-on-surface hover:text-primary-fixed rounded transition-all bg-black/40">🌿 Healthy</button>
+    <button onclick="simulateCropScan('early_blight')" class="flex-1 py-1 px-1 text-[9px] font-mono border border-outline-variant/60 hover:border-tertiary-fixed text-on-surface hover:text-tertiary-fixed rounded transition-all bg-black/40">🍂 Early Blight</button>
+    <button onclick="simulateCropScan('late_blight')" class="flex-1 py-1 px-1 text-[9px] font-mono border border-outline-variant/60 hover:border-error text-on-surface hover:text-error rounded transition-all bg-black/40">🔴 Late Blight</button>
+  </div>
+  <!-- Scan Result readout -->
+  <div class="h-6 w-full flex items-center justify-between px-2 bg-black/60 border border-outline-variant/30 text-[10px] font-mono">
+    <span class="text-white/60">CONFIDENCE:</span>
+    <span id="cropcare-confidence-val" class="text-primary-fixed font-bold">HEALTHY // 99.2%</span>
+  </div>
 </div>
 </div>
 <div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
@@ -938,7 +1402,7 @@ animate();
 </div>
 </div>
 <!-- PROJECT 04: Retail Inventory Dashboard - 4 Cols -->
-<div class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-secondary-fixed transition-colors duration-200" data-category="product-systems applied-ai">
+<div id="card-inventory" class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-secondary-fixed transition-colors duration-200" data-category="product-systems applied-ai">
 <div>
 <div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
 <span class="text-secondary-fixed font-bold">#004 // LOGISTICS</span>
@@ -950,6 +1414,34 @@ animate();
 <p class="font-body-md text-body-md text-on-surface-variant mt-2">
               Dynamic supply forecasting combining ABC/XYZ demand clustering with spatial density DBSCAN for real-time stock-out anomaly detection.
             </p>
+
+<!-- Interactive DBSCAN Cluster & Anomaly Inspector -->
+<div class="mt-4 p-3 bg-surface-container-low border border-secondary-fixed/30 rounded-lg space-y-2 text-[10px] font-mono">
+  <div class="flex items-center justify-between text-outline pb-1 border-b border-outline-variant/30">
+    <span class="text-secondary-fixed font-bold">▶ DBSCAN CLUSTER &amp; STOCK-OUT ANOMALY</span>
+    <button onclick="window.rescanInventoryClusters()" class="px-2 py-0.5 rounded bg-secondary-fixed text-black font-bold hover:bg-white transition-all cursor-pointer">
+      RE-SCAN
+    </button>
+  </div>
+  <div class="grid grid-cols-3 gap-1.5 text-center text-[9px]">
+    <div class="p-1.5 rounded bg-black/50 border border-outline-variant/30">
+      <span class="text-outline block">CLUSTER ε</span>
+      <span id="inv-eps" class="text-white font-bold">0.45</span>
+    </div>
+    <div class="p-1.5 rounded bg-black/50 border border-outline-variant/30">
+      <span class="text-outline block">ANOMALIES</span>
+      <span id="inv-anomalies" class="text-error font-bold">3 SKEWS</span>
+    </div>
+    <div class="p-1.5 rounded bg-black/50 border border-outline-variant/30">
+      <span class="text-outline block">F1-ACCURACY</span>
+      <span id="inv-f1" class="text-secondary-fixed font-bold">97.6%</span>
+    </div>
+  </div>
+  <div id="inv-status-log" class="text-[9px] text-secondary-fixed font-bold">
+    ✓ Real-time supply density within ABC-X tolerance
+  </div>
+</div>
+
 <!-- DBSCAN Cluster Scatter Micro-visual -->
 <div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data flex items-center justify-between">
 <div class="text-[11px] text-outline">
@@ -982,7 +1474,7 @@ animate();
 </div>
 </div>
 <!-- PROJECT 05: SLM Arena (LLM Experiments) - 4 Cols -->
-<div class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-tertiary-fixed transition-colors duration-200" data-category="llm-experiments research">
+<div id="card-slm-arena" class="project-card md:col-span-4 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-tertiary-fixed transition-colors duration-200" data-category="llm-experiments research">
 <div>
 <div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
 <span class="text-tertiary-fixed font-bold">#005 // BENCHMARK</span>
@@ -994,22 +1486,19 @@ animate();
 <p class="font-body-md text-body-md text-on-surface-variant mt-2">
               Parallel execution testbed for local Small Language Models (Llama 3.2, Mistral, Phi-3) streaming TTFT latency against tokens/sec throughput.
             </p>
-<!-- Parallel Latency Gauges Micro-visual -->
-<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data space-y-1 text-[11px]">
-<div class="flex justify-between text-outline">
-<span class="">LLAMA 3.2 (3B):</span>
-<span class="text-tertiary-fixed">48 tok/s (18ms TTFT)</span>
-</div>
-<div class="w-full bg-surface-container-highest h-1.5">
-<div class="bg-tertiary-fixed h-full" style="width: 82%"></div>
-</div>
-<div class="flex justify-between text-outline pt-1">
-<span class="">PHI-3 MINI:</span>
-<span class="text-primary-fixed">64 tok/s (12ms TTFT)</span>
-</div>
-<div class="w-full bg-surface-container-highest h-1.5">
-<div class="bg-primary-fixed h-full" style="width: 95%"></div>
-</div>
+<!-- Interactive Parallel Streaming Simulator -->
+<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data space-y-1.5 text-[10px] font-mono">
+  <div class="flex justify-between items-center text-outline">
+    <span>STREAM PROMPT TESTER</span>
+    <button onclick="streamSlmTokens()" class="text-tertiary-fixed hover:underline text-[9px] border border-tertiary-fixed/40 px-1.5 py-0.5 rounded">[ RUN STREAM ]</button>
+  </div>
+  <div id="slm-stream-output" class="p-1.5 bg-black/70 border border-outline-variant/30 text-white/80 rounded h-10 overflow-hidden text-[9px] leading-tight">
+    &gt; Parallel chunk buffer ready. Click [ RUN STREAM ] to benchmark...
+  </div>
+  <div class="flex justify-between text-[9px] text-outline pt-0.5">
+    <span>LLAMA 3.2: <b class="text-tertiary-fixed">48 tok/s</b></span>
+    <span>PHI-3: <b class="text-primary-fixed">64 tok/s</b></span>
+  </div>
 </div>
 </div>
 <div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
@@ -1027,7 +1516,7 @@ animate();
 </div>
 </div>
 <!-- PROJECT 06: QuantOpt (Fintech / Research) - 6 Cols -->
-<div class="project-card md:col-span-6 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-primary-fixed transition-colors duration-200" data-category="fintech research">
+<div id="card-quantopt" class="project-card md:col-span-6 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-primary-fixed transition-colors duration-200" data-category="fintech research">
 <div>
 <div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
 <span class="text-primary-fixed font-bold">#006 // QUANTITATIVE</span>
@@ -1039,16 +1528,99 @@ animate();
 <p class="font-body-md text-body-md text-on-surface-variant mt-2">
               Simulation workbench evaluating 25,000 Monte Carlo paths for Indian equity derivatives, enforcing minimum-variance borders and transaction friction penalties.
             </p>
-<!-- Monte Carlo Convergence Distribution Curve -->
-<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data flex items-center justify-between">
-<div class="space-y-0.5 text-[11px]">
-<div class="text-outline">MC RUNS: 25,000 PATHS</div>
-<div class="text-primary-fixed font-bold">CONVERGENCE: &lt; 0.00085 ε</div>
+
+  
+<!-- Interactive Markowitz Efficient Frontier Visualizer -->
+<div class="mt-3 p-3 bg-surface-container-low border border-primary-fixed/30 rounded-lg space-y-2 text-[10px] font-mono">
+  <div class="flex items-center justify-between">
+    <span class="text-primary-fixed font-bold">▶ MARKOWITZ EFFICIENT FRONTIER HYPERBOLA</span>
+    <button onclick="window.drawFrontier()" class="px-2 py-0.5 rounded bg-primary-fixed text-black font-bold hover:bg-white transition-all cursor-pointer">
+      RE-SAMPLE SCATTER
+    </button>
+  </div>
+  <canvas id="frontier-canvas" width="450" height="90" class="w-full h-20 bg-black/60 rounded border border-outline-variant/40"></canvas>
+  <div class="flex justify-between items-center text-[9px] text-outline">
+    <span>RISK σ: 0.12 &bull; RETURN μ: 0.28</span>
+    <span>TANGENCY SHARPE: <b class="text-primary-fixed font-bold">2.42</b></span>
+    <span class="text-cyan">CAL (CAPITAL ALLOCATION LINE)</span>
+  </div>
 </div>
-<svg class="w-32 h-8 overflow-visible" fill="none">
-<path d="M 0 28 Q 16 26 32 18 Q 48 2 64 2 Q 80 2 96 18 Q 112 26 128 28" fill="rgba(188, 245, 67, 0.12)" stroke="#bcf543" stroke-width="1.5"></path>
-<line stroke="#8d937c" stroke-dasharray="2 2" stroke-width="1" x1="64" x2="64" y1="0" y2="30"></line>
-</svg>
+
+<!-- LIVE MONTE CARLO ASSET PRICE WORKBENCH -->
+  <div class="mt-3 p-3 bg-surface-container-low border border-primary-fixed/30 rounded-lg space-y-2 text-[10px] font-mono">
+    <div class="flex items-center justify-between">
+      <span class="text-primary-fixed font-bold">▶ MONTE CARLO STOCHASTIC ENGINE (25,000 PATHS)</span>
+      <button onclick="runMonteCarloSim()" class="px-2 py-0.5 rounded bg-primary-fixed text-black font-bold hover:bg-white transition-all cursor-pointer">
+        GENERATE SIMULATION
+      </button>
+    </div>
+    <canvas id="monte-carlo-canvas" width="450" height="90" class="w-full h-20 bg-black/60 rounded border border-outline-variant/40"></canvas>
+    <div class="flex items-center justify-between text-[9px] text-outline">
+      <span>DRIFT μ: 0.14 | VOL σ: 0.22</span>
+      <span>99% VaR: <b class="text-error font-bold" id="mc-var-val">-4.12%</b></span>
+      <span>STATUS: <b class="text-primary-fixed" id="mc-status">CONVERGED</b></span>
+    </div>
+  </div>
+
+
+<!-- Interactive Algorithm Peek Accordion -->
+<div class="mt-3 border border-outline-variant/40 rounded-lg overflow-hidden font-mono text-[10px]">
+  <button onclick="window.toggleCodePeek('code-optivest')" class="w-full px-3 py-1.5 bg-black/60 hover:bg-black text-outline hover:text-primary-fixed flex items-center justify-between transition-colors cursor-pointer">
+    <span class="flex items-center gap-1.5 font-bold"><span class="text-primary-fixed">&lt;/&gt;</span> PEEK CORE ALGORITHM // CHOLESKY_VAR.PY</span>
+    <span id="arrow-code-optivest" class="text-xs">▼</span>
+  </button>
+  <div id="code-optivest" class="hidden p-3 bg-[#050807] border-t border-outline-variant/30 space-y-2">
+    <pre class="text-[9px] text-white/90 leading-relaxed font-mono overflow-x-auto"><span class="text-primary-fixed">def</span> <span class="text-cyan">cholesky_portfolio_risk</span>(weights, cov_matrix, alpha=0.99):
+    <span class="text-outline"># Decompose covariance matrix Σ = L * L.T</span>
+    L = np.linalg.cholesky(cov_matrix)
+    portfolio_std = np.sqrt(weights.T @ (L @ L.T) @ weights)
+    z_score = scipy.stats.norm.ppf(alpha)
+    var_99 = z_score * portfolio_std
+    <span class="text-primary-fixed">return</span> float(var_99)</pre>
+    <div class="flex items-center justify-between text-[9px] text-outline pt-1 border-t border-outline-variant/20">
+      <span>EXECUTION COST: <b class="text-primary-fixed">O(N³/3) FLOPs</b></span>
+      <span class="text-cyan">CONVERGENCE: VERIFIED</span>
+    </div>
+  </div>
+</div>
+
+<!-- Interactive Tensor Covariance Heatmap Visualizer -->
+<div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data space-y-2 text-[10px] font-mono">
+  <div class="flex justify-between items-center text-outline">
+    <span>TENSOR COVARIANCE MATRIX (4x4)</span>
+    <!-- Regime selector -->
+    <div class="flex gap-1">
+      <button onclick="setRegime('normal')" id="btn-regime-norm" class="px-1.5 py-0.5 border border-primary-fixed text-primary-fixed bg-primary-fixed/10 rounded text-[9px]">CALM</button>
+      <button onclick="setRegime('shock')" id="btn-regime-shock" class="px-1.5 py-0.5 border border-outline-variant/60 text-outline hover:border-error hover:text-error rounded text-[9px]">CRASH</button>
+    </div>
+  </div>
+
+  <!-- 4x4 Correlation Matrix Grid -->
+  <div class="grid grid-cols-4 gap-1 text-center select-none" id="cov-matrix-grid">
+    <div class="p-1 rounded bg-[#bcf543]/20 border border-[#bcf543]/40 text-white font-bold" title="INFY / INFY">1.00</div>
+    <div class="p-1 rounded bg-[#54d7ee]/20 border border-[#54d7ee]/40 text-white" id="cov-01" title="INFY / TCS">0.68</div>
+    <div class="p-1 rounded bg-[#cdbdff]/20 border border-[#cdbdff]/40 text-white" id="cov-02" title="INFY / RELIANCE">0.34</div>
+    <div class="p-1 rounded bg-[#54d7ee]/20 border border-[#54d7ee]/40 text-white" id="cov-03" title="INFY / HDFCBANK">0.42</div>
+
+    <div class="p-1 rounded bg-[#54d7ee]/20 border border-[#54d7ee]/40 text-white" id="cov-10" title="TCS / INFY">0.68</div>
+    <div class="p-1 rounded bg-[#bcf543]/20 border border-[#bcf543]/40 text-white font-bold" title="TCS / TCS">1.00</div>
+    <div class="p-1 rounded bg-[#cdbdff]/20 border border-[#cdbdff]/40 text-white" id="cov-12" title="TCS / RELIANCE">0.29</div>
+    <div class="p-1 rounded bg-[#54d7ee]/20 border border-[#54d7ee]/40 text-white" id="cov-13" title="TCS / HDFCBANK">0.38</div>
+
+    <div class="p-1 rounded bg-[#cdbdff]/20 border border-[#cdbdff]/40 text-white" id="cov-20" title="RELIANCE / INFY">0.34</div>
+    <div class="p-1 rounded bg-[#cdbdff]/20 border border-[#cdbdff]/40 text-white" id="cov-21" title="RELIANCE / TCS">0.29</div>
+    <div class="p-1 rounded bg-[#bcf543]/20 border border-[#bcf543]/40 text-white font-bold" title="RELIANCE / RELIANCE">1.00</div>
+    <div class="p-1 rounded bg-[#54d7ee]/20 border border-[#54d7ee]/40 text-white" id="cov-23" title="RELIANCE / HDFCBANK">0.51</div>
+
+    <div class="p-1 rounded bg-[#54d7ee]/20 border border-[#54d7ee]/40 text-white" id="cov-30" title="HDFCBANK / INFY">0.42</div>
+    <div class="p-1 rounded bg-[#54d7ee]/20 border border-[#54d7ee]/40 text-white" id="cov-31" title="HDFCBANK / TCS">0.38</div>
+    <div class="p-1 rounded bg-[#54d7ee]/20 border border-[#54d7ee]/40 text-white" id="cov-32" title="HDFCBANK / RELIANCE">0.51</div>
+    <div class="p-1 rounded bg-[#bcf543]/20 border border-[#bcf543]/40 text-white font-bold" title="HDFCBANK / HDFCBANK">1.00</div>
+  </div>
+  <div class="flex justify-between text-[9px] text-outline pt-0.5">
+    <span>EIGENVALUE RATIO: <b class="text-primary-fixed" id="eigen-val">3.82 λ</b></span>
+    <span>STATUS: <b class="text-cyan">CONVEX FRONTIER</b></span>
+  </div>
 </div>
 </div>
 <div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2">
@@ -1063,7 +1635,7 @@ animate();
 </div>
 </div>
 <!-- PROJECT 07: SteelLens (Research / Financial Analytics) - 6 Cols -->
-<div class="project-card md:col-span-6 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-secondary-fixed transition-colors duration-200" data-category="research fintech">
+<div id="card-steellens" class="project-card md:col-span-6 border border-outline-variant bg-surface-container-lowest p-space-lg flex flex-col justify-between hud-bracket hover:border-secondary-fixed transition-colors duration-200" data-category="research fintech">
 <div>
 <div class="flex justify-between items-center text-telemetry-data font-telemetry-data text-outline mb-space-sm pb-2 border-b border-outline-variant/30">
 <span class="text-secondary-fixed font-bold">#007 // ECONOMETRIC</span>
@@ -1075,6 +1647,34 @@ animate();
 <p class="font-body-md text-body-md text-on-surface-variant mt-2">
               Econometric panel investigating Degree of Operating Leverage (DOL) stability across 128 firm-quarters in heavy infrastructure capital goods.
             </p>
+
+<!-- Interactive DOL Econometric Regression Panel -->
+<div class="mt-4 p-3 bg-surface-container-low border border-secondary-fixed/30 rounded-lg space-y-2 text-[10px] font-mono">
+  <div class="flex items-center justify-between text-outline pb-1 border-b border-outline-variant/30">
+    <span class="text-secondary-fixed font-bold">▶ DOL QUARTERLY PANEL REGRESSION</span>
+    <button onclick="window.stepEconometricHorizon()" class="px-2 py-0.5 rounded bg-secondary-fixed text-black font-bold hover:bg-white transition-all cursor-pointer">
+      STEP QUARTER
+    </button>
+  </div>
+  <div class="grid grid-cols-3 gap-1.5 text-center text-[9px]">
+    <div class="p-1.5 rounded bg-black/50 border border-outline-variant/30">
+      <span class="text-outline block">FIRM-QUARTERS</span>
+      <span id="steel-quarters" class="text-white font-bold">128 QTRS</span>
+    </div>
+    <div class="p-1.5 rounded bg-black/50 border border-outline-variant/30">
+      <span class="text-outline block">OLS R²</span>
+      <span id="steel-r2" class="text-secondary-fixed font-bold">0.841</span>
+    </div>
+    <div class="p-1.5 rounded bg-black/50 border border-outline-variant/30">
+      <span class="text-outline block">DOL COEFF</span>
+      <span id="steel-dol" class="text-cyan font-bold">2.14x</span>
+    </div>
+  </div>
+  <div id="steel-status" class="text-[9px] text-outline">
+    P-value &lt; 0.001 // Fixed effects panel estimator robust to heteroskedasticity
+  </div>
+</div>
+
 <!-- Regression R-Squared Micro-panel -->
 <div class="mt-4 p-2.5 bg-surface-container-low border border-outline-variant/40 text-telemetry-data font-telemetry-data flex items-center justify-between">
 <div class="space-y-0.5 text-[11px]">
@@ -1106,7 +1706,7 @@ animate();
 <div class="flex justify-between items-center border-b border-outline-variant/40 pb-2 sm:pb-space-sm mb-3 sm:mb-space-md sticky top-0 bg-surface-container/95 backdrop-blur-sm z-20">
 <div class="flex items-center gap-2 sm:gap-3">
 <span class="px-1.5 sm:px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker font-bold tracking-widest text-[9px] sm:text-xs">SPECIFICATION</span>
-<h3 class="font-headline-md text-base sm:text-headline-md text-on-surface font-bold uppercase tracking-tight truncate max-w-[200px] sm:max-w-none">
+<h3 id="modal-title" class="font-headline-md text-base sm:text-headline-md text-on-surface font-bold uppercase tracking-tight truncate max-w-[200px] sm:max-w-none">
           OPTIVEST // TECHNICAL ARCHITECTURE
         </h3>
 </div>
@@ -1120,7 +1720,7 @@ animate();
 <span class="text-outline font-kicker text-kicker uppercase flex items-center gap-1 mb-1">
 <span class="text-error">✕</span> 01 // PROBLEM STATEMENT
         </span>
-<p class="font-body-md text-body-md text-on-surface-variant">
+<p id="modal-problem" class="font-body-md text-body-md text-on-surface-variant">
           Classical Markowitz Mean-Variance optimization yields unstable inverse covariance matrices with extreme corner solutions. Portfolios collapse under macro regime shifts due to out-of-distribution momentum crashes.
         </p>
 </div>
@@ -1128,7 +1728,7 @@ animate();
 <span class="text-primary-fixed font-kicker text-kicker uppercase flex items-center gap-1 mb-1">
 <span class="">✓</span> 02 // THE APDE SOLUTION
         </span>
-<p class="font-body-md text-body-md text-on-surface-variant">
+<p id="modal-solution" class="font-body-md text-body-md text-on-surface-variant">
           Synthesizes TreeSHAP non-linear feature attribution scores with Sequential Least Squares Programming (SLSQP), establishing non-negative convex frontiers with bounded asset risk parity [0.02, 0.15].
         </p>
 </div>
@@ -1137,29 +1737,29 @@ animate();
 <div class="mb-space-lg">
 <div class="text-telemetry-data font-telemetry-data text-outline uppercase mb-2 flex items-center justify-between">
 <span class="">[MULTI-STAGE EXECUTION PIPELINE]</span>
-<span class="text-primary-fixed text-xs font-mono">LATENCY: &lt; 78ms REBALANCE</span>
+<span id="modal-latency" class="text-primary-fixed text-xs font-mono">LATENCY: &lt; 78ms REBALANCE</span>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-telemetry-data font-telemetry-data">
 <div class="p-3 bg-surface-container-low border border-outline-variant/40 relative">
-<div class="text-primary-fixed font-bold mb-1">01. MARKET FEED</div>
-<p class="text-on-surface-variant text-[11px]">Ingesting 106 equity asset histories, rolling volatility vectors, and macro tick datasets.</p>
+<div id="modal-stage-title-1" class="text-primary-fixed font-bold mb-1">01. MARKET FEED</div>
+<p id="modal-stage-desc-1" class="text-on-surface-variant text-[11px]">Ingesting 106 equity asset histories, rolling volatility vectors, and macro tick datasets.</p>
 </div>
 <div class="p-3 bg-surface-container-low border border-outline-variant/40 relative">
-<div class="text-tertiary-fixed font-bold mb-1">02. TREESHAP ATTRIB</div>
-<p class="text-on-surface-variant text-[11px]">Ensemble gradient boost feature attributions scoring marginal predictive signals.</p>
+<div id="modal-stage-title-2" class="text-tertiary-fixed font-bold mb-1">02. TREESHAP ATTRIB</div>
+<p id="modal-stage-desc-2" class="text-on-surface-variant text-[11px]">Ensemble gradient boost feature attributions scoring marginal predictive signals.</p>
 </div>
 <div class="p-3 bg-surface-container-low border border-outline-variant/40 relative">
-<div class="text-secondary-fixed font-bold mb-1">03. SLSQP OPTIMIZER</div>
-<p class="text-on-surface-variant text-[11px]">Nonlinear inequality constraint solver penalizing concentration and friction.</p>
+<div id="modal-stage-title-3" class="text-secondary-fixed font-bold mb-1">03. SLSQP OPTIMIZER</div>
+<p id="modal-stage-desc-3" class="text-on-surface-variant text-[11px]">Nonlinear inequality constraint solver penalizing concentration and friction.</p>
 </div>
 <div class="p-3 bg-surface-container-low border border-outline-variant/40 relative">
-<div class="text-primary-fixed font-bold mb-1">04. CONVEX ALLOC</div>
-<p class="text-on-surface-variant text-[11px]">Final bounded target portfolio vectors delivered with SHAP explanation cards.</p>
+<div id="modal-stage-title-4" class="text-primary-fixed font-bold mb-1">04. CONVEX ALLOC</div>
+<p id="modal-stage-desc-4" class="text-on-surface-variant text-[11px]">Final bounded target portfolio vectors delivered with SHAP explanation cards.</p>
 </div>
 </div>
 </div>
 <!-- Interactive Allocation Risk / Diversification Simulator Widget -->
-<div class="p-space-md border border-outline-variant/70 bg-surface-container-lowest mb-space-lg">
+<div id="modal-optivest-sim" class="p-space-md border border-outline-variant/70 bg-surface-container-lowest mb-space-lg">
 <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-3">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary-fixed text-[18px]">tune</span>
@@ -1229,6 +1829,41 @@ animate();
           [TOPOLOGY: 5 INTERLOCKED DISCIPLINES COUPLING ALGORITHMIC RIGOR TO PRODUCT UTILITY]
         </p>
 </div>
+<!-- Interactive Architecture Pipeline Flow Graph -->
+<div class="w-full mb-space-lg p-3 bg-surface-container-low border border-outline-variant/50 font-mono text-xs hud-bracket">
+  <div class="flex justify-between items-center pb-2 border-b border-outline-variant/30 text-[10px] text-outline mb-3">
+    <span class="text-primary-fixed font-bold">END-TO-END DATA &amp; NEURAL TOPOLOGY FLOW</span>
+    <span class="text-tertiary-fixed">[ CLICK NODES TO PULSE BEAM ]</span>
+  </div>
+  <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center" id="topology-flow-graph">
+    <button onclick="pulsePipelineNode(0)" class="p-2 rounded bg-surface-container border border-outline-variant/60 hover:border-primary-fixed text-left transition-all group">
+      <div class="text-[9px] text-outline">STAGE 01</div>
+      <div class="text-white font-bold group-hover:text-primary-fixed">MARKET FEEDS</div>
+      <div class="text-[9px] text-primary-fixed">106 Equities</div>
+    </button>
+    <button onclick="pulsePipelineNode(1)" class="p-2 rounded bg-surface-container border border-outline-variant/60 hover:border-tertiary-fixed text-left transition-all group">
+      <div class="text-[9px] text-outline">STAGE 02</div>
+      <div class="text-white font-bold group-hover:text-tertiary-fixed">TREESHAP CV</div>
+      <div class="text-[9px] text-tertiary-fixed">Gradient Boost</div>
+    </button>
+    <button onclick="pulsePipelineNode(2)" class="p-2 rounded bg-surface-container border border-outline-variant/60 hover:border-secondary-fixed text-left transition-all group">
+      <div class="text-[9px] text-outline">STAGE 03</div>
+      <div class="text-white font-bold group-hover:text-secondary-fixed">SLSQP SOLVER</div>
+      <div class="text-[9px] text-secondary-fixed">Nonlinear Parity</div>
+    </button>
+    <button onclick="pulsePipelineNode(3)" class="p-2 rounded bg-surface-container border border-outline-variant/60 hover:border-cyan text-left transition-all group">
+      <div class="text-[9px] text-outline">STAGE 04</div>
+      <div class="text-white font-bold group-hover:text-cyan">FASTAPI ORM</div>
+      <div class="text-[9px] text-cyan">Async Streaming</div>
+    </button>
+    <button onclick="pulsePipelineNode(4)" class="p-2 rounded bg-surface-container border border-outline-variant/60 hover:border-primary-fixed text-left transition-all group">
+      <div class="text-[9px] text-outline">STAGE 05</div>
+      <div class="text-white font-bold group-hover:text-primary-fixed">WEBGPU 3D</div>
+      <div class="text-[9px] text-primary-fixed">60 FPS Console</div>
+    </button>
+  </div>
+</div>
+
 <!-- Pentagon Constellation Console -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
 <!-- Interactive Vector Pentagon -->
@@ -1482,6 +2117,9 @@ animate();
 </div>
 </section>
 </main>
+
+
+
 <!-- ==================== FOOTER ==================== -->
 <footer class="bg-surface-container-lowest text-on-surface-variant font-telemetry-data text-telemetry-data uppercase docked full-width bottom border-t border-outline-variant/40 flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin py-space-lg gap-gutter relative z-20">
 <div class="flex items-center gap-3 text-outline">
@@ -1495,6 +2133,9 @@ animate();
 <a class="hover:text-tertiary-fixed hover:underline transition-colors duration-150 active:translate-y-px" href="#contact">TERMINAL://PGP</a>
 <a class="text-primary-fixed hover:text-tertiary-fixed hover:underline transition-colors duration-150 active:translate-y-px" href="#home">STATUS://OPERATIONAL</a>
 </div>
+
+
+
 </footer>
 <!-- Micro-interactions and state logic scripts -->
 <script>
@@ -1524,20 +2165,140 @@ animate();
     }
 
     // Modal controls for OptiVest & deep specs
-    function openModal(id) {
-      const modal = document.getElementById('case-study-modal');
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
+    const projectCaseStudies = {
+      'optivest': {
+        title: 'OPTIVEST // ASSET REBALANCING ARCHITECTURE',
+        latency: 'LATENCY: < 78ms REBALANCE',
+        problem: 'Classical Markowitz Mean-Variance optimization yields unstable inverse covariance matrices with extreme corner solutions. Portfolios collapse under macro regime shifts due to out-of-distribution momentum crashes.',
+        solution: 'Synthesizes TreeSHAP non-linear feature attribution scores with Sequential Least Squares Programming (SLSQP), establishing non-negative convex frontiers with bounded asset risk parity [0.02, 0.15].',
+        hasSim: true,
+        stages: [
+          { title: '01. MARKET FEED', desc: 'Catalogues 106 asset histories, rolling volatility vectors, and macro tick datasets.' },
+          { title: '02. TREESHAP ATTRIB', desc: 'Ensemble gradient boost feature attributions scoring marginal predictive signals.' },
+          { title: '03. SLSQP OPTIMIZER', desc: 'Nonlinear inequality constraint solver penalizing concentration and friction.' },
+          { title: '04. CONVEX ALLOC', desc: 'Final bounded target portfolio vectors delivered with SHAP explanation cards.' }
+        ]
+      },
+      'crm': {
+        title: 'ENTERPRISE CRM // 5NF RELATIONAL SUITE',
+        latency: 'QUERY LATENCY: 2.4ms (INDEXED)',
+        problem: 'Enterprise sales platforms suffer from data redundancy, cascading update anomalies, and insecure privilege escalation across multi-tier user workflows.',
+        solution: 'Engineered a strict 19-table 5NF normalized MySQL schema with 4 role-based access tiers (RBAC), separate linked records for contacts, and full audit logging.',
+        hasSim: false,
+        stages: [
+          { title: '01. 5NF SCHEMA', desc: '19 normalized relational tables isolating customers, leads, opportunities, and communications.' },
+          { title: '02. RBAC ENGINE', desc: 'JWT token claim verification enforcing 4 permission tiers (Admin, Manager, Analyst, Auditor).' },
+          { title: '03. SEQUELIZE ORM', desc: 'Node.js Express backend with connection pooling, transactional integrity, and sanitization.' },
+          { title: '04. REACT CLIENT', desc: 'Componentized dashboard with lead progression pipelines, report generators, and audit trails.' }
+        ]
+      },
+      'cropcare': {
+        title: 'CROPCARE // AGRICULTURAL COMPUTER VISION',
+        latency: 'INFERENCE: < 35ms / IMAGE',
+        problem: 'Remote agricultural field diagnostics require instant disease detection across crop varieties without relying on high-latency cloud backends.',
+        solution: 'Built an end-to-end computer vision prototype covering 17 botanical crop disease classes using preprocessing, feature extraction, and a FastAPI inference engine.',
+        hasSim: false,
+        stages: [
+          { title: '01. PREPROCESSING', desc: 'Image normalization, HSV color moment segmentation, and Haralick texture feature extraction.' },
+          { title: '02. MODEL BACKBONE', desc: 'Ensemble gradient boosting (LightGBM) trained on 17 botanical foliar pathology classes.' },
+          { title: '03. FASTAPI SERVER', desc: 'Asynchronous REST backend with sub-35ms turnaround per batch image request.' },
+          { title: '04. REACT INTERFACE', desc: 'Diagnostic dashboard with bounding boxes, disease classification, and treatment advisory.' }
+        ]
+      },
+      'inventory': {
+        title: 'RETAIL INVENTORY // ANOMALY FORECASTING',
+        latency: 'BATCH SCAN: < 120ms',
+        problem: 'Static replenishment thresholds miss seasonal demand fluctuations and spatial density skews, resulting in costly stockouts and overstock.',
+        solution: 'Coupled XGBoost-based ABC/XYZ velocity categorization with spatial DBSCAN density clustering to detect inventory anomalies and automate reorder signals.',
+        hasSim: false,
+        stages: [
+          { title: '01. DATA INGEST', desc: 'Automated CSV refresh pipeline ingesting SKU velocities, lead times, and store locations.' },
+          { title: '02. ABC/XYZ MATRIX', desc: 'XGBoost regression classifying items by revenue contribution and demand predictability.' },
+          { title: '03. DBSCAN CLUSTER', desc: 'Spatial density clustering isolating stockout anomalies and geographical inventory skews.' },
+          { title: '04. ACTION SIGNALS', desc: 'Automated reorder triggers, safety stock recommendations, and risk analytics.' }
+        ]
+      },
+      'slm-arena': {
+        title: 'SLM ARENA // EDGE LLM BENCHMARKING',
+        latency: 'STREAM SPEED: 48 TOK/S',
+        problem: 'Developers face uncertainty evaluating edge-optimized small language models due to conflicting latency claims, token speeds, and memory quantization trade-offs.',
+        solution: 'Built an interactive dashboard to benchmark up to 3 local language models per run (via Ollama), displaying streamed token responses and side-by-side runtime metrics.',
+        hasSim: false,
+        stages: [
+          { title: '01. OLLAMA ADAPTER', desc: 'Asynchronous streaming client interfacing with local quantized model weights (GGUF 4-bit).' },
+          { title: '02. STREAM PIPELINE', desc: 'Parallel token streaming with Server-Sent Events (SSE) measuring first-token latency.' },
+          { title: '03. METRIC HARNESS', desc: 'Real-time telemetry tracking tokens/second, memory footprint, and CPU utilization.' },
+          { title: '04. REACT ARENA', desc: 'Side-by-side prompt output diff viewer and trade-off comparison charts.' }
+        ]
+      },
+      'quantopt': {
+        title: 'QUANTOPT // 25,000 MONTE CARLO SIMULATOR',
+        latency: 'CONVERGENCE: < 210ms',
+        problem: 'Derivative pricing and portfolio risk estimation fail under market volatility spikes when linear Gaussian assumptions miss tail-risk kurtosis.',
+        solution: 'Constructed a high-performance simulation workbench evaluating 25,000 Cholesky-correlated Monte Carlo asset price paths under Value-at-Risk (VaR) constraints.',
+        hasSim: false,
+        stages: [
+          { title: '01. COVARIANCE Σ', desc: 'Cholesky matrix factorization generating correlated Brownian motion shocks.' },
+          { title: '02. MONTE CARLO', desc: 'Vectorized NumPy simulation running 25,000 stochastic price trajectories in parallel.' },
+          { title: '03. RISK BARRIER', desc: 'Enforcing 99% Value-at-Risk limits and minimum-variance convex borders.' },
+          { title: '04. REGIME SWITCH', desc: 'Dynamic shock calibration transitioning from Gaussian calm to Black Swan regimes.' }
+        ]
+      },
+      'steellens': {
+        title: 'STEEL LENS // ECONOMETRIC DOL PANEL',
+        latency: 'REGRESSION FIT: R² 0.841',
+        problem: 'Capital goods heavy infrastructure manufacturing firms experience operational instability during cyclical raw material price shocks.',
+        solution: 'Investigated Degree of Operating Leverage (DOL) stability across an econometric panel of 128 firm-quarters using fixed-effects OLS regression with robust standard errors.',
+        hasSim: false,
+        stages: [
+          { title: '01. PANEL DATASET', desc: '128 firm-quarters panel capturing fixed assets, operating leverage, and net revenues.' },
+          { title: '02. FIXED EFFECTS', desc: 'Firm and time fixed-effects models controlling for unobserved heterogeneity.' },
+          { title: '03. STATSMODELS', desc: 'Heteroskedasticity-consistent covariance estimation (Huber-White cluster robust).' },
+          { title: '04. DOL ELASTICITY', desc: 'Empirical DOL elasticity coefficient estimation informing capital structure planning.' }
+        ]
+      }
+    };
 
-    function closeModal() {
+    window.openModal = function(id) {
+      const data = projectCaseStudies[id] || projectCaseStudies['optivest'];
+      const titleEl = document.getElementById('modal-title');
+      const probEl = document.getElementById('modal-problem');
+      const solEl = document.getElementById('modal-solution');
+      const latEl = document.getElementById('modal-latency');
+      const simBox = document.getElementById('modal-optivest-sim');
+
+      if (titleEl) titleEl.innerText = data.title;
+      if (probEl) probEl.innerText = data.problem;
+      if (solEl) solEl.innerText = data.solution;
+      if (latEl) latEl.innerText = data.latency;
+      if (simBox) simBox.style.display = data.hasSim ? 'block' : 'none';
+
+      // Update 4 stage cards
+      if (data.stages) {
+        data.stages.forEach((st, idx) => {
+          const tEl = document.getElementById('modal-stage-title-' + (idx + 1));
+          const dEl = document.getElementById('modal-stage-desc-' + (idx + 1));
+          if (tEl) tEl.innerText = st.title;
+          if (dEl) dEl.innerText = st.desc;
+        });
+      }
+
+      const modal = document.getElementById('case-study-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      if (typeof playSound === 'function') playSound('boot');
+    };
+
+    window.closeModal = function() {
       const modal = document.getElementById('case-study-modal');
       modal.classList.add('hidden');
       document.body.style.overflow = '';
     }
 
     // Interactive Allocation Playground Slider logic with live asset percentages
-    function updateSim(val) {
+    window.updateSim = function(val) {
       document.getElementById('risk-val').innerText = `RISK TOLERANCE: ${val}%`;
       const ratio = val / 100;
       const cagr = (18.2 + ratio * 43.7).toFixed(2);
@@ -1603,7 +2364,7 @@ animate();
       }
     };
 
-    function selectLabNode(key) {
+    window.selectLabNode = function(key) {
       const data = labNodes[key];
       if (!data) return;
       document.getElementById('lab-node-tag').innerText = data.tag;
@@ -1644,17 +2405,39 @@ animate();
     let isWireframe = false;
     let isOrbitReset = false;
 
-    function toggleHudOrbit() {
+    window.toggleHudOrbit = function() {
       isOrbitReset = !isOrbitReset;
+      window.isOrbitReset = isOrbitReset;
       const btn = document.getElementById('btn-ctrl-orbit');
+      const dockBtn = document.getElementById('btn-dock-focus');
+      const dockText = document.getElementById('dock-focus-text');
+      const dockIcon = document.getElementById('dock-focus-icon');
+
       if (isOrbitReset) {
-        btn.classList.add('border-primary-fixed', 'text-primary-fixed', 'bg-primary-fixed/20');
-        btn.innerText = '[ CAMERA: LOCKED ]';
+        if (btn) {
+          btn.classList.add('border-primary-fixed', 'text-primary-fixed', 'bg-primary-fixed/20');
+          btn.innerText = '[ ORBIT: FROZEN / LOCKED ]';
+        }
+        if (dockBtn) {
+          dockBtn.classList.add('bg-primary-fixed', 'text-black');
+          dockBtn.classList.remove('text-primary-fixed');
+        }
+        if (dockText) dockText.innerText = 'FOCUS: LOCKED';
+        if (dockIcon) dockIcon.innerText = '🔒';
       } else {
-        btn.classList.remove('bg-primary-fixed/20');
-        btn.innerText = '[ CAMERA: ORBIT / RESET ]';
+        if (btn) {
+          btn.classList.remove('bg-primary-fixed/20');
+          btn.innerText = '[ CAMERA: ORBIT / RESET ]';
+        }
+        if (dockBtn) {
+          dockBtn.classList.remove('bg-primary-fixed', 'text-black');
+          dockBtn.classList.add('text-primary-fixed');
+        }
+        if (dockText) dockText.innerText = 'ORBIT: ACTIVE';
+        if (dockIcon) dockIcon.innerText = '🎯';
       }
-    }
+      if (typeof playHapticSound === 'function') playHapticSound('click');
+    };
 
     function toggleHudSpeed() {
       isSpeedFast = !isSpeedFast;
@@ -1726,4 +2509,1875 @@ animate();
       sections.forEach(section => observer.observe(section));
     });
   </script>
+
+  <!-- Clean Digital Matrix Stream Engine -->
+  <script>
+    let matrixRunning = false;
+    let matrixAnimationId = null;
+
+    function toggleMatrix() {
+      const canvas = document.getElementById('matrix-canvas');
+      const btn = document.getElementById('matrix-toggle-btn');
+      const text = document.getElementById('matrix-btn-text');
+      if (!canvas) return;
+
+      matrixRunning = !matrixRunning;
+
+      if (!matrixRunning) {
+        canvas.style.display = 'none';
+        if (btn) btn.classList.remove('matrix-active-glow');
+        if (text) text.innerText = 'MATRIX'; const dot = document.getElementById('matrix-dot'); if (dot) { dot.className = 'w-1.5 h-1.5 rounded-full bg-outline inline-block'; }
+        if (matrixAnimationId) cancelAnimationFrame(matrixAnimationId);
+        return;
+      }
+
+      canvas.style.display = 'block';
+      if (btn) btn.classList.add('matrix-active-glow');
+      if (text) text.innerText = 'MATRIX ON'; const dot = document.getElementById('matrix-dot'); if (dot) { dot.className = 'w-1.5 h-1.5 rounded-full bg-primary-fixed inline-block status-pulse'; }
+
+      const ctx = canvas.getContext('2d');
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        ctx.scale(dpr, dpr);
+      }
+      resizeCanvas();
+
+      const chars = '01NAITIKPATHAK1010101OPTIVEST0101SLSQP1101SHAPCV1010';
+      const fontSize = 14;
+      const columns = Math.floor(window.innerWidth / fontSize);
+      const drops = Array.from({ length: columns }, () => Math.floor(Math.random() * -40));
+
+      function renderMatrix() {
+        ctx.fillStyle = 'rgba(18, 20, 19, 0.08)';
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+        ctx.fillStyle = '#bcf543';
+        ctx.font = fontSize + 'px "JetBrains Mono", monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+          const char = chars.charAt(Math.floor(Math.random() * chars.length));
+          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+          if (drops[i] * fontSize > window.innerHeight && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+        matrixAnimationId = requestAnimationFrame(renderMatrix);
+      }
+      renderMatrix();
+    }
+  </script>
+
+
+<!-- ==================== CYBER INTERACTIVE COMMAND TERMINAL (CTRL+K) ==================== -->
+<div id="cyber-terminal-modal" class="fixed inset-0 z-50 hidden bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6">
+  <div class="w-full max-w-3xl bg-surface-container-lowest border-2 border-primary-fixed p-4 sm:p-5 shadow-[0_0_50px_rgba(188,245,67,0.25)] relative hud-bracket font-mono">
+    <!-- Terminal Header -->
+    <div class="flex justify-between items-center pb-2.5 border-b border-outline-variant/50 text-xs text-telemetry-data">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 bg-error rounded-none inline-block"></span>
+        <span class="w-2.5 h-2.5 bg-outline rounded-none inline-block"></span>
+        <span class="w-2.5 h-2.5 bg-primary-fixed rounded-none inline-block"></span>
+        <span class="text-primary-fixed font-bold ml-1.5">NAITIK_NEURAL_SHELL v4.2 // AGENTIC CLI</span>
+      </div>
+      
+
+  <button onclick="toggleCyberTerminal()" class="text-on-surface hover:text-primary-fixed px-2 py-0.5 border border-outline-variant hover:border-primary-fixed text-[10px] font-bold">[ ESC / CLOSE ]</button>
+    </div>
+    
+    <!-- Output Screen -->
+    <div id="terminal-screen" class="my-3 h-64 overflow-y-auto space-y-1.5 text-xs text-on-surface-variant font-mono pr-2 bg-black/60 p-3 border border-outline-variant/30 rounded">
+      <div class="text-primary-fixed">▶ CONNECTED TO HOST: NAITIK PATHAK SYSTEM RUNTIME</div>
+      <div class="text-outline">Type <span class="text-primary-fixed font-bold">'help'</span> for instructions, <span class="text-tertiary-fixed font-bold">'projects'</span> to list repos, <span class="text-secondary-fixed font-bold">'matrix'</span> to toggle cyber rain, or <span class="text-primary-fixed font-bold">'contact'</span>.</div>
+      <div class="text-outline/40">----------------------------------------------------------------------------------</div>
+    </div>
+    
+    <!-- Input prompt -->
+    <div class="flex items-center gap-2 border border-primary-fixed/60 bg-surface-container-low px-3 py-1.5">
+      <span class="text-primary-fixed font-bold">&gt;_</span>
+      <input id="terminal-cli-input" type="text" class="w-full bg-transparent text-primary-fixed outline-none text-xs sm:text-sm font-mono placeholder-primary-fixed/40" placeholder="Type command here... (help, projects, matrix, clear)" autocomplete="off" spellcheck="false" />
+      <button onclick="executeTerminalCommand()" class="px-2.5 py-1 bg-primary-fixed text-on-primary-fixed text-[10px] font-bold uppercase hover:bg-primary-fixed-dim">[ ENTER ]</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleCyberTerminal() {
+    const modal = document.getElementById('cyber-terminal-modal');
+    const input = document.getElementById('terminal-cli-input');
+    if (!modal) return;
+    
+    const isHidden = modal.classList.contains('hidden');
+    if (isHidden) {
+      modal.classList.remove('hidden');
+      if (input) setTimeout(() => input.focus(), 60);
+    } else {
+      modal.classList.add('hidden');
+    }
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey && e.key.toLowerCase() === 'k') || e.key === '`') {
+      e.preventDefault();
+      toggleCyberTerminal();
+    } else if (e.key === 'Escape') {
+      const terminal = document.getElementById('cyber-terminal-modal');
+      if (terminal && !terminal.classList.contains('hidden')) {
+        terminal.classList.add('hidden');
+      }
+    }
+  });
+
+  function executeTerminalCommand() {
+    const input = document.getElementById('terminal-cli-input');
+    const screen = document.getElementById('terminal-screen');
+    if (!input || !screen) return;
+
+    const raw = input.value.trim();
+    input.value = '';
+    if (!raw) return;
+
+    const cmd = raw.toLowerCase();
+
+    const echo = document.createElement('div');
+    echo.className = 'text-white font-bold';
+    echo.innerText = `> ${raw}`;
+    screen.appendChild(echo);
+
+    const res = document.createElement('div');
+    res.className = 'pl-2 text-on-surface-variant';
+
+    if (cmd === 'help') {
+      res.innerHTML = `
+        COMMANDS:<br/>
+        &nbsp;&nbsp;<span class="text-primary-fixed font-bold">projects</span>&nbsp;&nbsp;&nbsp;&nbsp;: Lists 7 production software repositories<br/>
+        &nbsp;&nbsp;<span class="text-tertiary-fixed font-bold">inspect [id]</span>: Inspects deep architecture (e.g. 'inspect optivest', 'inspect crm')<br/>
+        &nbsp;&nbsp;<span class="text-secondary-fixed font-bold">matrix</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Toggles fullscreen digital neural code rain<br/>
+        &nbsp;&nbsp;<span class="text-primary-fixed font-bold">skills</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Technical architecture competencies<br/>
+        &nbsp;&nbsp;<span class="text-primary-fixed font-bold">contact</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Display email and verified links<br/>
+        &nbsp;&nbsp;<span class="text-outline font-bold">clear</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Clears the terminal screen
+      `;
+    } else if (cmd === 'projects') {
+      res.innerHTML = `
+        VERIFIED REPOSITORIES:<br/>
+        &nbsp;&nbsp;01. <a class="text-primary-fixed underline cursor-pointer" onclick="openModal('optivest')">optivest</a>&nbsp;&nbsp;&nbsp;&nbsp;: AI Investment Rebalancing Assistant (APDE CAGR 40.06%)<br/>
+        &nbsp;&nbsp;02. <a class="text-tertiary-fixed underline cursor-pointer" onclick="openModal('crm')">crm</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 5NF Enterprise Customer Platform (PostgreSQL)<br/>
+        &nbsp;&nbsp;03. <a class="text-secondary-fixed underline cursor-pointer" onclick="openModal('cropcare')">cropcare</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: MobileNetV2 17-Class Agricultural Computer Vision<br/>
+        &nbsp;&nbsp;04. <a class="text-primary-fixed underline cursor-pointer" onclick="openModal('inventory')">inventory</a>&nbsp;&nbsp;&nbsp;&nbsp;: DBSCAN Retail Anomaly &amp; Replenishment Engine<br/>
+        &nbsp;&nbsp;05. <a class="text-tertiary-fixed underline cursor-pointer" onclick="openModal('slm-arena')">slm-arena</a>&nbsp;&nbsp;&nbsp;&nbsp;: Parallel Small Language Model Streaming Benchmark<br/>
+        &nbsp;&nbsp;06. <a class="text-secondary-fixed underline cursor-pointer" onclick="openModal('quantopt')">quantopt</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 25,000 Monte Carlo Paths Holdout Optimization<br/>
+        &nbsp;&nbsp;07. <a class="text-primary-fixed underline cursor-pointer" onclick="openModal('steellens')">steellens</a>&nbsp;&nbsp;&nbsp;&nbsp;: Econometric Degree of Operating Leverage Panel
+      `;
+    } else if (cmd.startsWith('inspect ')) {
+      const id = cmd.replace('inspect ', '').trim();
+      res.innerHTML = `<span class="text-primary-fixed">Opening inspector for ${id.toUpperCase()}...</span>`;
+      setTimeout(() => openModal(id), 200);
+    } else if (cmd === 'matrix') {
+      toggleMatrix();
+      res.innerHTML = matrixRunning 
+        ? `<span class="text-primary-fixed">MATRIX STREAM: ACTIVATED</span>` 
+        : `<span class="text-outline">MATRIX STREAM: OFF</span>`;
+    } else if (cmd === 'skills') {
+      res.innerHTML = `Python, PyTorch, TypeScript, React, Next.js, FastAPI, Node.js, PostgreSQL, Docker, SciPy, LightGBM, ONNX, WebGPU, Three.js`;
+    } else if (cmd === 'contact') {
+      res.innerHTML = `EMAIL: naitikpathak2005@gmail.com | GITHUB: github.com/naitik24-code | LINKEDIN: linkedin.com/in/naitik24`;
+    } else if (cmd === 'clear') {
+      screen.innerHTML = '';
+      return;
+    } else {
+      res.innerHTML = `<span class="text-error">Command not recognized: '${raw}'. Type 'help' for commands.</span>`;
+    }
+
+    screen.appendChild(res);
+    screen.scrollTop = screen.scrollHeight;
+  }
+
+  const cliInput = document.getElementById('terminal-cli-input');
+  if (cliInput) {
+    cliInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') executeTerminalCommand();
+    });
+  }
+</script>
+
+
+<!-- ==================== CINEMATIC AUDIO & BOOT ENGINE ==================== -->
+<script>
+  let sfxEnabled = true;
+  let audioCtx = null;
+
+  function ensureAudioUnlocked() {
+    if (!audioCtx) {
+      const AudioClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioClass) audioCtx = new AudioClass();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  // Globally unlock Web Audio on first user interaction anywhere
+  const unlockEvents = ['pointerdown', 'keydown', 'click', 'touchstart'];
+  const unlockHandler = () => {
+    ensureAudioUnlocked();
+    unlockEvents.forEach(evt => window.removeEventListener(evt, unlockHandler, { capture: true }));
+  };
+  unlockEvents.forEach(evt => window.addEventListener(evt, unlockHandler, { capture: true, passive: true }));
+
+  function toggleAudioFx() {
+    sfxEnabled = !sfxEnabled;
+    const icon = document.getElementById('sfx-icon');
+    const text = document.getElementById('sfx-text');
+    const btn = document.getElementById('hud-sfx-btn');
+    if (sfxEnabled) {
+      ensureAudioUnlocked();
+      if (icon) icon.innerText = '🔊';
+      if (text) text.innerText = 'SFX: ON';
+      if (btn) btn.classList.add('border-primary-fixed', 'text-primary-fixed');
+      playHapticSound('boot');
+    } else {
+      if (icon) icon.innerText = '🔇';
+      if (text) text.innerText = 'SFX: OFF';
+      if (btn) btn.classList.remove('border-primary-fixed', 'text-primary-fixed');
+    }
+  }
+
+  function playHapticSound(type = 'click') {
+    if (!sfxEnabled) return;
+    const ctx = ensureAudioUnlocked();
+    if (!ctx) return;
+
+    try {
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      if (type === 'hover') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, now);
+        osc.frequency.exponentialRampToValueAtTime(1400, now + 0.04);
+        gain.gain.setValueAtTime(0.04, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+        osc.start(now);
+        osc.stop(now + 0.04);
+      } else if (type === 'click') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(560, now);
+        osc.frequency.exponentialRampToValueAtTime(200, now + 0.07);
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+        osc.start(now);
+        osc.stop(now + 0.07);
+      } else if (type === 'boot') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.3);
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        osc.start(now);
+        osc.stop(now + 0.3);
+      } else if (type === 'pulse') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.exponentialRampToValueAtTime(45, now + 0.22);
+        gain.gain.setValueAtTime(0.14, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+        osc.start(now);
+        osc.stop(now + 0.22);
+      }
+    } catch (e) {
+      console.warn('Audio playback caught:', e);
+    }
+  }
+
+  // Voice Briefing: Only speaks ONCE on very first entry, never repeating on refresh!
+  function triggerVoiceBriefing() {
+    const hasSpokenVoice = sessionStorage.getItem('np_voice_welcomed');
+    if (hasSpokenVoice === 'true') return; // Do not repeat voiceover on refresh!
+    if (!('speechSynthesis' in window)) return;
+
+    sessionStorage.setItem('np_voice_welcomed', 'true');
+    window.speechSynthesis.cancel();
+    const speakText = "System online. Neural quantum gateway verified. Welcome, user.";
+    const utterance = new SpeechSynthesisUtterance(speakText);
+    utterance.rate = 1.0;
+    utterance.pitch = 0.95;
+    utterance.volume = 1.0;
+
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length > 0) {
+      const engVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Zira') || v.name.includes('David') || v.name.includes('Samantha')));
+      if (engVoice) utterance.voice = engVoice;
+    }
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  // Pre-load speech voices
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      window.speechSynthesis.getVoices();
+    };
+  }
+
+  // Smart Cinematic Boot Sequencer:
+  // Runs ONCE on first arrival (or when entering fresh from the Gateway dimension warp).
+  // On subsequent F5 refreshes or internal navigation, it skips instantly so it NEVER annoys the user!
+  function startBootSequence() {
+    const boot = document.getElementById('hud-boot-screen');
+    const bar = document.getElementById('boot-progress-bar');
+    const l1 = document.getElementById('boot-log-1');
+    const l2 = document.getElementById('boot-log-2');
+    const l3 = document.getElementById('boot-log-3');
+    if (!boot) return;
+
+    // Fast, crisp cinematic boot screen runs on each entry/refresh,
+    // but the voiceover is gated to only speak on first view.
+    sessionStorage.removeItem('play_hud_intro');
+
+    // Run cinematic boot progression
+    setTimeout(() => {
+      if (bar) bar.style.width = '48%';
+      if (l2) {
+        l2.className = 'text-primary-fixed font-bold';
+        l2.innerText = '> WebGPU 3D Constellation: INITIALIZED [60 FPS]';
+      }
+      playHapticSound('hover');
+    }, 350);
+
+    setTimeout(() => {
+      if (bar) bar.style.width = '88%';
+      if (l3) {
+        l3.className = 'text-tertiary-fixed font-bold';
+        l3.innerText = '> 7 Architecture Pipelines: SYNAPSE LOCKED';
+      }
+      playHapticSound('hover');
+    }, 700);
+
+    setTimeout(() => {
+      if (bar) bar.style.width = '100%';
+      playHapticSound('boot');
+      triggerVoiceBriefing();
+    }, 1100);
+
+    setTimeout(() => {
+      if (boot && !boot.classList.contains('boot-finished')) {
+        skipBoot();
+      }
+    }, 1500);
+  }
+
+  function skipBoot() {
+    const boot = document.getElementById('hud-boot-screen');
+    if (boot) {
+      boot.classList.add('boot-finished');
+    }
+    sessionStorage.setItem('has_visited_hud', 'true');
+    sessionStorage.removeItem('play_hud_intro');
+    ensureAudioUnlocked();
+    playHapticSound('boot');
+    triggerVoiceBriefing();
+  }
+
+  // Event delegation so EVERY current and future interactive element plays sound
+  document.addEventListener('mouseover', (e) => {
+    const target = e.target.closest('a, button, input, [role="button"], .project-card, .filter-btn, svg g.cursor-pointer');
+    if (target) {
+      playHapticSound('hover');
+    }
+  }, { passive: true });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('a, button, input, [role="button"], .project-card, .filter-btn, svg g.cursor-pointer');
+    if (target) {
+      playHapticSound('click');
+    }
+  }, { passive: true });
+
+  // 3D Viewport core shockwave reactor on click
+  document.addEventListener('DOMContentLoaded', () => {
+    startBootSequence();
+
+    const viewportBox = document.getElementById('viewport-3d-box');
+    if (viewportBox) {
+      viewportBox.addEventListener('click', () => {
+        playHapticSound('pulse');
+        viewportBox.classList.add('shockwave-flash');
+        if (window._threeMasterGroup) {
+          window._threeMasterGroup.rotation.y += 0.45;
+        }
+        setTimeout(() => viewportBox.classList.remove('shockwave-flash'), 250);
+      });
+    }
+  });
+
+  // Phosphor Theme Cycler (Lime -> Cyan -> Violet)
+  const themes = ['theme-lime', 'theme-cyan', 'theme-violet'];
+  let curThemeIdx = 0;
+  function cycleTheme() {
+    document.body.classList.remove(themes[curThemeIdx]);
+    curThemeIdx = (curThemeIdx + 1) % themes.length;
+    document.body.classList.add(themes[curThemeIdx]);
+
+    const themeColor = curThemeIdx === 0 ? '#bcf543' : curThemeIdx === 1 ? '#54d7ee' : '#cdbdff';
+    const dot = document.getElementById('theme-dot');
+    if (dot) dot.style.backgroundColor = themeColor;
+    playHapticSound('click');
+  }
+</script>
+<!-- ==================== FLOATING CYBER HUD TOOLBAR DOCK ==================== -->
+
+<!-- ==================== HOLOGRAPHIC DOSSIER RESUME VIEWER ==================== -->
+<div id="dossier-modal" class="fixed inset-0 z-50 items-center justify-center bg-black/85 backdrop-blur-xl p-4 font-mono hidden" style="display: none;">
+  <div class="w-full max-w-4xl max-h-[90vh] bg-[#0c100f] border border-primary-fixed/50 rounded-2xl shadow-[0_0_50px_rgba(188,245,67,0.25)] flex flex-col overflow-hidden relative">
+    <!-- Header Bar -->
+    <div class="px-6 py-4 bg-surface-container border-b border-outline-variant/60 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-primary-fixed animate-ping"></span>
+        <span class="text-xs font-bold uppercase tracking-wider text-primary-fixed">CLASSIFIED DOSSIER // NAITIK PATHAK</span>
+        <span class="text-[10px] px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant text-outline">SEC-LEVEL: OMNI</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="/Naitik_Pathak_Resume.pdf" download="Naitik_Pathak_Resume.pdf" target="_blank" class="px-3 py-1 rounded bg-primary-fixed text-black text-[11px] font-bold hover:bg-white transition-all cursor-pointer flex items-center gap-1.5 shadow-[0_0_15px_rgba(188,245,67,0.4)]">
+          <span class="material-symbols-outlined text-[13px]">download</span>
+          <span>DOWNLOAD PDF</span>
+        </a>
+        <button onclick="closeDossier()" class="text-outline hover:text-white transition-colors cursor-pointer text-lg font-bold">✕</button>
+      </div>
+    </div>
+
+    <!-- Body Scrollable Content -->
+    <div class="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs text-on-surface-variant leading-relaxed">
+      <!-- Profile Header Snapshot -->
+      <div class="p-4 rounded-xl bg-surface-container border border-outline-variant/40 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-wide">NAITIK PATHAK</h2>
+          <p class="text-primary-fixed text-[11px] font-semibold mt-0.5">MACHINE LEARNING RESEARCHER & DISTRIBUTED SYSTEMS ARCHITECT</p>
+          <p class="text-outline text-[10px] mt-1">Specializing in Quantitative Financial Modeling, SLM Fine-Tuning, Low-Latency C++ Ingestion & Real-Time Computer Vision.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-[10px] w-full md:w-auto">
+          <div class="p-2 rounded bg-surface-container-high border border-outline-variant/30">
+            <span class="text-outline block">LOCATION</span>
+            <span class="text-white font-bold">MOHALI, PUNJAB</span>
+          </div>
+          <div class="p-2 rounded bg-surface-container-high border border-outline-variant/30">
+            <span class="text-outline block">ACADEMICS</span>
+            <span class="text-primary-fixed font-bold">B.E. CSBS</span>
+          </div>
+          <div class="p-2 rounded bg-surface-container-high border border-outline-variant/30">
+            <span class="text-outline block">REPOSITORIES</span>
+            <span class="text-cyan font-bold">7 VERIFIED PROTOCOLS</span>
+          </div>
+          <div class="p-2 rounded bg-surface-container-high border border-outline-variant/30">
+            <span class="text-outline block">STATUS</span>
+            <span class="text-primary-fixed font-bold">AVAILABLE FOR HIRE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience & Timeline Dossier -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Education & Credentials -->
+        <div class="space-y-3">
+          <h3 class="text-white font-bold text-xs flex items-center gap-2 border-b border-outline-variant/40 pb-2">
+            <span class="text-primary-fixed">▶</span> EDUCATION & CORE TRACK
+          </h3>
+          <div class="p-3 rounded-lg bg-surface-container border border-outline-variant/30 space-y-1">
+            <div class="flex justify-between items-center text-[11px] font-bold text-white">
+              <span>B.E. in Computer Science and Business Systems</span>
+              <span class="text-primary-fixed">2023 – Present</span>
+            </div>
+            <p class="text-outline text-[10px]">Chandigarh University // CGPA: 8.06 / 10</p>
+            <p class="text-[10px] text-on-surface-variant">Core Focus: Data-Driven Systems, Machine Learning Workflows, Full-Stack Architecture, Database Management &amp; Analytics.</p>
+          </div>
+          <div class="p-3 rounded-lg bg-surface-container border border-outline-variant/30 space-y-1">
+            <div class="flex justify-between items-center text-[11px] font-bold text-white">
+              <span>Certifications &amp; Achievements</span>
+              <span class="text-cyan">2024</span>
+            </div>
+            <p class="text-[10px] text-on-surface-variant">Microsoft Certified: Azure AI Fundamentals (AI-900) &bull; AWS Fundamentals (Forage) &bull; CUCET 40% Merit Scholarship</p>
+          </div>
+        </div>
+
+        <!-- Technical Competencies Matrix -->
+        <div class="space-y-3">
+          <h3 class="text-white font-bold text-xs flex items-center gap-2 border-b border-outline-variant/40 pb-2">
+            <span class="text-cyan">▶</span> COGNITIVE SKILL VECTOR
+          </h3>
+          <div class="space-y-2.5">
+            <div>
+              <div class="flex justify-between text-[10px] mb-1">
+                <span class="text-white font-bold">PyTorch / Deep Learning / Transformers</span>
+                <span class="text-primary-fixed font-bold">96%</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-surface-container border border-outline-variant/30 overflow-hidden">
+                <div class="h-full bg-primary-fixed w-[96%] rounded-full shadow-[0_0_8px_rgba(188,245,67,0.6)]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-[10px] mb-1">
+                <span class="text-white font-bold">Python / NumPy / Stochastic Modeling</span>
+                <span class="text-primary-fixed font-bold">98%</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-surface-container border border-outline-variant/30 overflow-hidden">
+                <div class="h-full bg-primary-fixed w-[98%] rounded-full shadow-[0_0_8px_rgba(188,245,67,0.6)]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-[10px] mb-1">
+                <span class="text-white font-bold">Modern C++ / Low Latency Systems</span>
+                <span class="text-cyan font-bold">90%</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-surface-container border border-outline-variant/30 overflow-hidden">
+                <div class="h-full bg-cyan w-[90%] rounded-full shadow-[0_0_8px_rgba(84,215,238,0.6)]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-[10px] mb-1">
+                <span class="text-white font-bold">FastAPI / Docker / Distributed Pipelines</span>
+                <span class="text-cyan font-bold">92%</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-surface-container border border-outline-variant/30 overflow-hidden">
+                <div class="h-full bg-cyan w-[92%] rounded-full shadow-[0_0_8px_rgba(84,215,238,0.6)]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Grid -->
+      <div class="p-4 rounded-xl bg-surface-container-high border border-primary-fixed/30 flex flex-wrap items-center justify-between gap-4">
+        <div class="text-[11px]">
+          <span class="text-white font-bold">Direct Communication Channel:</span>
+          <span class="text-primary-fixed font-mono ml-2">naitikpathak2005@gmail.com</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="mailto:naitikpathak2005@gmail.com" class="px-3 py-1.5 rounded bg-primary-fixed/20 border border-primary-fixed text-primary-fixed text-[10px] font-bold hover:bg-primary-fixed hover:text-black transition-all">
+            SEND INVITATION
+          </a>
+          <button onclick="closeDossier()" class="px-3 py-1.5 rounded border border-outline-variant text-outline hover:text-white text-[10px] transition-all">
+            DISMISS DOSSIER
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DUAL FLOATING HUD BARS ==================== -->
+
+
+
+
+
+<!-- ==================== MASTER REIFIED HUD CONTROLLER ==================== -->
+<script id="master-hud-runtime">
+(function() {
+  // Global state variables
+  window.xrayActive = false;
+  window.reticleActive = false;
+  window.ambientDroneActive = false;
+  window.isSingularityActive = false;
+  window.singularityFactor = 1.0;
+  window.selectedCompareProjects = [];
+  window.spaceWeathers = ['DEEP VOID', 'SOLAR FLARE', 'CYBER NEON'];
+  window.currentSpaceWeatherIdx = 0;
+
+  // Sound helper fallback
+  function playSound(type) {
+    if (typeof window.playHapticSound === 'function') {
+      window.playHapticSound(type);
+    }
+  }
+
+  /* 1. EMP SHOCK DISCHARGE */
+  window.triggerEmpShatter = function() {
+    playSound('pulse');
+    document.body.classList.add('emp-active');
+
+    if (window._threeMasterGroup) {
+      window._threeMasterGroup.rotation.x += 1.8;
+      window._threeMasterGroup.rotation.y += 2.4;
+    }
+    if (window._threeCoreMesh) {
+      window._threeCoreMesh.scale.set(0.1, 0.1, 0.1);
+      setTimeout(() => {
+        if (window._threeCoreMesh) window._threeCoreMesh.scale.set(1, 1, 1);
+        playSound('boot');
+      }, 350);
+    }
+
+    setTimeout(() => {
+      document.body.classList.remove('emp-active');
+    }, 450);
+  };
+
+  /* 2. 3D CONSTELLATION STACK CATEGORY FILTER */
+  window.filter3DConstellation = function(category) {
+    playSound('click');
+    const btns = document.querySelectorAll('.constellation-filter-btn');
+    btns.forEach(b => {
+      b.className = 'constellation-filter-btn px-1.5 py-0.5 rounded text-outline hover:text-white';
+    });
+    if (window.event && window.event.target) {
+      window.event.target.className = 'constellation-filter-btn px-1.5 py-0.5 rounded bg-primary-fixed text-black font-bold';
+    }
+
+    if (window._threeNodes && Array.isArray(window._threeNodes)) {
+      window._threeNodes.forEach(n => {
+        const id = n.data.id;
+        let match = true;
+        if (category === 'ai') match = (id === 2 || id === 4);
+        else if (category === 'systems') match = (id === 1 || id === 3);
+        else if (category === 'fintech') match = (id === 0 || id === 5 || id === 6);
+        else match = true; // 'all'
+
+        if (n.group) n.group.visible = match;
+        if (n.mesh) n.mesh.visible = match;
+        if (n.halo) n.halo.visible = match;
+        if (n.beamLine) n.beamLine.visible = match;
+        if (n.trailMesh) n.trailMesh.visible = match;
+      });
+    }
+  };
+
+  /* 3. SPACE WEATHER CONDENSATION */
+  window.cycleSpaceWeather = function() {
+    window.currentSpaceWeatherIdx = (window.currentSpaceWeatherIdx + 1) % window.spaceWeathers.length;
+    const weather = window.spaceWeathers[window.currentSpaceWeatherIdx];
+    const btn = document.getElementById('btn-space-weather');
+    if (btn) btn.innerText = '🌌 WEATHER: ' + weather;
+    playSound('click');
+
+    const sf = window._threeStarField;
+    if (sf && sf.material) {
+      if (weather === 'SOLAR FLARE') {
+        sf.material.color.setHex(0xffaa22);
+        sf.material.size = 0.28;
+      } else if (weather === 'CYBER NEON') {
+        sf.material.color.setHex(0x54d7ee);
+        sf.material.size = 0.25;
+      } else {
+        sf.material.color.setHex(0xffffff);
+        sf.material.size = 0.15;
+      }
+      sf.material.needsUpdate = true;
+    }
+  };
+
+  /* 4. GRAVITATIONAL EVENT HORIZON SINGULARITY COLLAPSE */
+  window.triggerSingularityCollapse = function() {
+    if (window.isSingularityActive) return;
+    window.isSingularityActive = true;
+    window.singularityFactor = 1.0;
+    playSound('pulse');
+
+    if (window._threeCoreMesh) {
+      window._threeCoreMesh.scale.set(0.15, 0.15, 0.15);
+    }
+
+    const collapseInterval = setInterval(() => {
+      window.singularityFactor -= 0.08;
+      if (window.singularityFactor <= 0.1) {
+        clearInterval(collapseInterval);
+        playSound('boot');
+
+        const expandInterval = setInterval(() => {
+          window.singularityFactor += 0.09;
+          if (window.singularityFactor >= 1.0) {
+            window.singularityFactor = 1.0;
+            window.isSingularityActive = false;
+            clearInterval(expandInterval);
+            if (window._threeCoreMesh) {
+              window._threeCoreMesh.scale.set(1.0, 1.0, 1.0);
+            }
+          }
+        }, 25);
+      }
+    }, 25);
+  };
+
+  /* 5. TACTICAL RETICLE & CURSOR TELEMETRY */
+  const reticleEl = document.getElementById('tactical-reticle');
+  const reticleCoordsEl = document.getElementById('reticle-coords');
+
+  window.toggleTacticalReticle = function() {
+    window.reticleActive = !window.reticleActive;
+    playSound('click');
+    const btn = document.getElementById('btn-reticle-toggle');
+    const text = document.getElementById('reticle-btn-text');
+
+    if (window.reticleActive) {
+      document.body.classList.add('tactical-cursor-active');
+      if (btn) btn.classList.add('border-primary-fixed', 'text-primary-fixed', 'shadow-[0_0_12px_rgba(188,245,67,0.4)]');
+      if (text) text.innerText = 'LOCK ON';
+      playSound('beep');
+    } else {
+      document.body.classList.remove('tactical-cursor-active');
+      if (btn) btn.classList.remove('border-primary-fixed', 'text-primary-fixed', 'shadow-[0_0_12px_rgba(188,245,67,0.4)]');
+      if (text) text.innerText = 'RETICLE';
+    }
+  };
+
+  window.addEventListener('mousemove', (e) => {
+    if (!window.reticleActive || !reticleEl) return;
+    reticleEl.style.left = e.clientX + 'px';
+    reticleEl.style.top = e.clientY + 'px';
+    if (reticleCoordsEl) {
+      reticleCoordsEl.innerText = 'X:' + String(e.clientX).padStart(4, '0') + ' Y:' + String(e.clientY).padStart(4, '0');
+    }
+    const target = e.target.closest('a, button, [onclick], input');
+    if (target) {
+      reticleEl.style.width = '44px';
+      reticleEl.style.height = '44px';
+      reticleEl.style.borderColor = '#54d7ee';
+    } else {
+      reticleEl.style.width = '32px';
+      reticleEl.style.height = '32px';
+      reticleEl.style.borderColor = 'var(--primary-fixed, #bcf543)';
+    }
+  });
+
+  /* 6. PROCEDURAL WEBAUDIO AMBIENT SYNTH DRONE */
+  let ambientOsc1 = null;
+  let ambientOsc2 = null;
+  let ambientGain = null;
+  let ambientFilter = null;
+
+  window.toggleAmbientDrone = function() {
+    if (typeof window.ensureAudioUnlocked === 'function') {
+      window.ensureAudioUnlocked();
+    }
+    const ctx = window.audioCtx || (typeof audioCtx !== 'undefined' ? audioCtx : null);
+    if (!ctx) return;
+
+    window.ambientDroneActive = !window.ambientDroneActive;
+    const btn = document.getElementById('hud-ambient-btn');
+    const icon = document.getElementById('ambient-icon');
+    const text = document.getElementById('ambient-btn-text');
+
+    if (window.ambientDroneActive) {
+      try {
+        ambientOsc1 = ctx.createOscillator();
+        ambientOsc2 = ctx.createOscillator();
+        ambientGain = ctx.createGain();
+        ambientFilter = ctx.createBiquadFilter();
+
+        ambientOsc1.type = 'sawtooth';
+        ambientOsc1.frequency.setValueAtTime(55, ctx.currentTime);
+
+        ambientOsc2.type = 'sine';
+        ambientOsc2.frequency.setValueAtTime(110.2, ctx.currentTime);
+
+        ambientFilter.type = 'lowpass';
+        ambientFilter.frequency.setValueAtTime(240, ctx.currentTime);
+        ambientFilter.Q.setValueAtTime(3.5, ctx.currentTime);
+
+        ambientGain.gain.setValueAtTime(0.001, ctx.currentTime);
+        ambientGain.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + 1.5);
+
+        ambientOsc1.connect(ambientFilter);
+        ambientOsc2.connect(ambientFilter);
+        ambientFilter.connect(ambientGain);
+        ambientGain.connect(ctx.destination);
+
+        ambientOsc1.start();
+        ambientOsc2.start();
+
+        if (btn) btn.classList.add('border-cyan', 'text-cyan', 'shadow-[0_0_12px_rgba(84,215,238,0.4)]');
+        if (icon) icon.innerText = '🔊';
+        if (text) text.innerText = 'DRONE ON';
+        playSound('boot');
+      } catch (err) {
+        console.warn('Drone error:', err);
+      }
+    } else {
+      if (ambientGain && ctx) {
+        ambientGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6);
+        setTimeout(() => {
+          try {
+            if (ambientOsc1) ambientOsc1.stop();
+            if (ambientOsc2) ambientOsc2.stop();
+          } catch(e){}
+        }, 650);
+      }
+      if (btn) btn.classList.remove('border-cyan', 'text-cyan', 'shadow-[0_0_12px_rgba(84,215,238,0.4)]');
+      if (icon) icon.innerText = '🎵';
+      if (text) text.innerText = 'AMBIENCE';
+      playSound('click');
+    }
+  };
+
+  /* 7. RECRUITER SPEEDRUN MODAL */
+  window.openRecruiterSpeedrun = function() {
+    playSound('boot');
+    const modal = document.getElementById('recruiter-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+    }
+  };
+
+  window.closeRecruiterSpeedrun = function() {
+    playSound('click');
+    const modal = document.getElementById('recruiter-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+    }
+  };
+
+  /* 8. CLASSIFIED DOSSIER RESUME VIEWER */
+  window.openDossier = function() {
+    playSound('boot');
+    const modal = document.getElementById('dossier-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+    }
+  };
+
+  window.closeDossier = function() {
+    playSound('click');
+    const modal = document.getElementById('dossier-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+    }
+  };
+
+  /* 9. CYBER COMMAND TERMINAL (CLI) */
+  window.toggleCyberTerminal = function() {
+    playSound('beep');
+    const modal = document.getElementById('cyber-terminal-modal');
+    if (!modal) return;
+
+    const isHidden = modal.classList.contains('hidden') || modal.style.display === 'none';
+    if (isHidden) {
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+      const input = document.getElementById('terminal-cli-input');
+      if (input) setTimeout(() => input.focus(), 60);
+    } else {
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+    }
+  };
+
+  window.closeCyberTerminal = function() {
+    const modal = document.getElementById('cyber-terminal-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+    }
+    playSound('click');
+  };
+
+  /* 10. RETRO CYBER ARCADE MINIGAME */
+  window.arcadeRunning = false;
+  window.arcadeAnimId = null;
+  window.arcadeScore = 0;
+
+  window.openArcadeMinigame = function() {
+    playSound('boot');
+    const modal = document.getElementById('arcade-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+    }
+    window.arcadeRunning = true;
+    window.arcadeScore = 0;
+    const scoreEl = document.getElementById('arcade-score');
+    if (scoreEl) scoreEl.innerText = '0';
+    startArcadeCanvasGame();
+  };
+
+  window.closeArcadeModal = function() {
+    window.arcadeRunning = false;
+    if (window.arcadeAnimId) cancelAnimationFrame(window.arcadeAnimId);
+    const modal = document.getElementById('arcade-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+    }
+    playSound('click');
+  };
+
+  function startArcadeCanvasGame() {
+    const canvas = document.getElementById('arcade-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+
+    let paddleX = w / 2 - 35;
+    const paddleW = 70;
+    const paddleH = 8;
+    let ballX = w / 2;
+    let ballY = h / 2;
+    let ballDX = 2.8;
+    let ballDY = -2.8;
+
+    canvas.onmousemove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      paddleX = e.clientX - rect.left - paddleW / 2;
+      paddleX = Math.max(0, Math.min(w - paddleW, paddleX));
+    };
+
+    function step() {
+      if (!window.arcadeRunning) return;
+      ctx.fillStyle = '#050807';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#54d7ee';
+      ctx.fillRect(paddleX, h - 20, paddleW, paddleH);
+
+      ballX += ballDX;
+      ballY += ballDY;
+
+      if (ballX <= 5 || ballX >= w - 5) ballDX *= -1;
+      if (ballY <= 5) ballDY *= -1;
+
+      if (ballY >= h - 25 && ballX >= paddleX && ballX <= paddleX + paddleW) {
+        ballDY = -Math.abs(ballDY);
+        window.arcadeScore += 100;
+        const scoreEl = document.getElementById('arcade-score');
+        if (scoreEl) scoreEl.innerText = window.arcadeScore;
+        playSound('hover');
+      }
+
+      if (ballY > h) {
+        ballX = w / 2;
+        ballY = h / 2;
+        ballDY = -2.8;
+      }
+
+      ctx.fillStyle = '#bcf543';
+      ctx.beginPath();
+      ctx.arc(ballX, ballY, 5, 0, Math.PI * 2);
+      ctx.fill();
+
+      window.arcadeAnimId = requestAnimationFrame(step);
+    }
+    window.arcadeAnimId = requestAnimationFrame(step);
+  }
+
+  /* 11. PROTOCOL COMPARISON BENCHMARK DRAWER */
+  window.renderComparisonDrawer = function() {
+    const drawer = document.getElementById('comparison-drawer');
+    const badge = document.getElementById('compare-count-badge');
+    const grid = document.getElementById('compare-grid');
+    if (!drawer || !grid) return;
+
+    if (badge) badge.innerText = window.selectedCompareProjects.length + ' / 2 SELECTED';
+    drawer.classList.remove('translate-y-full');
+
+    grid.innerHTML = '';
+    for (let i = 0; i < 2; i++) {
+      const p = window.selectedCompareProjects[i];
+      if (p) {
+        grid.innerHTML += `
+          <div class="p-3.5 rounded-xl bg-surface-container border border-primary-fixed/40 space-y-1">
+            <div class="flex justify-between items-center">
+              <span class="text-white font-bold text-sm">${p.title}</span>
+              <button onclick="window.toggleProjectCompare('${p.id}')" class="text-error text-[10px] cursor-pointer">✕ REMOVE</button>
+            </div>
+            <div class="text-primary-fixed text-[11px] font-bold">${p.tech}</div>
+            <div class="text-outline text-[10px]">Benchmark: ${p.metric}</div>
+          </div>
+        `;
+      } else {
+        grid.innerHTML += `
+          <div class="p-3 rounded-lg border border-dashed border-outline-variant/60 text-outline text-center py-5">
+            + Click "+ COMPARE" on any project card below
+          </div>
+        `;
+      }
+    }
+  };
+
+  window.closeComparisonDrawer = function() {
+    const drawer = document.getElementById('comparison-drawer');
+    if (drawer) drawer.classList.add('translate-y-full');
+  };
+
+  window.clearComparison = function() {
+    window.selectedCompareProjects = [];
+    window.renderComparisonDrawer();
+  };
+
+  window.toggleProjectCompare = function(id, title, tech, metric) {
+    playSound('click');
+    const idx = window.selectedCompareProjects.findIndex(p => p.id === id);
+    if (idx >= 0) {
+      window.selectedCompareProjects.splice(idx, 1);
+    } else {
+      if (window.selectedCompareProjects.length >= 2) {
+        window.selectedCompareProjects.shift();
+      }
+      window.selectedCompareProjects.push({ id, title, tech, metric });
+    }
+    window.renderComparisonDrawer();
+  };
+
+  /* 12. BLUEPRINT X-RAY SCHEMATIC VIEW TOGGLE */
+  window.toggleXrayMode = function() {
+    window.xrayActive = !window.xrayActive;
+    playSound('click');
+    const btn = document.getElementById('btn-xray-toggle');
+    const text = document.getElementById('xray-text');
+
+    if (window.xrayActive) {
+      document.body.classList.add('xray-active');
+      if (btn) btn.classList.add('border-cyan', 'text-cyan', 'shadow-[0_0_15px_rgba(84,215,238,0.4)]');
+      if (text) text.innerText = 'X-RAY: ON';
+    } else {
+      document.body.classList.remove('xray-active');
+      if (btn) btn.classList.remove('border-cyan', 'text-cyan', 'shadow-[0_0_15px_rgba(84,215,238,0.4)]');
+      if (text) text.innerText = 'X-RAY';
+    }
+  };
+
+  /* 13. LIVE MONTE CARLO PRICE TRAJECTORY SIMULATOR */
+  window.runMonteCarloSim = function() {
+    playSound('pulse');
+    const canvas = document.getElementById('monte-carlo-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+
+    ctx.fillStyle = '#080c0a';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.strokeStyle = '#22332a';
+    ctx.beginPath();
+    ctx.moveTo(0, h / 2);
+    ctx.lineTo(w, h / 2);
+    ctx.stroke();
+
+    const paths = 22;
+    const steps = 60;
+    const colors = ['#bcf543', '#54d7ee', '#cdbdff', '#ffffff', '#447766'];
+
+    for (let p = 0; p < paths; p++) {
+      ctx.strokeStyle = colors[p % colors.length];
+      ctx.globalAlpha = 0.55;
+      ctx.beginPath();
+      let val = h / 2;
+      ctx.moveTo(0, val);
+
+      for (let s = 1; s <= steps; s++) {
+        const shock = (Math.random() - 0.48) * 8.0;
+        val += shock;
+        val = Math.max(8, Math.min(h - 8, val));
+        ctx.lineTo((s / steps) * w, val);
+      }
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1.0;
+
+    const varVal = document.getElementById('mc-var-val');
+    if (varVal) {
+      varVal.innerText = (-2.8 - Math.random() * 2.5).toFixed(2) + '%';
+    }
+  };
+
+  /* 14. LIVE OSCILLOSCOPE WAVEFORM ENGINE */
+  function renderOscilloscopeFrame() {
+    requestAnimationFrame(renderOscilloscopeFrame);
+    const canvas = document.getElementById('hud-scope-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+
+    ctx.fillStyle = '#050a08';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = '#bcf543';
+    ctx.beginPath();
+
+    const time = performance.now() * 0.005;
+    const amp = window.ambientDroneActive ? 0.45 : 0.25;
+    const sliceWidth = w / 30;
+    let x = 0;
+    for (let i = 0; i <= 30; i++) {
+      const wave = Math.sin(time * 1.5 + i * 0.4) * Math.cos(time * 0.8) * (h * amp);
+      const y = h / 2 + wave;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+      x += sliceWidth;
+    }
+    ctx.stroke();
+  }
+
+  
+  /* ================================================================
+     22. ROLE VIEW PRESET FILTER
+     ================================================================ */
+  window.currentRoleView = 'all';
+  window.setRoleView = function(role) {
+    window.currentRoleView = role;
+    playSound('click');
+    const btns = document.querySelectorAll('.role-preset-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    if (window.event && window.event.target) {
+      window.event.target.classList.add('active');
+    }
+
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach(card => {
+      const id = card.id;
+      let match = true;
+      if (role === 'ml') {
+        match = (id === 'card-cropcare' || id === 'card-slm-arena' || id === 'card-optivest');
+      } else if (role === 'systems') {
+        match = (id === 'card-crm' || id === 'card-inventory' || id === 'card-slm-arena');
+      } else if (role === 'quant') {
+        match = (id === 'card-optivest' || id === 'card-quantopt' || id === 'card-steellens');
+      }
+      card.style.opacity = match ? '1' : '0.25';
+      card.style.transform = match ? 'scale(1)' : 'scale(0.98)';
+      card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+    });
+
+    if (typeof window.filter3DConstellation === 'function') {
+      window.filter3DConstellation(role === 'ml' ? 'ai' : role === 'systems' ? 'systems' : role === 'quant' ? 'fintech' : 'all');
+    }
+  };
+
+  /* ================================================================
+     23. 5-SLIDE EXECUTIVE PITCH DECK CAROUSEL
+     ================================================================ */
+  window.currentPitchSlide = 1;
+  window.openPitchDeck = function() {
+    playSound('boot');
+    const modal = document.getElementById('pitch-deck-modal');
+    if (modal) modal.classList.add('active');
+    window.showPitchSlide(1);
+  };
+
+  window.closePitchDeck = function() {
+    playSound('click');
+    const modal = document.getElementById('pitch-deck-modal');
+    if (modal) modal.classList.remove('active');
+  };
+
+  window.showPitchSlide = function(num) {
+    window.currentPitchSlide = num;
+    for (let i = 1; i <= 5; i++) {
+      const slide = document.getElementById('pitch-slide-' + i);
+      if (slide) slide.classList.toggle('hidden', i !== num);
+    }
+    const numEl = document.getElementById('pitch-slide-num');
+    if (numEl) numEl.innerText = num;
+
+    const dots = document.getElementById('pitch-dots');
+    if (dots) {
+      const children = dots.children;
+      for (let j = 0; j < children.length; j++) {
+        children[j].className = j === num - 1 ? 'w-2 h-2 rounded-full bg-primary-fixed inline-block' : 'w-2 h-2 rounded-full bg-outline/40 inline-block';
+      }
+    }
+    playSound('hover');
+  };
+
+  window.nextPitchSlide = function() {
+    let next = window.currentPitchSlide + 1;
+    if (next > 5) next = 1;
+    window.showPitchSlide(next);
+  };
+
+  window.prevPitchSlide = function() {
+    let prev = window.currentPitchSlide - 1;
+    if (prev < 1) prev = 5;
+    window.showPitchSlide(prev);
+  };
+
+  /* ================================================================
+     24. RECRUITER 3D ACCESS KEYCARD GENERATOR
+     ================================================================ */
+  window.openKeycardModal = function() {
+    playSound('boot');
+    const modal = document.getElementById('keycard-modal');
+    if (modal) modal.classList.add('active');
+  };
+
+  window.closeKeycardModal = function() {
+    playSound('click');
+    const modal = document.getElementById('keycard-modal');
+    if (modal) modal.classList.remove('active');
+  };
+
+  window.generateKeycard = function() {
+    const input = document.getElementById('keycard-input-name');
+    const display = document.getElementById('keycard-display-name');
+    if (!input || !display) return;
+    const val = input.value.trim() || 'VERIFIED GUEST';
+    display.innerText = val.toUpperCase();
+    playSound('boot');
+    const renderBox = document.getElementById('keycard-render');
+    if (renderBox) {
+      renderBox.classList.add('shockwave-flash');
+      setTimeout(() => renderBox.classList.remove('shockwave-flash'), 400);
+    }
+  };
+
+  /* ================================================================
+     25. CUSTOM SLM PROMPT STREAMER SANDBOX
+     ================================================================ */
+  window.runCustomSlmStream = function() {
+    playSound('pulse');
+    const input = document.getElementById('slm-custom-input');
+    const output = document.getElementById('slm-custom-output');
+    if (!input || !output) return;
+
+    output.innerHTML = '<span class="text-outline animate-pulse">Tokenizing prompt...</span>';
+    const tokens = ['[INST]', 'DBSCAN', 'groups', 'dense', 'points;', 'isolates', 'noise', 'points.', 'Latency:', '18.2ms', '[/INST]'];
+
+    setTimeout(() => {
+      output.innerHTML = '';
+      let idx = 0;
+      const interval = setInterval(() => {
+        if (idx < tokens.length) {
+          const span = document.createElement('span');
+          span.className = 'inline-block mr-1 text-primary-fixed font-bold';
+          span.innerText = tokens[idx];
+          output.appendChild(span);
+          idx++;
+        } else {
+          clearInterval(interval);
+          playSound('boot');
+        }
+      }, 75);
+    }, 250);
+  };
+
+  /* ================================================================
+     26. MARKOWITZ EFFICIENT FRONTIER HYPERBOLA SCATTER
+     ================================================================ */
+  window.drawFrontier = function() {
+    playSound('hover');
+    const canvas = document.getElementById('frontier-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+
+    ctx.fillStyle = '#060a08';
+    ctx.fillRect(0, 0, w, h);
+
+    // Draw grid axes
+    ctx.strokeStyle = '#18241e';
+    ctx.beginPath();
+    ctx.moveTo(30, 0); ctx.lineTo(30, h);
+    ctx.moveTo(0, h - 20); ctx.lineTo(w, h - 20);
+    ctx.stroke();
+
+    // 100 Random asset points (Risk vs Return)
+    for (let i = 0; i < 90; i++) {
+      const risk = 40 + Math.random() * (w - 70);
+      const minReturn = h - 25 - Math.sqrt(risk) * 2.8;
+      const ret = minReturn + (Math.random() - 0.4) * 35;
+
+      ctx.fillStyle = i % 2 === 0 ? 'rgba(84, 215, 238, 0.45)' : 'rgba(188, 245, 67, 0.45)';
+      ctx.beginPath();
+      ctx.arc(risk, Math.max(10, Math.min(h - 22, ret)), 1.8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Draw Efficient Frontier Hyperbolic Curve
+    ctx.strokeStyle = '#bcf543';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(50, h - 30);
+    ctx.quadraticCurveTo(w * 0.35, 12, w - 20, 8);
+    ctx.stroke();
+
+    // Highlight Tangency Optimal Point
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(w * 0.42, 28, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#54d7ee';
+    ctx.stroke();
+  };
+
+  /* ================================================================
+     27. VINTAGE CRT SCANLINE MODE TOGGLE
+     ================================================================ */
+  window.crtActive = false;
+  window.toggleCrtMode = function() {
+    window.crtActive = !window.crtActive;
+    playSound('click');
+    const btn = document.getElementById('btn-crt-toggle');
+    const text = document.getElementById('crt-btn-text');
+
+    if (window.crtActive) {
+      document.body.classList.add('crt-active');
+      if (btn) btn.classList.add('border-primary-fixed', 'text-primary-fixed', 'shadow-[0_0_15px_rgba(188,245,67,0.4)]');
+      if (text) text.innerText = 'CRT: ON';
+    } else {
+      document.body.classList.remove('crt-active');
+      if (btn) btn.classList.remove('border-primary-fixed', 'text-primary-fixed', 'shadow-[0_0_15px_rgba(188,245,67,0.4)]');
+      if (text) text.innerText = 'CRT';
+    }
+  };
+
+  /* ================================================================
+     28. GRAVITATIONAL CURSOR ATTRACTOR TOGGLE
+     ================================================================ */
+  window.gravityAttractorActive = false;
+  window.toggleGravityMode = function() {
+    window.gravityAttractorActive = !window.gravityAttractorActive;
+    playSound('click');
+    const btn = document.getElementById('btn-gravity-toggle');
+    const text = document.getElementById('gravity-btn-text');
+
+    if (window.gravityAttractorActive) {
+      if (btn) btn.classList.add('border-cyan', 'text-cyan', 'shadow-[0_0_15px_rgba(84,215,238,0.4)]');
+      if (text) text.innerText = 'GRAV: ATTRACT';
+      playSound('boot');
+    } else {
+      if (btn) btn.classList.remove('border-cyan', 'text-cyan', 'shadow-[0_0_15px_rgba(84,215,238,0.4)]');
+      if (text) text.innerText = 'GRAVITY';
+    }
+  };
+
+  /* ================================================================
+     29. REAL-TIME UTC & SYSTEM UPTIME TELEMETRY TICKER
+     ================================================================ */
+  const bootTime = Date.now();
+  function updateTelemetryTicker() {
+    const now = new Date();
+    const utcEl = document.getElementById('telemetry-utc');
+    const uptimeEl = document.getElementById('telemetry-uptime');
+
+    if (utcEl) {
+      utcEl.innerText = now.toUTCString().slice(17, 25) + ' UTC';
+    }
+
+    if (uptimeEl) {
+      const elapsedSec = Math.floor((Date.now() - bootTime) / 1000);
+      const hrs = String(Math.floor(elapsedSec / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((elapsedSec % 3600) / 60)).padStart(2, '0');
+      const secs = String(elapsedSec % 60).padStart(2, '0');
+      uptimeEl.innerText = `${hrs}:${mins}:${secs}`;
+    }
+  }
+  setInterval(updateTelemetryTicker, 1000);
+
+  /* ================================================================
+     30. INTERACTIVE AUDIO DRUM & SYNTH SAMPLER (KEYS 1 TO 8)
+     ================================================================ */
+  window.addEventListener('keydown', (e) => {
+    // Don't trigger if user is typing in an input
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+    const key = e.key;
+    if (['1', '2', '3', '4', '5', '6', '7', '8'].includes(key)) {
+      if (typeof window.ensureAudioUnlocked === 'function') window.ensureAudioUnlocked();
+      const ctx = window.audioCtx || (typeof audioCtx !== 'undefined' ? audioCtx : null);
+      if (!ctx) return;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const freqs = [130.81, 146.83, 164.81, 196.00, 220.00, 261.63, 293.66, 329.63]; // C3 to E4
+      const noteFreq = freqs[parseInt(key, 10) - 1];
+
+      osc.type = key % 2 === 0 ? 'sine' : 'sawtooth';
+      osc.frequency.setValueAtTime(noteFreq, ctx.currentTime);
+
+      gain.gain.setValueAtTime(0.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.15, ctx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.35);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.36);
+    }
+  });
+
+  // Init canvas drawings on ready
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(window.drawFrontier, 900);
+  });
+
+  // Keyboard Escape listener
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey && e.key.toLowerCase() === 'k') || e.key === '`') {
+      e.preventDefault();
+      window.toggleCyberTerminal();
+    }
+    if (e.key === 'Escape') {
+      window.closeCyberTerminal();
+      window.closeDossier();
+      window.closeRecruiterSpeedrun();
+      window.closeArcadeModal();
+      window.closeComparisonDrawer();
+    }
+  });
+
+  
+  /* ================================================================
+     15. CROPCARE LEAF PATHOLOGY SIMULATOR
+     ================================================================ */
+  window.simulateCropScan = function(type) {
+    if (typeof playSound === 'function') playSound('click');
+    const status = document.getElementById('cropcare-scan-status');
+    const val = document.getElementById('cropcare-confidence-val');
+    if (!status || !val) return;
+
+    status.innerText = 'PROCESSING TENSOR...';
+    status.className = 'text-cyan font-bold animate-pulse';
+
+    setTimeout(() => {
+      if (type === 'healthy') {
+        val.innerText = 'HEALTHY FOLIAGE // 99.4%';
+        val.className = 'text-primary-fixed font-bold';
+        status.innerText = 'CLASS 0: SOLANUM_TUBEROSUM_NOMINAL';
+        status.className = 'text-primary-fixed text-[10px] font-mono';
+      } else if (type === 'early_blight') {
+        val.innerText = 'EARLY BLIGHT // 96.8%';
+        val.className = 'text-yellow-400 font-bold';
+        status.innerText = 'DETECTED: ALTERNARIA_SOLANI';
+        status.className = 'text-yellow-400 text-[10px] font-mono';
+      } else {
+        val.innerText = 'LATE BLIGHT // 98.2%';
+        val.className = 'text-error font-bold';
+        status.innerText = 'ALERT: PHYTOPHTHORA_INFESTANS';
+        status.className = 'text-error text-[10px] font-mono';
+      }
+      if (typeof playSound === 'function') playSound('boot');
+    }, 400);
+  };
+
+  /* ================================================================
+     16. SLM ARENA TOKEN STREAMER BENCHMARK
+     ================================================================ */
+  window.streamSlmTokens = function(type) {
+    if (typeof playSound === 'function') playSound('click');
+    const mistralBox = document.getElementById('slm-stream-mistral');
+    const llamaBox = document.getElementById('slm-stream-llama');
+    if (!mistralBox || !llamaBox) return;
+
+    const mistralTokens = ['[INST]', 'Analyzing', 'financial', 'derivatives', 'under', 'Cholesky', 'covariance', 'matrix...', 'Volatility', 'damped', 'at', '0.18σ.', '[/INST]'];
+    const llamaTokens = ['<|header|>', 'Running', 'quantized', 'inference', 'on', 'edge', 'NPU...', 'Token', 'latency:', '18.4ms', 'per', 'chunk.', '<|end|>'];
+
+    mistralBox.innerHTML = '';
+    llamaBox.innerHTML = '';
+
+    let i = 0;
+    const streamInterval = setInterval(() => {
+      if (i < mistralTokens.length) {
+        const span = document.createElement('span');
+        span.className = 'inline-block mr-1 text-primary-fixed';
+        span.innerText = mistralTokens[i];
+        mistralBox.appendChild(span);
+      }
+      if (i < llamaTokens.length) {
+        const span2 = document.createElement('span');
+        span2.className = 'inline-block mr-1 text-cyan';
+        span2.innerText = llamaTokens[i];
+        llamaBox.appendChild(span2);
+      }
+      i++;
+      if (i >= mistralTokens.length && i >= llamaTokens.length) {
+        clearInterval(streamInterval);
+      }
+    }, 90);
+  };
+
+  /* ================================================================
+     17. QUANTOPT TENSOR COVARIANCE REGIME SWITCHER
+     ================================================================ */
+  window.setRegime = function(mode) {
+    if (typeof playSound === 'function') playSound('click');
+    const bNorm = document.getElementById('btn-regime-norm');
+    const bShock = document.getElementById('btn-regime-shock');
+    const eigen = document.getElementById('eigen-val');
+
+    if (mode === 'shock') {
+      if (bShock) bShock.className = 'px-1.5 py-0.5 border border-error text-error bg-error/20 rounded text-[9px] font-bold';
+      if (bNorm) bNorm.className = 'px-1.5 py-0.5 border border-outline-variant/60 text-outline rounded text-[9px]';
+      if (eigen) {
+        eigen.innerText = '9.45 λ (SPIKE)';
+        eigen.className = 'text-error font-bold';
+      }
+
+      ['01', '10', '02', '20', '03', '30', '12', '21', '13', '31', '23', '32'].forEach(id => {
+        const el = document.getElementById('cov-' + id);
+        if (el) {
+          el.innerText = '0.88';
+          el.className = 'p-1 rounded bg-error/20 border border-error/50 text-white font-bold';
+        }
+      });
+    } else {
+      if (bNorm) bNorm.className = 'px-1.5 py-0.5 border border-primary-fixed text-primary-fixed bg-primary-fixed/10 rounded text-[9px] font-bold';
+      if (bShock) bShock.className = 'px-1.5 py-0.5 border border-outline-variant/60 text-outline rounded text-[9px]';
+      if (eigen) {
+        eigen.innerText = '3.82 λ';
+        eigen.className = 'text-primary-fixed font-bold';
+      }
+
+      const calmVals = { '01': '0.68', '10': '0.68', '02': '0.34', '20': '0.34', '03': '0.42', '30': '0.42', '12': '0.29', '21': '0.29', '13': '0.38', '31': '0.38', '23': '0.51', '32': '0.51' };
+      Object.entries(calmVals).forEach(([id, val]) => {
+        const el = document.getElementById('cov-' + id);
+        if (el) {
+          el.innerText = val;
+          el.className = 'p-1 rounded bg-[#54d7ee]/20 border border-[#54d7ee]/40 text-white';
+        }
+      });
+    }
+  };
+
+  /* ================================================================
+     18. SYSTEMS LAB PIPELINE FLOW BEAM PULSER
+     ================================================================ */
+  window.pulsePipelineNode = function(idx) {
+    if (typeof playSound === 'function') playSound('hover');
+    const container = document.getElementById('topology-flow-graph');
+    if (!container) return;
+    const buttons = container.querySelectorAll('button');
+    buttons.forEach((b, i) => {
+      if (i === idx) {
+        b.classList.add('border-primary-fixed', 'shadow-[0_0_15px_rgba(188,245,67,0.4)]');
+        setTimeout(() => b.classList.remove('border-primary-fixed', 'shadow-[0_0_15px_rgba(188,245,67,0.4)]'), 600);
+      }
+    });
+  };
+
+  
+  /* ================================================================
+     19. CRM RBAC ROLE SIMULATOR
+     ================================================================ */
+  window.simulateCrmRole = function(role) {
+    if (typeof playSound === 'function') playSound('click');
+    const roleEl = document.getElementById('crm-active-role');
+    const scopeEl = document.getElementById('crm-jwt-scope');
+    const accessEl = document.getElementById('crm-table-access');
+    const msEl = document.getElementById('crm-query-ms');
+    const btns = document.querySelectorAll('.crm-role-btn');
+
+    btns.forEach(b => {
+      b.className = 'crm-role-btn px-2 py-0.5 rounded border border-outline-variant text-outline hover:text-white';
+    });
+    if (window.event && window.event.target) {
+      window.event.target.className = 'crm-role-btn px-2 py-0.5 rounded bg-tertiary-fixed text-black font-bold';
+    }
+
+    if (role === 'admin') {
+      if (roleEl) roleEl.innerText = 'ROLE: ADMIN';
+      if (scopeEl) scopeEl.innerText = 'urn:crm:all:write';
+      if (accessEl) accessEl.innerText = '8 / 8 DOMAINS (UNRESTRICTED)';
+      if (msEl) msEl.innerText = '2.4 ms (INDEXED B-TREE)';
+    } else if (role === 'manager') {
+      if (roleEl) roleEl.innerText = 'ROLE: MANAGER';
+      if (scopeEl) scopeEl.innerText = 'urn:crm:leads:read_write';
+      if (accessEl) accessEl.innerText = '5 / 8 DOMAINS (SALES & PIPELINE)';
+      if (msEl) msEl.innerText = '3.1 ms (FILTERED RBAC)';
+    } else if (role === 'analyst') {
+      if (roleEl) roleEl.innerText = 'ROLE: ANALYST';
+      if (scopeEl) scopeEl.innerText = 'urn:crm:metrics:read_only';
+      if (accessEl) accessEl.innerText = '3 / 8 DOMAINS (READ REPLICAS)';
+      if (msEl) msEl.innerText = '1.8 ms (ANALYTICAL OLAP)';
+    } else {
+      if (roleEl) roleEl.innerText = 'ROLE: AUDITOR';
+      if (scopeEl) scopeEl.innerText = 'urn:crm:audit:logs:read';
+      if (accessEl) accessEl.innerText = '1 / 8 DOMAIN (APPEND-ONLY LEDGER)';
+      if (msEl) msEl.innerText = '0.9 ms (IMMUTABLE HASH)';
+    }
+  };
+
+  /* ================================================================
+     20. INVENTORY DBSCAN ANOMALY RESCANNER
+     ================================================================ */
+  window.rescanInventoryClusters = function() {
+    if (typeof playSound === 'function') playSound('pulse');
+    const epsEl = document.getElementById('inv-eps');
+    const anomEl = document.getElementById('inv-anomalies');
+    const f1El = document.getElementById('inv-f1');
+    const logEl = document.getElementById('inv-status-log');
+
+    if (logEl) {
+      logEl.innerText = 'RE-INDEXING SPATIAL KD-TREE...';
+      logEl.className = 'text-[9px] text-cyan font-bold animate-pulse';
+    }
+
+    setTimeout(() => {
+      const anomCount = Math.floor(1 + Math.random() * 4);
+      if (epsEl) epsEl.innerText = (0.38 + Math.random() * 0.14).toFixed(2);
+      if (anomEl) anomEl.innerText = anomCount + ' SKEWS';
+      if (f1El) f1El.innerText = (97.1 + Math.random() * 2.2).toFixed(1) + '%';
+      if (logEl) {
+        logEl.innerText = '✓ DBSCAN clustering converged with 0 false positives';
+        logEl.className = 'text-[9px] text-secondary-fixed font-bold';
+      }
+      if (typeof playSound === 'function') playSound('boot');
+    }, 350);
+  };
+
+  /* ================================================================
+     21. STEELLENS ECONOMETRIC HORIZON STEPPER
+     ================================================================ */
+  let currentQuarters = 128;
+  window.stepEconometricHorizon = function() {
+    if (typeof playSound === 'function') playSound('click');
+    currentQuarters = currentQuarters >= 160 ? 128 : currentQuarters + 8;
+    const qEl = document.getElementById('steel-quarters');
+    const r2El = document.getElementById('steel-r2');
+    const dolEl = document.getElementById('steel-dol');
+
+    if (qEl) qEl.innerText = currentQuarters + ' QTRS';
+    if (r2El) r2El.innerText = (0.835 + Math.random() * 0.035).toFixed(3);
+    if (dolEl) dolEl.innerText = (2.05 + Math.random() * 0.22).toFixed(2) + 'x';
+  };
+
+  
+  /* ================================================================
+     31. CODE PEEK DRAWER ACCORDION
+     ================================================================ */
+  window.toggleCodePeek = function(id) {
+    if (typeof playSound === 'function') playSound('click');
+    const el = document.getElementById(id);
+    const arrow = document.getElementById('arrow-' + id);
+    if (!el) return;
+    const isHidden = el.classList.contains('hidden');
+    el.classList.toggle('hidden', !isHidden);
+    if (arrow) arrow.innerText = isHidden ? '▲' : '▼';
+  };
+
+  /* ================================================================
+     32. LAW OF LARGE NUMBERS CONVERGENCE SIMULATOR
+     ================================================================ */
+  window.runLargeNumbersSim = function() {
+    if (typeof playSound === 'function') playSound('pulse');
+    const badge = document.getElementById('manifesto-flips-badge');
+    const pct = document.getElementById('manifesto-heads-pct');
+    const bar = document.getElementById('manifesto-convergence-bar');
+
+    let heads = 0;
+    const total = 10000;
+    for (let i = 0; i < total; i++) {
+      if (Math.random() < 0.5) heads++;
+    }
+    const ratio = (heads / total) * 100;
+
+    if (badge) badge.innerText = 'FLIPS: 10,000';
+    if (pct) pct.innerText = ratio.toFixed(2) + '%';
+    if (bar) bar.style.width = ratio.toFixed(1) + '%';
+    if (typeof playSound === 'function') playSound('boot');
+  };
+
+  /* ================================================================
+     33. GRAND FINALE REVERSE HYPER-WARP
+     ================================================================ */
+  window.triggerGrandWarp = function(e, url) {
+    e.preventDefault();
+    if (typeof playSound === 'function') playSound('boot');
+    document.body.classList.add('shockwave-flash');
+    if (window._threeMasterGroup) {
+      window._threeMasterGroup.rotation.y += 12;
+    }
+    setTimeout(() => {
+      window.location.href = url;
+    }, 600);
+  };
+
+  // Init on DOM ready
+  window.addEventListener('DOMContentLoaded', () => {
+    renderOscilloscopeFrame();
+    setTimeout(window.runMonteCarloSim, 800);
+  });
+})();
+</script>
+
+
+
+<!-- ==================== DUAL FLOATING BARS ==================== -->
+<!-- BAR 1: LEFT BOTTOM — INTEL & RECRUITER SUITE -->
+
+<!-- ==================== ARCADE MINIGAME MODAL ==================== -->
+<div id="arcade-modal" class="fixed inset-0 z-[999999] items-center justify-center bg-black/90 backdrop-blur-xl p-4 font-mono hidden" style="display: none;">
+  <div class="w-full max-w-lg bg-[#070a09] border border-cyan/60 rounded-2xl shadow-[0_0_50px_rgba(84,215,238,0.3)] flex flex-col overflow-hidden">
+    <div class="px-4 py-3 bg-[#0d1311] border-b border-outline-variant/50 flex items-center justify-between text-xs">
+      <div class="flex items-center gap-2">
+        <span class="text-cyan font-bold">🕹️ FIREWALL BREAKER v1.0</span>
+        <span class="text-[9px] px-1.5 py-0.5 rounded bg-cyan/20 text-cyan font-bold">SCORE: <span id="arcade-score">0</span></span>
+      </div>
+      <button onclick="window.closeArcadeModal()" class="text-outline hover:text-white transition-colors cursor-pointer text-xs font-bold">✕ ESC</button>
+    </div>
+    <div class="p-4 flex flex-col items-center">
+      <canvas id="arcade-canvas" width="400" height="260" class="border border-outline-variant/40 rounded-lg bg-black cursor-none w-full max-w-[400px] h-[260px]"></canvas>
+      <div class="mt-3 text-[10px] text-outline flex justify-between w-full">
+        <span>MOVE MOUSE TO CONTROL PADDLE</span>
+        <span>DEFEND ROOT FIREWALL</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PROTOCOL BENCHMARK COMPARISON DRAWER ==================== -->
+<div id="comparison-drawer" class="fixed bottom-0 inset-x-0 z-[99999] bg-[#0c100f]/95 border-t border-primary-fixed/60 backdrop-blur-2xl p-4 font-mono transition-transform duration-300 translate-y-full shadow-[0_-10px_40px_rgba(0,0,0,0.8)]">
+  <div class="max-w-6xl mx-auto space-y-3">
+    <div class="flex items-center justify-between pb-2 border-b border-outline-variant/40">
+      <div class="flex items-center gap-2 text-xs">
+        <span class="text-primary-fixed font-bold">⚖️ PROTOCOL COMPARISON BENCHMARK</span>
+        <span id="compare-count-badge" class="px-2 py-0.5 rounded bg-primary-fixed/20 text-primary-fixed text-[10px] font-bold">0 / 2 SELECTED</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="window.clearComparison()" class="text-[10px] text-outline hover:text-white transition-colors cursor-pointer font-bold">[ RESET ]</button>
+        <button onclick="window.closeComparisonDrawer()" class="text-white hover:text-primary-fixed text-base font-bold cursor-pointer">✕</button>
+      </div>
+    </div>
+    <div id="compare-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+      <div class="p-3 rounded-lg border border-dashed border-outline-variant/60 text-outline text-center py-5">
+        Click "+ COMPARE" on any project card below
+      </div>
+      <div class="p-3 rounded-lg border border-dashed border-outline-variant/60 text-outline text-center py-5">
+        Select a second project to benchmark
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== 1. RECRUITER 30-SECOND SPEEDRUN MODAL ==================== -->
+<div id="recruiter-modal" class="fixed inset-0 z-[999999] items-center justify-center bg-black/85 backdrop-blur-xl p-4 font-mono hidden" style="display: none;">
+  <div class="w-full max-w-3xl bg-[#090d0b] border border-primary-fixed/60 rounded-2xl shadow-[0_0_50px_rgba(188,245,67,0.3)] flex flex-col overflow-hidden max-h-[90vh]">
+    <div class="px-6 py-4 bg-surface-container border-b border-outline-variant/60 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-primary-fixed text-base">⚡</span>
+        <span class="text-xs font-bold text-white uppercase tracking-wider">30-SECOND RECRUITER &amp; HIRING MANAGER BRIEFING</span>
+      </div>
+      <button onclick="window.closeRecruiterSpeedrun()" class="text-outline hover:text-white transition-colors cursor-pointer text-lg font-bold">✕</button>
+    </div>
+    <div class="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs text-on-surface-variant leading-relaxed">
+      <!-- 4 Quick Bullets -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="p-3.5 rounded-xl bg-surface-container border border-primary-fixed/30 space-y-1">
+          <div class="text-[10px] text-primary-fixed font-bold tracking-widest uppercase">Target Focus</div>
+          <div class="text-sm font-bold text-white">Full-Stack Data &amp; Applied ML Systems</div>
+          <p class="text-[11px] text-outline">B.E. Computer Science &amp; Business Systems, Chandigarh University (CGPA 8.06).</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container border border-cyan/30 space-y-1">
+          <div class="text-[10px] text-cyan font-bold tracking-widest uppercase">Portfolio Optimization</div>
+          <div class="text-sm font-bold text-white">OptiVest AI &amp; QuantOpt Engine</div>
+          <p class="text-[11px] text-outline">Sharpe 2.42, TreeSHAP attribution, Cholesky covariance, 25k Monte Carlo paths under VaR.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container border border-tertiary-fixed/30 space-y-1">
+          <div class="text-[10px] text-tertiary-fixed font-bold tracking-widest uppercase">Enterprise &amp; Relational</div>
+          <div class="text-sm font-bold text-white">Enterprise CRM Platform</div>
+          <p class="text-[11px] text-outline">19-table strict 5NF MySQL schema with 4-tier RBAC and audit logging.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container border border-secondary-fixed/30 space-y-1">
+          <div class="text-[10px] text-secondary-fixed font-bold tracking-widest uppercase">Applied Vision &amp; LLM</div>
+          <div class="text-sm font-bold text-white">CropCare Detection &amp; SLM Arena</div>
+          <p class="text-[11px] text-outline">17 crop disease classes sub-35ms &amp; parallel Ollama SLM token benchmarking.</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="p-4 rounded-xl bg-surface-container-high border border-outline-variant/40 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <span class="text-white font-bold block">Available for Full-Time Roles &amp; High-Impact Engagements</span>
+          <span class="text-[10px] text-outline">Mohali, Punjab, India // Open to Remote &amp; Relocation</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="/Naitik_Pathak_Resume.pdf" download target="_blank" class="px-3 py-1.5 rounded bg-primary-fixed text-black text-[11px] font-bold hover:bg-white transition-all shadow-[0_0_12px_rgba(188,245,67,0.3)]">
+            DOWNLOAD RESUME PDF
+          </a>
+          <a href="mailto:naitikpathak2005@gmail.com?subject=Interview%20Invitation%20-%20Naitik%20Pathak" class="px-3 py-1.5 rounded bg-primary-fixed/20 border border-primary-fixed text-primary-fixed text-[11px] font-bold hover:bg-primary-fixed hover:text-black transition-all">
+            SCHEDULE CHAT
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<aside id="hud-dock-intel" class="fixed bottom-4 left-4 z-40 flex items-center gap-1.5 p-1.5 rounded-full bg-[#090d0b]/92 backdrop-blur-xl border border-primary-fixed/40 shadow-[0_0_35px_rgba(0,0,0,0.85)] font-mono text-[10px]">
+  <!-- 30s Speedrun Briefing -->
+  <button onclick="window.openRecruiterSpeedrun()" class="px-3 py-1.5 rounded-full border border-primary-fixed bg-primary-fixed/20 text-primary-fixed hover:bg-primary-fixed hover:text-black transition-all cursor-pointer flex items-center gap-1.5 font-bold shadow-[0_0_12px_rgba(188,245,67,0.3)]" title="30s Recruiter Briefing">
+    <span class="animate-pulse">⚡</span>
+    <span>30s SCAN</span>
+  </button>
+
+  <!-- Dossier (Resume) -->
+  <button onclick="window.openDossier()" class="px-2.5 py-1.5 rounded-full border border-outline-variant/70 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed bg-surface-container flex items-center gap-1 transition-all cursor-pointer" title="Classified Resume Dossier">
+    <span class="material-symbols-outlined text-[13px]">folder_shared</span>
+    <span>DOSSIER</span>
+  </button>
+
+  <!-- Protocol Benchmark Comparison -->
+  <button onclick="window.renderComparisonDrawer()" class="px-2.5 py-1.5 rounded-full border border-outline-variant/70 text-on-surface-variant hover:text-white hover:border-white bg-surface-container flex items-center gap-1 transition-all cursor-pointer" title="Compare Projects Side-by-Side">
+    <span class="text-xs">⚖️</span>
+    <span>COMPARE</span>
+  </button>
+
+  <!-- Retro Arcade Minigame (RESTORED!) -->
+  <button onclick="window.openArcadeMinigame()" class="px-2.5 py-1.5 rounded-full border border-cyan/60 text-cyan hover:bg-cyan hover:text-black bg-surface-container flex items-center gap-1.5 transition-all cursor-pointer shadow-[0_0_12px_rgba(84,215,238,0.25)] font-bold" title="Play Retro Firewall Breaker Minigame">
+    <span class="text-xs">🕹️</span>
+    <span>ARCADE</span>
+  </button>
+</aside>
+
+<!-- BAR 2: RIGHT BOTTOM — CYBER ENGINE & AUDIO CONTROLS -->
+<aside id="hud-dock-controls" class="fixed bottom-4 right-4 z-40 flex items-center gap-1.5 p-1.5 rounded-full bg-[#090d0b]/92 backdrop-blur-xl border border-primary-fixed/40 shadow-[0_0_35px_rgba(0,0,0,0.85)] font-mono text-[10px]">
+  <!-- Audio SFX Toggle -->
+  <button id="hud-sfx-btn" onclick="toggleAudioFx()" class="w-8 h-8 rounded-full border border-primary-fixed bg-surface-container flex items-center justify-center text-primary-fixed hover:bg-primary-fixed hover:text-black transition-all cursor-pointer shadow-sm" title="Toggle Sound FX">
+    <span id="sfx-icon" class="text-xs">🔊</span>
+  </button>
+
+  <!-- Synth Ambience -->
+  <button id="hud-ambient-btn" onclick="toggleAmbientDrone()" class="px-2.5 py-1 rounded-full border border-outline-variant/60 text-on-surface-variant hover:text-cyan hover:border-cyan bg-surface-container flex items-center gap-1 transition-all cursor-pointer" title="Toggle Ambient Synth Drone">
+    <span class="text-xs" id="ambient-icon">🎵</span>
+    <span id="ambient-btn-text">AMBIENCE</span>
+  </button>
+
+  <!-- Tactical Reticle Crosshair -->
+  <button id="btn-reticle-toggle" onclick="toggleTacticalReticle()" class="px-2.5 py-1 rounded-full border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed bg-surface-container flex items-center gap-1 transition-all cursor-pointer" title="Toggle Tactical Cursor Reticle">
+    <span class="text-xs">🎯</span>
+    <span id="reticle-btn-text">RETICLE</span>
+  </button>
+
+  <!-- 3D Orbit Lock & Focus -->
+  <button id="btn-dock-focus" onclick="window.toggleHudOrbit()" class="px-2.5 py-1 rounded-full border border-primary-fixed/60 text-primary-fixed hover:bg-primary-fixed hover:text-black bg-surface-container flex items-center gap-1 transition-all cursor-pointer" title="Toggle 3D Orbit Lock &amp; Focus">
+    <span class="text-xs" id="dock-focus-icon">🔒</span>
+    <span id="dock-focus-text">FOCUS LOCK</span>
+  </button>
+
+  <!-- CLI Command Terminal -->
+  <button onclick="toggleCyberTerminal()" class="px-2.5 py-1 rounded-full border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed bg-surface-container flex items-center gap-1 transition-all cursor-pointer" title="Open AI Command Terminal (Ctrl+K)">
+    <span class="material-symbols-outlined text-[13px]">terminal</span>
+    <span>CLI</span>
+  </button>
+
+  <!-- Matrix Digital Rain -->
+  <button id="matrix-toggle-btn" onclick="toggleMatrix()" class="px-2.5 py-1 rounded-full border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed bg-surface-container flex items-center gap-1 transition-all cursor-pointer" title="Toggle Matrix Digital Rain">
+    <span class="w-1.5 h-1.5 rounded-full bg-outline inline-block" id="matrix-dot"></span>
+    <span id="matrix-btn-text">MATRIX</span>
+  </button>
+
+  <!-- Blueprint X-Ray -->
+  <button id="btn-xray-toggle" onclick="toggleXrayMode()" class="px-2.5 py-1 rounded-full border border-outline-variant/60 text-on-surface-variant hover:text-cyan hover:border-cyan bg-surface-container flex items-center gap-1 transition-all cursor-pointer" title="Toggle Blueprint X-Ray Mode">
+    <span class="material-symbols-outlined text-[13px]">grid_4x4</span>
+    <span id="xray-text">X-RAY</span>
+  </button>
+
+  <!-- Theme Colorway Cycler -->
+  <button onclick="cycleTheme()" class="w-8 h-8 rounded-full border border-outline-variant/60 bg-surface-container flex items-center justify-center hover:border-primary-fixed transition-all cursor-pointer" title="Cycle Colorway Theme">
+    <span class="w-2.5 h-2.5 rounded-full bg-primary-fixed inline-block" id="theme-dot"></span>
+  </button>
+</aside>
 </body></html>
