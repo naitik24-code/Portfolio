@@ -175,28 +175,28 @@
 <!-- CRT Scanline overlay -->
 <div class="scanlines-overlay fixed inset-0 pointer-events-none z-40 opacity-40"></div>
 <!-- TOP HUD BAR -->
-<header class="bg-surface-container-lowest/90 backdrop-blur-md text-primary-fixed font-kicker text-kicker uppercase tracking-widest docked full-width top-0 sticky z-50 border-b border-outline-variant/40 flex justify-between items-center w-full px-margin-mobile md:px-margin max-w-full h-14">
-<div class="flex items-center gap-space-md">
-<a class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tighter hover:text-primary-fixed transition-colors duration-150 flex items-center gap-2.5" href="#home">
+<header class="bg-surface-container-lowest/95 backdrop-blur-md text-primary-fixed font-kicker text-kicker uppercase tracking-widest docked full-width top-0 sticky z-50 border-b border-outline-variant/40 flex justify-between items-center w-full px-3 sm:px-margin-mobile md:px-margin max-w-full h-14">
+<div class="flex items-center gap-2 sm:gap-space-md">
+<a class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tighter hover:text-primary-fixed transition-colors duration-150 flex items-center gap-2 sm:gap-2.5 shrink-0" href="#home">
   <!-- Brand Logo Icon -->
-  <span class="relative flex items-center justify-center w-8 h-8 rounded-lg bg-primary-fixed text-[#090a0b] font-bold shadow-[0_0_12px_rgba(188,245,67,0.35)] shrink-0 overflow-hidden">
-    <svg class="w-5 h-5" viewBox="0 0 64 64" fill="none">
+  <span class="relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary-fixed text-[#090a0b] font-bold shadow-[0_0_12px_rgba(188,245,67,0.35)] shrink-0 overflow-hidden">
+    <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 64 64" fill="none">
       <path d="M17 46V18h7l16 17V18h7v28h-7L24 29v17z" fill="#090a0b"/>
       <circle cx="49" cy="15" r="4.5" fill="#9b7bff"/>
     </svg>
   </span>
   <span class="flex flex-col leading-none">
-    <span class="text-xs font-mono text-primary-fixed tracking-wider">NP // SYS.HUD</span>
-    <span class="text-sm font-bold tracking-tight text-on-surface">NAITIK PATHAK</span>
+    <span class="text-[9px] sm:text-xs font-mono text-primary-fixed tracking-wider">NP // SYS.HUD</span>
+    <span class="text-xs sm:text-sm font-bold tracking-tight text-on-surface truncate max-w-[100px] sm:max-w-none">NAITIK PATHAK</span>
   </span>
 </a>
-<div class="hidden lg:flex items-center gap-2 px-2.5 py-0.5 border border-outline-variant/50 bg-surface-container-low font-kicker text-kicker">
+<div class="hidden xl:flex items-center gap-2 px-2.5 py-0.5 border border-outline-variant/50 bg-surface-container-low font-kicker text-kicker">
 <span class="inline-block w-2 h-2 rounded-full bg-primary-fixed status-pulse"></span>
 <span class="text-primary-fixed">● OPEN TO OPPORTUNITIES</span>
 </div>
 </div>
 <!-- Center Navigation Links -->
-<nav class="hidden md:flex items-center gap-6 text-[11px] nav-menu">
+<nav class="hidden lg:flex items-center gap-4 xl:gap-6 text-[11px] nav-menu">
 <a class="nav-link text-primary-fixed border-b-2 border-primary-fixed pb-1 hover:text-primary-fixed transition-all duration-150" href="#home" data-section="home">RESEARCH</a>
 <a class="nav-link text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/50 transition-all duration-150 pb-1" href="#projects" data-section="projects">SYSTEMS</a>
 <a class="nav-link text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/50 transition-all duration-150 pb-1" href="#lab" data-section="lab">LAB_CONSTELLATION</a>
@@ -204,24 +204,29 @@
 <a class="nav-link text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/50 transition-all duration-150 pb-1" href="#contact" data-section="contact">CONTACT</a>
 </nav>
 <!-- Trailing Action -->
-<div class="flex items-center gap-3">
-  <a class="px-2.5 py-1 bg-surface-container-high border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed text-[11px] font-mono tracking-wider transition-colors duration-150 flex items-center gap-1.5" href="/classic/" title="Return to classic editorial portfolio">
-    <span class="material-symbols-outlined text-[14px]">history_edu</span>
-    <span>[ CLASSIC v1 ]</span>
+<div class="flex items-center gap-2 sm:gap-3">
+  <a class="px-2 py-1 bg-surface-container-high border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed text-[10px] sm:text-[11px] font-mono tracking-wider transition-colors duration-150 flex items-center gap-1" href="/" title="Return to Portal Gateway">
+    <span class="material-symbols-outlined text-[13px] sm:text-[14px]">apps</span>
+    <span class="hidden xs:inline">[ GATEWAY ]</span>
+    <span class="xs:hidden">[ GATE ]</span>
+  </a>
+  <a class="px-2 py-1 bg-surface-container-high border border-outline-variant/60 text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed text-[10px] sm:text-[11px] font-mono tracking-wider transition-colors duration-150 flex items-center gap-1" href="/classic/" title="Return to classic editorial portfolio">
+    <span class="material-symbols-outlined text-[13px] sm:text-[14px]">history_edu</span>
+    <span>[ CLASSIC ]</span>
   </a>
   <a class="hidden sm:flex px-2.5 py-1 bg-surface-container-high border border-outline-variant/60 text-tertiary-fixed hover:text-white hover:border-tertiary-fixed text-[11px] font-mono tracking-wider transition-colors duration-150 items-center gap-1.5" href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" rel="noopener noreferrer" title="View / Download Verified PDF Resume">
     <span class="material-symbols-outlined text-[14px]">description</span>
     <span>[ RESUME.PDF ]</span>
   </a>
-  <a class="hidden sm:flex px-3 py-1.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker hover:bg-primary-fixed-dim transition-colors duration-150 active:translate-x-px active:translate-y-px" href="#contact">
+  <a class="hidden md:flex px-3 py-1.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker hover:bg-primary-fixed-dim transition-colors duration-150 active:translate-x-px active:translate-y-px" href="#contact">
     [ EXECUTE_PROMPT ]
   </a>
-  <div class="flex items-center gap-2 text-on-surface-variant">
-    <a href="https://github.com/naitik24-code" target="_blank" rel="noopener noreferrer" class="hover:text-primary-fixed transition-colors" title="GitHub Profile">
-      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+  <div class="flex items-center gap-1.5 sm:gap-2 text-on-surface-variant pl-0.5">
+    <a href="https://github.com/naitik24-code" target="_blank" rel="noopener noreferrer" class="p-1 hover:text-primary-fixed transition-colors" title="GitHub Profile">
+      <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
     </a>
-    <a href="https://www.linkedin.com/in/naitik24/" target="_blank" rel="noopener noreferrer" class="hover:text-tertiary-fixed transition-colors" title="LinkedIn Profile">
-      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    <a href="https://www.linkedin.com/in/naitik24/" target="_blank" rel="noopener noreferrer" class="p-1 hover:text-tertiary-fixed transition-colors" title="LinkedIn Profile">
+      <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
     </a>
   </div>
 </div>
@@ -230,68 +235,68 @@
 <!-- ==================== HERO SECTION (#home) ==================== -->
 <section class="relative w-full pt-space-xl pb-space-2xl px-margin-mobile md:px-margin border-b border-outline-variant/40 overflow-hidden" id="home">
 <!-- HUD Corner Coordinate Markings -->
-<div class="flex justify-between items-center text-outline text-telemetry-data font-telemetry-data uppercase pb-space-md border-b border-outline-variant/20 mb-space-lg">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-outline text-telemetry-data font-telemetry-data uppercase pb-space-md border-b border-outline-variant/20 mb-space-lg gap-2">
 <div class="flex items-center gap-2">
 <span class="text-primary-fixed font-bold">SYS.LOC: INDIA ✳</span>
 <span class="hidden sm:inline text-on-surface-variant">// LAT: 20.5937 N // LONG: 78.9629 E</span>
 </div>
-<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 sm:gap-3 flex-wrap">
 <span class="text-tertiary-fixed font-kicker text-kicker">[SYS.HUD v4.02]</span>
-<span class="px-2 py-0.5 border border-primary-fixed/40 bg-surface-container text-primary-fixed font-kicker text-kicker">STATUS: ACTIVE // OPEN TO OPPORTUNITIES</span>
+<span class="px-2 py-0.5 border border-primary-fixed/40 bg-surface-container text-primary-fixed font-kicker text-kicker text-[10px]">OPEN TO OPPORTUNITIES</span>
 </div>
 </div>
 <!-- Hero Grid Layout -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
 <!-- Left: Statement & CTAs -->
-<div class="lg:col-span-6 flex flex-col justify-between pt-space-md">
-<div class="space-y-space-md">
-<div class="inline-flex items-center gap-2 text-primary-fixed font-kicker text-kicker uppercase tracking-widest border border-outline-variant/60 px-2.5 py-1 bg-surface-container-lowest">
+<div class="lg:col-span-6 flex flex-col justify-between pt-space-sm sm:pt-space-md">
+<div class="space-y-3 sm:space-y-space-md">
+<div class="inline-flex items-center gap-2 text-primary-fixed font-kicker text-kicker uppercase tracking-widest border border-outline-variant/60 px-2 sm:px-2.5 py-1 bg-surface-container-lowest text-[10px] sm:text-xs">
 <span class="text-primary-fixed">✛</span> MODEL-DRIVEN PRODUCT ARCHITECTURES
             </div>
-<h1 class="text-4xl md:text-5xl lg:text-6xl font-headline-lg font-extrabold tracking-tight text-white uppercase leading-none break-words overflow-visible">
+<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-headline-lg font-extrabold tracking-tight text-white uppercase leading-tight sm:leading-none break-words overflow-visible">
               BUILDING <span class="text-primary-fixed">INTELLIGENT</span> SYSTEMS FROM DATA AND IDEAS.
             </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+<p class="font-body-md sm:font-body-lg text-body-md sm:text-body-lg text-on-surface-variant max-w-xl text-xs sm:text-base leading-relaxed">
               AI/ML &amp; Full-Stack Product Engineer focusing on usefulness over noise, transparent system limits, and production-grade architectures. Transforming complex neural and econometric models into robust user platforms.
             </p>
 </div>
 <!-- CTAs -->
-<div class="mt-space-xl flex flex-wrap items-center gap-4">
-<a class="px-6 py-3.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker font-bold uppercase tracking-wider hover:bg-primary-fixed-dim transition-all duration-150 shadow-[0_0_16px_-2px_rgba(188,245,67,0.3)] active:translate-x-px active:translate-y-px flex items-center gap-2" href="#projects">
+<div class="mt-6 sm:mt-space-xl flex flex-wrap items-center gap-2.5 sm:gap-4">
+<a class="w-full sm:w-auto justify-center px-4 sm:px-6 py-3 sm:py-3.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker font-bold uppercase tracking-wider hover:bg-primary-fixed-dim transition-all duration-150 shadow-[0_0_16px_-2px_rgba(188,245,67,0.3)] active:translate-x-px active:translate-y-px flex items-center gap-2" href="#projects">
 <span class="">[ EXPLORE WORK ↓ ]</span>
 <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
 </a>
-<a class="px-5 py-3.5 border border-primary-fixed text-primary-fixed font-kicker text-kicker uppercase tracking-wider hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors duration-150 flex items-center gap-2 active:translate-x-px active:translate-y-px" href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-  <span class="material-symbols-outlined text-[18px]">description</span>
-  <span class="">[ RESUME / CV ↗ ]</span>
+<a class="flex-1 sm:flex-none justify-center px-3.5 sm:px-5 py-3 sm:py-3.5 border border-primary-fixed text-primary-fixed font-kicker text-kicker uppercase tracking-wider hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors duration-150 flex items-center gap-1.5 sm:gap-2 active:translate-x-px active:translate-y-px text-[11px] sm:text-xs" href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+  <span class="material-symbols-outlined text-[16px] sm:text-[18px]">description</span>
+  <span class="">[ RESUME ↗ ]</span>
 </a>
-<a class="px-5 py-3.5 border border-outline-variant text-tertiary-fixed font-kicker text-kicker uppercase tracking-wider hover:border-tertiary-fixed hover:bg-tertiary-fixed/10 transition-colors duration-150 flex items-center gap-2 active:translate-x-px active:translate-y-px" href="https://www.linkedin.com/in/naitik24/" rel="noopener noreferrer" target="_blank">
-  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+<a class="flex-1 sm:flex-none justify-center px-3.5 sm:px-5 py-3 sm:py-3.5 border border-outline-variant text-tertiary-fixed font-kicker text-kicker uppercase tracking-wider hover:border-tertiary-fixed hover:bg-tertiary-fixed/10 transition-colors duration-150 flex items-center gap-1.5 sm:gap-2 active:translate-x-px active:translate-y-px text-[11px] sm:text-xs" href="https://www.linkedin.com/in/naitik24/" rel="noopener noreferrer" target="_blank">
+  <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
   <span class="">[ LINKEDIN ↗ ]</span>
 </a>
 </div>
 <!-- Quick Telemetry Strip -->
-<div class="mt-space-xl pt-space-md border-t border-outline-variant/30 grid grid-cols-2 sm:grid-cols-4 gap-3 text-telemetry-data font-telemetry-data">
+<div class="mt-6 sm:mt-space-xl pt-space-md border-t border-outline-variant/30 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 text-telemetry-data font-telemetry-data">
 <div class="border-l border-primary-fixed pl-2">
-<div class="text-on-surface font-bold text-headline-sm font-headline-sm">106+</div>
-<div class="text-outline uppercase text-[10px]">Assets Backtested</div>
+<div class="text-on-surface font-bold text-lg sm:text-headline-sm font-headline-sm">106+</div>
+<div class="text-outline uppercase text-[9px] sm:text-[10px]">Assets Backtested</div>
 </div>
 <div class="border-l border-tertiary-fixed pl-2">
-<div class="text-on-surface font-bold text-headline-sm font-headline-sm">17</div>
-<div class="text-outline uppercase text-[10px]">CV Classes</div>
+<div class="text-on-surface font-bold text-lg sm:text-headline-sm font-headline-sm">17</div>
+<div class="text-outline uppercase text-[9px] sm:text-[10px]">CV Classes</div>
 </div>
 <div class="border-l border-secondary-fixed pl-2">
-<div class="text-on-surface font-bold text-headline-sm font-headline-sm">25k</div>
-<div class="text-outline uppercase text-[10px]">Monte Carlo Iter</div>
+<div class="text-on-surface font-bold text-lg sm:text-headline-sm font-headline-sm">25k</div>
+<div class="text-outline uppercase text-[9px] sm:text-[10px]">Monte Carlo Iter</div>
 </div>
 <div class="border-l border-primary-fixed pl-2">
-<div class="text-on-surface font-bold text-headline-sm font-headline-sm">8</div>
-<div class="text-outline uppercase text-[10px]">Core Enterprise Domains</div>
+<div class="text-on-surface font-bold text-lg sm:text-headline-sm font-headline-sm">8</div>
+<div class="text-outline uppercase text-[9px] sm:text-[10px]">Enterprise Domains</div>
 </div>
 </div>
 </div>
 <!-- Right: 3D Universe Core visualization container -->
-<div class="lg:col-span-6 relative border border-outline-variant/60 bg-surface-container-lowest/90 backdrop-blur-md p-space-sm hud-bracket">
+<div class="lg:col-span-6 relative border border-outline-variant/60 bg-surface-container-lowest/90 backdrop-blur-md p-2 sm:p-space-sm hud-bracket mt-6 lg:mt-0">
 <!-- Top HUD Header ribbon within 3D Card -->
 <div class="flex flex-wrap justify-between items-center px-space-sm py-1.5 border-b border-outline-variant/40 text-telemetry-data font-telemetry-data gap-2">
 <div class="flex items-center gap-2 text-primary-fixed">
@@ -315,7 +320,7 @@
 <button class="px-1.5 py-0.5 border border-outline-variant/40 text-outline hover:text-primary-fixed transition-colors" id="btn-ctrl-mode" onclick="toggleHudMode()">[ 2D / 3D MODE ]</button>
 </div>
 <!-- 3D SCENE EMBED WITH ANIMATION PLACEHOLDER -->
-<div class="relative w-full h-[520px] bg-surface-container-lowest overflow-hidden flex items-center justify-center" id="viewport-3d-box">
+<div class="relative w-full h-[360px] sm:h-[440px] md:h-[520px] bg-surface-container-lowest overflow-hidden flex items-center justify-center" id="viewport-3d-box">
 <!-- STITCH_THREEJS_START:ANIMATION_7 class="w-full h-full bg-transparent" -->
 <div class="w-full h-full bg-transparent" style="display:block;">
 <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
@@ -328,10 +333,11 @@
 // Includes Interactive Raycaster with hover/click node inspection, dynamic HUD tracking, gyroscopic rings, and particle constellation.
 const width = container.clientWidth || window.innerWidth;
 const height = container.clientHeight || window.innerHeight;
+const isPhone = width < 640;
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-camera.position.set(0, 1.8, 21);
+const camera = new THREE.PerspectiveCamera(isPhone ? 56 : 45, width / height, 0.1, 1000);
+camera.position.set(0, 1.8, isPhone ? 28 : 21);
 
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
 renderer.setSize(width, height);
@@ -553,11 +559,28 @@ window.addEventListener('pointerdown', onPointerDown);
 function onResize() {
   const w = container.clientWidth || window.innerWidth;
   const h = container.clientHeight || window.innerHeight;
+  const phone = w < 640;
+  camera.fov = phone ? 56 : 45;
+  camera.position.z = phone ? 28 : 21;
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
 }
 window.addEventListener('resize', onResize);
+
+// Mobile touch move listener for 3D universe
+window.addEventListener('touchmove', (e) => {
+  if (e.touches.length > 0) {
+    const rect = container.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    mouseX = (x / (rect.width || window.innerWidth)) * 2 - 1;
+    mouseY = -(y / (rect.height || window.innerHeight)) * 2 + 1;
+    targetRotY = mouseX * 0.75;
+    targetRotX = -mouseY * 0.55;
+  }
+}, { passive: true });
 
 // 6. Animation Loop
 const clock = new THREE.Clock();
@@ -769,13 +792,13 @@ animate();
         </p>
 </div>
 <!-- Category Filter Bar -->
-<div class="flex flex-wrap items-center gap-2 mb-space-xl pb-3 border-b border-outline-variant/40 font-kicker text-kicker">
-<button class="filter-btn active px-3 py-1.5 border border-primary-fixed bg-surface-container text-primary-fixed" onclick="filterProjects('all')">ALL (07)</button>
-<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('fintech')">FINTECH</button>
-<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('research')">RESEARCH</button>
-<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('applied-ai')">APPLIED AI</button>
-<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('product-systems')">PRODUCT SYSTEMS</button>
-<button class="filter-btn px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline" onclick="filterProjects('llm-experiments')">LLM EXPERIMENTS</button>
+<div class="flex items-center gap-2 mb-space-xl pb-3 border-b border-outline-variant/40 font-kicker text-kicker overflow-x-auto no-scrollbar w-full py-1">
+<button class="filter-btn active whitespace-nowrap px-3 py-1.5 border border-primary-fixed bg-surface-container text-primary-fixed shrink-0 text-[11px]" onclick="filterProjects('all')">ALL (07)</button>
+<button class="filter-btn whitespace-nowrap px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline shrink-0 text-[11px]" onclick="filterProjects('fintech')">FINTECH</button>
+<button class="filter-btn whitespace-nowrap px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline shrink-0 text-[11px]" onclick="filterProjects('research')">RESEARCH</button>
+<button class="filter-btn whitespace-nowrap px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline shrink-0 text-[11px]" onclick="filterProjects('applied-ai')">APPLIED AI</button>
+<button class="filter-btn whitespace-nowrap px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline shrink-0 text-[11px]" onclick="filterProjects('product-systems')">PRODUCT SYSTEMS</button>
+<button class="filter-btn whitespace-nowrap px-3 py-1.5 border border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-outline shrink-0 text-[11px]" onclick="filterProjects('llm-experiments')">LLM EXPERIMENTS</button>
 </div>
 <!-- Bento Grid for 7 Projects -->
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter" id="projects-grid">
@@ -1077,17 +1100,17 @@ animate();
 </div>
 </section>
 <!-- ==================== CASE STUDY DEEP-DIVE MODAL PREVIEW (OptiVest) ==================== -->
-<div class="fixed inset-0 z-50 hidden bg-surface-container-lowest/85 backdrop-blur-md flex items-center justify-center p-4 md:p-6" id="case-study-modal">
-<div class="w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-surface-container border border-primary-fixed p- space-md md:p-space-lg shadow-2xl relative hud-bracket">
+<div class="fixed inset-0 z-50 hidden bg-surface-container-lowest/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6" id="case-study-modal">
+<div class="w-full max-w-4xl max-h-[94vh] sm:max-h-[92vh] overflow-y-auto bg-surface-container border border-primary-fixed p-3 sm:p-space-md md:p-space-lg shadow-2xl relative hud-bracket">
 <!-- Title Bar -->
-<div class="flex justify-between items-center border-b border-outline-variant/40 pb-space-sm mb-space-md sticky top-0 bg-surface-container/95 backdrop-blur-sm z-20">
-<div class="flex items-center gap-3">
-<span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker font-bold tracking-widest">SPECIFICATION</span>
-<h3 class="font-headline-md text-headline-md text-on-surface font-bold uppercase tracking-tight">
+<div class="flex justify-between items-center border-b border-outline-variant/40 pb-2 sm:pb-space-sm mb-3 sm:mb-space-md sticky top-0 bg-surface-container/95 backdrop-blur-sm z-20">
+<div class="flex items-center gap-2 sm:gap-3">
+<span class="px-1.5 sm:px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker font-bold tracking-widest text-[9px] sm:text-xs">SPECIFICATION</span>
+<h3 class="font-headline-md text-base sm:text-headline-md text-on-surface font-bold uppercase tracking-tight truncate max-w-[200px] sm:max-w-none">
           OPTIVEST // TECHNICAL ARCHITECTURE
         </h3>
 </div>
-<button class="text-on-surface hover:text-primary-fixed p-1 text-headline-sm font-bold transition-colors" onclick="closeModal()">
+<button class="text-on-surface hover:text-primary-fixed p-1.5 text-lg sm:text-headline-sm font-bold transition-colors" onclick="closeModal()">
         ✕
       </button>
 </div>
@@ -1185,9 +1208,9 @@ animate();
       </p>
 </div>
 <!-- Modal Actions -->
-<div class="flex justify-between items-center pt-space-sm border-t border-outline-variant/30">
-<span class="text-outline text-telemetry-data font-telemetry-data text-xs">REPRODUCIBLE NOTEBOOK AVAILABLE ON GITHUB</span>
-<button class="px-5 py-2.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker uppercase font-bold hover:bg-primary-fixed-dim transition-colors" onclick="closeModal()">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pt-space-sm border-t border-outline-variant/30">
+<span class="text-outline text-telemetry-data font-telemetry-data text-[10px] sm:text-xs">REPRODUCIBLE NOTEBOOK AVAILABLE ON GITHUB</span>
+<button class="w-full sm:w-auto px-5 py-2.5 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker uppercase font-bold hover:bg-primary-fixed-dim transition-colors text-center text-xs" onclick="closeModal()">
         [ CLOSE INSPECTOR ]
       </button>
 </div>
@@ -1420,21 +1443,21 @@ animate();
               &gt;_ HANDSHAKE COMPLETED. SESSION ENCRYPTED VIA ECDHE-RSA-AES256-GCM.
             </div>
 <!-- Email Interaction Box -->
-<div class="p-space-md bg-surface-container-low border border-primary-fixed/40 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-<div>
-<div class="text-outline text-xs uppercase mb-1">TARGET EMAIL IDENTITY:</div>
-<div class="text-primary-fixed font-bold text-headline-sm font-headline-sm tracking-tight select-all">
+<div class="p-3 sm:p-space-md bg-surface-container-low border border-primary-fixed/40 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div class="w-full sm:w-auto">
+<div class="text-outline text-[10px] sm:text-xs uppercase mb-1">TARGET EMAIL IDENTITY:</div>
+<div class="text-primary-fixed font-bold text-base sm:text-headline-sm font-headline-sm tracking-tight select-all break-all">
                   naitikpathak2005@gmail.com
                 </div>
 </div>
-<div class="flex items-center gap-2">
-<button class="px-4 py-2 bg-surface-container-highest border border-outline-variant hover:border-primary-fixed text-on-surface font-kicker text-kicker uppercase transition-colors flex items-center gap-2 active:translate-x-px active:translate-y-px" id="copy-email-btn" onclick="copyEmailToClipboard()">
-<span class="material-symbols-outlined text-[16px]">content_copy</span>
-<span class="" id="copy-text">COPY EMAIL</span>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none justify-center px-3 sm:px-4 py-2 bg-surface-container-highest border border-outline-variant hover:border-primary-fixed text-on-surface font-kicker text-kicker uppercase transition-colors flex items-center gap-1.5 sm:gap-2 active:translate-x-px active:translate-y-px text-[11px] sm:text-xs" id="copy-email-btn" onclick="copyEmailToClipboard()">
+<span class="material-symbols-outlined text-[15px] sm:text-[16px]">content_copy</span>
+<span class="" id="copy-text">COPY</span>
 </button>
-<a class="px-4 py-2 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker uppercase font-bold hover:bg-primary-fixed-dim transition-colors flex items-center gap-2 active:translate-x-px active:translate-y-px" href="https://mail.google.com/mail/?view=cm&fs=1&to=naitikpathak2005@gmail.com" target="_blank" rel="noopener noreferrer">
-<span class="">COMPOSE ON GMAIL</span>
-<span class="material-symbols-outlined text-[16px]">send</span>
+<a class="flex-1 sm:flex-none justify-center px-3 sm:px-4 py-2 bg-primary-fixed text-on-primary-fixed font-kicker text-kicker uppercase font-bold hover:bg-primary-fixed-dim transition-colors flex items-center gap-1.5 sm:gap-2 active:translate-x-px active:translate-y-px text-[11px] sm:text-xs" href="https://mail.google.com/mail/?view=cm&fs=1&to=naitikpathak2005@gmail.com" target="_blank" rel="noopener noreferrer">
+<span class="">GMAIL ↗</span>
+<span class="material-symbols-outlined text-[15px] sm:text-[16px]">send</span>
 </a>
 </div>
 </div>

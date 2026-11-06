@@ -72,6 +72,11 @@
     .scanline {
       background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0px, rgba(0, 0, 0, 0.18) 1px, transparent 1px, transparent 3px);
     }
+    @media (hover: none) {
+      .glow-lime:hover, .glow-violet:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen text-[#f0f1ed] flex flex-col justify-between font-mono relative selection:bg-lime selection:text-black">
@@ -81,17 +86,17 @@
   <div class="fixed inset-0 scanline pointer-events-none z-10 opacity-30"></div>
 
   <!-- Header -->
-  <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center relative z-20 border-b border-white/10 backdrop-blur-md bg-black/40">
-    <div class="flex items-center gap-3">
-      <div class="relative flex items-center justify-center w-10 h-10 rounded-lg bg-lime text-[#090a0b] shadow-[0_0_20px_rgba(198,255,77,0.5)]">
-        <svg class="w-6 h-6" viewBox="0 0 64 64" fill="none">
+  <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6 flex justify-between items-center relative z-20 border-b border-white/10 backdrop-blur-md bg-black/40">
+    <div class="flex items-center gap-2.5 sm:gap-3">
+      <div class="relative flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-lime text-[#090a0b] shadow-[0_0_20px_rgba(198,255,77,0.5)] shrink-0">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 64 64" fill="none">
           <path d="M17 46V18h7l16 17V18h7v28h-7L24 29v17z" fill="#090a0b"/>
           <circle cx="49" cy="15" r="4.5" fill="#9b7bff"/>
         </svg>
       </div>
       <div>
-        <div class="text-[10px] text-lime font-bold tracking-widest uppercase">NP // QUANTUM GATEWAY v5.0</div>
-        <div class="text-base font-extrabold tracking-tight text-white font-sans">NAITIK PATHAK</div>
+        <div class="text-[9px] sm:text-[10px] text-lime font-bold tracking-widest uppercase">NP // QUANTUM GATEWAY v5.0</div>
+        <div class="text-sm sm:text-base font-extrabold tracking-tight text-white font-sans">NAITIK PATHAK</div>
       </div>
     </div>
 
@@ -106,15 +111,15 @@
     </div>
 
     <!-- Direct Action Links -->
-    <div class="flex items-center gap-3 text-xs">
-      <a href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" class="flex items-center gap-1.5 px-3 py-1.5 border border-white/20 rounded bg-white/5 hover:border-lime hover:text-lime transition-all">
+    <div class="flex items-center gap-2 sm:gap-3 text-xs">
+      <a href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" class="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 border border-white/20 rounded bg-white/5 hover:border-lime hover:text-lime transition-all text-[11px] sm:text-xs">
         <span class="text-lime">●</span> RESUME.PDF ↗
       </a>
       <div class="flex items-center gap-2 text-white/60 pl-1">
-        <a href="https://github.com/naitik24-code" target="_blank" class="hover:text-lime transition-colors" title="GitHub">
+        <a href="https://github.com/naitik24-code" target="_blank" class="p-1 hover:text-lime transition-colors" title="GitHub">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-        <a href="https://www.linkedin.com/in/naitik24/" target="_blank" class="hover:text-cyan transition-colors" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/naitik24/" target="_blank" class="p-1 hover:text-cyan transition-colors" title="LinkedIn">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         </a>
       </div>
@@ -122,113 +127,113 @@
   </header>
 
   <!-- Main Hero Stage -->
-  <main class="w-full max-w-6xl mx-auto px-6 py-12 relative z-20 my-auto">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-lime/40 bg-lime/10 text-lime text-xs font-bold tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(198,255,77,0.2)]">
-        <span class="w-2 h-2 rounded-full bg-lime animate-pulse"></span>
-        <span>INTELLIGENT SYSTEMS · FULL-STACK · COMPUTER VISION</span>
+  <main class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 relative z-20 my-auto">
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-lime/40 bg-lime/10 text-lime text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-4 sm:mb-6 shadow-[0_0_20px_rgba(198,255,77,0.2)]">
+        <span class="w-2 h-2 rounded-full bg-lime animate-pulse shrink-0"></span>
+        <span class="truncate">INTELLIGENT SYSTEMS · FULL-STACK · CV</span>
       </div>
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight text-white mb-6 uppercase leading-tight">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-display tracking-tight text-white mb-4 sm:mb-6 uppercase leading-tight">
         CHOOSE YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-lime via-cyan to-violet">DIMENSION.</span>
       </h1>
-      <p class="text-white/70 text-sm sm:text-base leading-relaxed font-sans max-w-2xl mx-auto">
+      <p class="text-white/70 text-xs sm:text-sm md:text-base leading-relaxed font-sans max-w-2xl mx-auto px-2">
         Turning complex workflows, predictive algorithms, and deep neural models into accountable, high-performance software systems.
       </p>
     </div>
 
     <!-- Dual 3D Experience Portals -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
 
       <!-- PORTAL 1: CYBERNETIC HUD (Featured) -->
-      <a href="/hud/" class="group relative bg-[#0e1110]/80 backdrop-blur-xl border border-lime/40 rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hud-border text-lime glow-lime cursor-pointer">
+      <a href="/hud/" class="group relative bg-[#0e1110]/80 backdrop-blur-xl border border-lime/40 rounded-2xl p-5 sm:p-8 flex flex-col justify-between transition-all duration-300 hud-border text-lime glow-lime cursor-pointer">
         <div>
           <!-- Top Badge & Telemetry -->
-          <div class="flex justify-between items-center mb-6">
-            <span class="px-3 py-1 text-xs font-extrabold tracking-widest uppercase bg-lime text-black rounded font-mono shadow-[0_0_12px_rgba(198,255,77,0.4)]">
+          <div class="flex justify-between items-center mb-4 sm:mb-6">
+            <span class="px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-extrabold tracking-widest uppercase bg-lime text-black rounded font-mono shadow-[0_0_12px_rgba(198,255,77,0.4)]">
               FEATURED // PROTOCOL 01
             </span>
-            <div class="text-right text-[11px] text-lime font-mono">
+            <div class="text-right text-[10px] sm:text-[11px] text-lime font-mono">
               <div>LATENCY: 14.2ms</div>
               <div class="text-white/40">WEBGPU / 3D</div>
             </div>
           </div>
 
           <!-- Icon / Visual Indicator -->
-          <div class="w-14 h-14 rounded-xl bg-lime/10 border border-lime/30 flex items-center justify-center text-lime mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(198,255,77,0.2)]">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-lime/10 border border-lime/30 flex items-center justify-center text-lime mb-4 sm:mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(198,255,77,0.2)]">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <polygon points="12 2 2 7 12 12 22 7 12 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <polyline points="2 17 12 22 22 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <polyline points="2 12 12 17 22 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
 
-          <h2 class="text-2xl sm:text-3xl font-extrabold font-sans text-white mb-3 group-hover:text-lime transition-colors">
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold font-sans text-white mb-2 sm:mb-3 group-hover:text-lime transition-colors">
             Cybernetic HUD Edition
           </h2>
-          <p class="text-sm text-white/70 leading-relaxed font-sans mb-8">
+          <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-sans mb-6 sm:mb-8">
             An immersive telemetry cockpit. Features a real-time gyroscopic crystal constellation, dynamic laser links to 7 projects, interactive allocation sliders, and deep case study telemetry.
           </p>
 
           <!-- System Specs Checklist -->
-          <div class="space-y-2.5 text-xs text-white/60 border-t border-white/10 pt-6 mb-8 font-mono">
+          <div class="space-y-2 sm:space-y-2.5 text-[11px] sm:text-xs text-white/60 border-t border-white/10 pt-4 sm:pt-6 mb-6 sm:mb-8 font-mono">
             <div class="flex items-center justify-between">
-              <span class="flex items-center gap-2"><span class="text-lime font-bold">▶</span> Three.js Gyroscopic Crystal Core</span>
+              <span class="flex items-center gap-2"><span class="text-lime font-bold">▶</span> Three.js Gyroscope Crystal Core</span>
               <span class="text-lime font-bold">ACTIVE</span>
             </div>
             <div class="flex items-center justify-between">
-              <span class="flex items-center gap-2"><span class="text-lime font-bold">▶</span> Live Allocation Risk Playground</span>
+              <span class="flex items-center gap-2"><span class="text-lime font-bold">▶</span> Live Allocation Risk Simulator</span>
               <span class="text-cyan font-bold">INTERACTIVE</span>
             </div>
             <div class="flex items-center justify-between">
-              <span class="flex items-center gap-2"><span class="text-lime font-bold">▶</span> Systems Constellation Pentagram</span>
+              <span class="flex items-center gap-2"><span class="text-lime font-bold">▶</span> Systems Constellation Graph</span>
               <span class="text-violet font-bold">CONNECTED</span>
             </div>
           </div>
         </div>
 
         <!-- Launch Button CTA -->
-        <div class="w-full py-4 px-6 rounded-xl bg-lime text-black font-extrabold text-xs uppercase tracking-widest flex items-center justify-between group-hover:bg-[#d8ff68] shadow-[0_0_25px_rgba(198,255,77,0.3)] transition-all">
-          <span class="flex items-center gap-2">
+        <div class="w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-xl bg-lime text-black font-extrabold text-[11px] sm:text-xs uppercase tracking-widest flex items-center justify-between group-hover:bg-[#d8ff68] shadow-[0_0_25px_rgba(198,255,77,0.3)] transition-all">
+          <span class="flex items-center gap-2 truncate">
             <span>LAUNCH 3D HUD EXPERIENCE</span>
           </span>
-          <span class="text-base group-hover:translate-x-1 transition-transform">→</span>
+          <span class="text-base group-hover:translate-x-1 transition-transform ml-2">→</span>
         </div>
       </a>
 
       <!-- PORTAL 2: CLASSIC EDITORIAL (High Performance) -->
-      <a href="/classic/" class="group relative bg-[#0e1110]/80 backdrop-blur-xl border border-violet/40 rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hud-border text-violet glow-violet cursor-pointer">
+      <a href="/classic/" class="group relative bg-[#0e1110]/80 backdrop-blur-xl border border-violet/40 rounded-2xl p-5 sm:p-8 flex flex-col justify-between transition-all duration-300 hud-border text-violet glow-violet cursor-pointer">
         <div>
           <!-- Top Badge & Telemetry -->
-          <div class="flex justify-between items-center mb-6">
-            <span class="px-3 py-1 text-xs font-extrabold tracking-widest uppercase bg-violet text-black rounded font-mono shadow-[0_0_12px_rgba(155,123,255,0.4)]">
+          <div class="flex justify-between items-center mb-4 sm:mb-6">
+            <span class="px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-extrabold tracking-widest uppercase bg-violet text-black rounded font-mono shadow-[0_0_12px_rgba(155,123,255,0.4)]">
               MINIMAL // PROTOCOL 02
             </span>
-            <div class="text-right text-[11px] text-violet font-mono">
+            <div class="text-right text-[10px] sm:text-[11px] text-violet font-mono">
               <div>RENDER: CANVAS 2D</div>
               <div class="text-white/40">LOW LATENCY</div>
             </div>
           </div>
 
           <!-- Icon / Visual Indicator -->
-          <div class="w-14 h-14 rounded-xl bg-violet/10 border border-violet/30 flex items-center justify-center text-violet mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(155,123,255,0.2)]">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-violet/10 border border-violet/30 flex items-center justify-center text-violet mb-4 sm:mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(155,123,255,0.2)]">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <line x1="3" y1="9" x2="21" y2="9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <line x1="9" y1="21" x2="9" y2="9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
 
-          <h2 class="text-2xl sm:text-3xl font-extrabold font-sans text-white mb-3 group-hover:text-violet transition-colors">
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold font-sans text-white mb-2 sm:mb-3 group-hover:text-violet transition-colors">
             Editorial Systems Edition
           </h2>
-          <p class="text-sm text-white/70 leading-relaxed font-sans mb-8">
+          <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-sans mb-6 sm:mb-8">
             An editorial, typography-focused showcase. Features an ambient dynamic particle network, structured case study timelines, and instant-scroll reading for high-efficiency review.
           </p>
 
           <!-- System Specs Checklist -->
-          <div class="space-y-2.5 text-xs text-white/60 border-t border-white/10 pt-6 mb-8 font-mono">
+          <div class="space-y-2 sm:space-y-2.5 text-[11px] sm:text-xs text-white/60 border-t border-white/10 pt-4 sm:pt-6 mb-6 sm:mb-8 font-mono">
             <div class="flex items-center justify-between">
-              <span class="flex items-center gap-2"><span class="text-violet font-bold">▶</span> Reactive Proximity Particle Field</span>
+              <span class="flex items-center gap-2"><span class="text-violet font-bold">▶</span> Proximity Particle Field</span>
               <span class="text-violet font-bold">CANVAS</span>
             </div>
             <div class="flex items-center justify-between">
@@ -236,18 +241,18 @@
               <span class="text-lime font-bold">7 REPOS</span>
             </div>
             <div class="flex items-center justify-between">
-              <span class="flex items-center gap-2"><span class="text-violet font-bold">▶</span> Zero-Motion / Low Power Fallback</span>
+              <span class="flex items-center gap-2"><span class="text-violet font-bold">▶</span> Zero-Motion / Low Power Mode</span>
               <span class="text-cyan font-bold">VERIFIED</span>
             </div>
           </div>
         </div>
 
         <!-- Launch Button CTA -->
-        <div class="w-full py-4 px-6 rounded-xl bg-violet/20 border border-violet/40 text-violet font-extrabold text-xs uppercase tracking-widest flex items-center justify-between group-hover:bg-violet group-hover:text-black shadow-[0_0_20px_rgba(155,123,255,0.2)] transition-all">
-          <span class="flex items-center gap-2">
+        <div class="w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-xl bg-violet/20 border border-violet/40 text-violet font-extrabold text-[11px] sm:text-xs uppercase tracking-widest flex items-center justify-between group-hover:bg-violet group-hover:text-black shadow-[0_0_20px_rgba(155,123,255,0.2)] transition-all">
+          <span class="flex items-center gap-2 truncate">
             <span>LAUNCH EDITORIAL VIEW</span>
           </span>
-          <span class="text-base group-hover:translate-x-1 transition-transform">→</span>
+          <span class="text-base group-hover:translate-x-1 transition-transform ml-2">→</span>
         </div>
       </a>
 
@@ -255,7 +260,16 @@
   </main>
 
   <!-- Footer -->
-  <footer class="w-full max-w-7xl mx-auto px-6 py-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-xs text-white/40 gap-4 relative z-20 backdrop-blur-md bg-black/40">
+  <footer class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[10px] sm:text-xs text-white/40 gap-3 sm:gap-4 relative z-20 backdrop-blur-md bg-black/40 text-center sm:text-left">
+    <div class="flex items-center gap-2">
+      <span class="text-lime font-mono">NP // GATEWAY</span>
+      <span>© 2026 NAITIK PATHAK. ALL SYSTEMS VERIFIED.</span>
+    </div>
+    <div class="flex items-center gap-4 sm:gap-6">
+      <a href="mailto:naitikpathak2005@gmail.com" class="hover:text-lime transition-colors">naitikpathak2005@gmail.com</a>
+      <a href="https://drive.google.com/file/d/13Sofs46mUb-VEdHEv_X-r2AtcCaK_01c/view?usp=sharing" target="_blank" class="hover:text-cyan transition-colors">Resume</a>
+    </div>
+  </footer>
     <div class="flex items-center gap-2">
       <span class="text-lime font-mono">NP // GATEWAY</span>
       <span>© 2026 NAITIK PATHAK. ALL SYSTEMS VERIFIED.</span>
@@ -348,12 +362,27 @@
         targetY = mouseY * 0.35;
       });
 
-      // Window resize
-      window.addEventListener('resize', () => {
+      // Window resize & Mobile touch handling
+      function handleResize() {
+        const isMobile = window.innerWidth < 768;
+        camera.position.z = isMobile ? 32 : 24;
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
-      });
+      }
+      handleResize();
+      window.addEventListener('resize', handleResize);
+
+      // Touch orientation for mobile phones
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          const t = e.touches[0];
+          mouseX = (t.clientX / window.innerWidth) * 2 - 1;
+          mouseY = -(t.clientY / window.innerHeight) * 2 + 1;
+          targetX = mouseX * 0.35;
+          targetY = mouseY * 0.25;
+        }
+      }, { passive: true });
 
       // Clock & FPS Tracker
       const clock = new THREE.Clock();
